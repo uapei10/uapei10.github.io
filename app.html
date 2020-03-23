@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <title>TRAFFIC MANAGEMENT PLATFORM</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	body, html {
@@ -19,7 +19,10 @@
 
 	.wrapper1 {
     text-align: center;
-}
+  }
+  .map {
+      height: 550px;
+  }
 </style>
 
 <body>
@@ -50,9 +53,10 @@
                   <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">1</strong>
                   </span>Select Region: 
                 </label>
-                <select id="reg">
-                  <option value="d1">Aveiro</option>
-                  <option value="d2">Porto</option>
+                <select id="reg" onchange="getMap(this.id)">
+                  <option disabled selected value> -- select an option -- </option>
+                  <option value="aveiro">Aveiro</option>
+                  <option value="porto">Porto</option>
                 </select>
             </div>
         </div>
@@ -86,10 +90,10 @@
 </div>
 
 <div class="w3-container">
-    <div class="w3-row-padding" style="margin-top:16px">
+    <div class="w3-row-padding" style="margin-top:4px">
         <div class="w3-col" style="width:40%">
             <div class="w3-card">       
-                <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24225.321704778347!2d-8.769798741043656!3d40.62623832782756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2395fddb6afbef%3A0x67f1d70300877ccf!2sPraia%20da%20Barra!5e0!3m2!1spt-PT!2spt!4v1584649465263!5m2!1spt-PT!2spt" width=100% height="550" frameborder="0" ></iframe></p>
+                <p><div id="map" class="map"></div></p>
             </div>
         </div>
         <div class="w3-col" style="width:60%">
@@ -99,8 +103,8 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="script.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
 </body>
 </html>
