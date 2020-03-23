@@ -46,7 +46,10 @@
     <div class="w3-row-padding" style="margin-top:78px">
         <div class="w3-col" style="width:40%">
             <div class="w3-container">
-                <label for="region">Select Region: </label>
+                <label for="region">
+                  <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">1</strong>
+                  </span>Select Region: 
+                </label>
                 <select id="reg">
                   <option value="d1">Aveiro</option>
                   <option value="d2">Porto</option>
@@ -56,16 +59,25 @@
         <div class="w3-col" style="width:60%">
             <div class="w3-col" style="width:50%">
                 <div class="wrapper1">
-                    <label for="date">Select Date: </label>
+                    <label for="date">
+                      <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">2</strong>
+                      </span>
+                      Select Date: 
+                    </label>
                     <input id="date" type="date">
                 </div>
             </div>
             <div class="w3-col" style="width:50%">
                 <div class="wrapper1">
-                    <label for="dashboard">Select Dashboard: </label>
-                    <select id="dash">
-                        <option value="d1">Dashboard 1</option>
-                        <option value="d2">Dashboard 2</option>
+                    <label for="dashboard">
+                      <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">3</strong>
+                      </span>
+                      Select Dashboard: 
+                    </label>
+                    <select id="dash" onchange="populateCharts(this.id)">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="d1">Traffic Density - Hour</option>
+                        <option value="d2">Traffic Density - 5 Minutes</option>
                     </select>
                 </div>
             </div>
@@ -81,8 +93,8 @@
             </div>
         </div>
         <div class="w3-col" style="width:60%">
-            <div class="w3-card">  
-      	       <p><canvas id="myChart" width=100% ></canvas></p>   
+            <div id="charts" class="w3-card">
+      	       <p><canvas id="Chart" width=100% ></canvas></p>
             </div>
         </div>
     </div>
