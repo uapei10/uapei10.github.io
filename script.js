@@ -1,50 +1,63 @@
-// Our labels along the x-axis
+// chart
+var myChart;
+// chart x axis
 var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
 var minutes = [5,10,15,20,25,30,35,40,45,50,55,60];
-// For drawing the lines
+// chart y axis
 var trafficHour = [86,114,106,106,107,111,133,221,783,2478,86,114,106,106,107,111,133,221,783,2478,133,221,783,2478];
+var trafficHourHomol = [863,120,806,306,407,511,633,121,683,2978,186,214,706,606,507,511,633,321,283,1478,433,321,683,1478];
 var traffic5Minutes = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
+var traffic5MinutesHomol = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
 function populateCharts(arg1){
-  document.getElementById("Chart").innerHTML = "";
   var id1 = document.getElementById(arg1);
   if(id1.value == "d1"){
     var chart = document.getElementById("Chart");
-    var myChart = new Chart(chart, {
+    myChart = new Chart(chart, {
       type: 'bar',
       data: {
         labels: hours,
         datasets: [
           {
+            label: "Selected Day",
             backgroundColor: "#3e95cd",
             data: trafficHour
+          }, {
+            label: "Homologous Day",
+            backgroundColor: "#3333cd",
+            data: trafficHourHomol
           }
         ]
       },
       options: {
-        legend: { display: false },
+        legend: { display: true },
         title: {
           display: true,
-          text: 'Traffic Density (Nº Vehicles/Hour)'
+          text: 'Traffic Density (Nº Vehicles / Hour)'
         }
       }
     });
   }
   else if(id1.value == "d2"){
     var chart = document.getElementById("Chart");
-    var myChart = new Chart(chart, {
+    myChart = new Chart(chart, {
       type: 'bar',
       data: {
         labels: minutes,
         datasets: [
           {
+            label: "Selected Day",
             backgroundColor: "#8e5ea2",
             data: traffic5Minutes
+          }, {
+            label: "Homologous Day",
+            backgroundColor: "#2e42a2",
+            data: traffic5MinutesHomol
           }
         ]
       },
       options: {
-        legend: { display: false },
+        legend: { display: true },
         title: {
           display: true,
           text: 'Traffic Density (Nº Vehicles / 5 Minutes)'
@@ -69,14 +82,6 @@ function getMap(arg1){
         center: ol.proj.fromLonLat([-8.75278, 40.61771]),
         zoom: 13})
     });
-
-    // ------------------------------------ MARKER -----------------------------------
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-    
-    markers.addMarker(new OpenLayers.Marker([-8.75278, 40.61771]));
-    
-    map.setCenter (lonLat, zoom);
   }
 
   else if(id1.value == "porto"){
@@ -95,3 +100,4 @@ function getMap(arg1){
 
 // Graph.js -> https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
 // OpenLayers -> https://openlayers.org/
+// fix graph bug -> https://stackoverflow.com/questions/43490743/chartjs-mouse-hover-bug-showing-previous-charts
