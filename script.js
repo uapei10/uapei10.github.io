@@ -12,6 +12,7 @@ var traffic5MinutesHomol = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   if(id1.value == "d1"){
+    hideHour();
     var chart = document.getElementById("Chart");
     myChart = new Chart(chart, {
       type: 'bar',
@@ -39,6 +40,7 @@ function populateCharts(arg1){
     });
   }
   else if(id1.value == "d2"){
+    showHour();
     var chart = document.getElementById("Chart");
     myChart = new Chart(chart, {
       type: 'bar',
@@ -96,6 +98,16 @@ function getMap(arg1){
         zoom: 13})
     });
   }
+}
+
+function showHour() {
+  var x = document.getElementById("selHour");
+  x.style.visibility = "visible";
+}
+
+function hideHour() {
+  var x = document.getElementById("selHour");
+  x.style.visibility = "hidden";
 }
 
 // Graph.js -> https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
