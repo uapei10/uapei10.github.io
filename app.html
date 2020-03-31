@@ -14,15 +14,24 @@
   	line-height: 1.8;
 	}
 	.w3-bar .w3-button {
-  		padding: 16px;
+  	padding: 16px;
 	}
-
 	.wrapper1 {
     text-align: center;
   }
   .map {
-      height: 550px;
+    height: 550px;
   }
+  .map img {
+    height: 100%;
+    width: 100%;
+  }
+  .chartim {
+    height: 550px;
+    margin-left:4px
+    margin-right:4px
+  }
+
 </style>
 
 <body>
@@ -123,12 +132,12 @@
     <div class="w3-row-padding" style="margin-top:4px">
         <div class="w3-col" style="width:40%">
             <div class="w3-card">       
-                <p><div id="mapdiv" class="map"></div></p>
+                <p><div id="mapdiv" class="map"> <img src="Images/pattern.png" id="mapimage"> </div></p>
             </div>
         </div>
         <div class="w3-col" style="width:60%">
             <div id="charts" class="w3-card">
-      	       <p><canvas id="Chart" width=100% ></canvas></p>
+      	       <p><div id="chartdiv" class="chartim"> <canvas id="Chart"></canvas></div></p>
             </div>
         </div>
     </div>

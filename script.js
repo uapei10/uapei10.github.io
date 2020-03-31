@@ -19,6 +19,12 @@ var traffic5MinutesHomolh0 = [382,150,511,202,135,909,1047,402,1000,2267,286,314
 var traffic5Minutesh1 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomolh1 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
+// Init
+var chart = document.getElementById("Chart");
+    myChart = new Chart(chart, {
+      type: 'bar',
+    });
+
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
 function populateCharts(arg1){
