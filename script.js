@@ -34,13 +34,13 @@ function populateCharts(arg1){
         labels: hours,
         datasets: [
           {
-            label: "Selected Day",
-            backgroundColor: "#3e95cd",
-            data: trafficHour
-          }, {
             label: "Homologous Day",
-            backgroundColor: "#3333cd",
+            backgroundColor: "#3e95cd",
             data: trafficHourHomol
+          }, {
+            label: "Selected Day",
+            backgroundColor: "#3333cd",
+            data: trafficHour
           }
         ]
       },
@@ -62,13 +62,13 @@ function populateCharts(arg1){
         labels: minutes,
         datasets: [
           {
-            label: "Selected Day",
-            backgroundColor: "#8e5ea2",
-            data: traffic5Minutes
-          }, {
             label: "Homologous Day",
-            backgroundColor: "#2e42a2",
+            backgroundColor: "#8e5ea2",
             data: traffic5MinutesHomol
+          }, {
+            label: "Selected Day",
+            backgroundColor: "#2e42a2",
+            data: traffic5Minutes
           }
         ]
       },
