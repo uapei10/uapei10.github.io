@@ -60,7 +60,7 @@
 </div>
 <div class="w3-container  w3-light-grey" style="padding:4px 1px" id="workDone">
 	<div class="w3-col-padding" style="margin-top:8px">
-		<h3 class="w3-center">TO DO</h3><div class="w3-row-padding" >
+		<h3 class="w3-center">TO DO</h3>
 	</div>
 </div>
 <div class="w3-container  w3-light-grey" style="padding:32px 4px" id="workDone">
@@ -85,32 +85,7 @@
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 </footer>
  
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
-
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
-</script>
+<script src="w3.js"></script>
 
 </body>
 </html>
