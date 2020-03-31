@@ -1,6 +1,8 @@
 // Chart
 var myChart;
+// Map
 var map;
+// Popup Controls
 var controls;
 
 // Chart x axis
@@ -152,7 +154,7 @@ function addAveiroMarkers(){
   var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
   var feature = new OpenLayers.Feature.Vector(
             new OpenLayers.Geometry.Point( -8.75278, 40.61771 ).transform(epsg4326, projectTo),
-            {description:'This is the value of<br>the description attribute'} ,
+            {description:'Av. José Estevão'} ,
             {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
         );    
   vectorLayer.addFeatures(feature);
@@ -177,9 +179,9 @@ function createPopup(feature) {
   feature.popup = new OpenLayers.Popup.FramedCloud("pop",
     feature.geometry.getBounds().getCenterLonLat(),
     null,
-    '<div class="markerContent">' +feature.attributes.description +'<button type="button">Select</button>' +'</div>',
+    '<div style="text-align:center">' +feature.attributes.description +'<br><button type="button">Select</button>' +'</div>',
     null,
-    true,
+    false,
     function() { controls['selector'].unselectAll(); }
   );
   map.addPopup(feature.popup);
