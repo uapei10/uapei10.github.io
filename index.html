@@ -37,8 +37,8 @@ body, html {
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
       <a href="app.html" class="w3-bar-item w3-button"><i class="fa fa-mobile"></i> APP (IN DEVELOPMENT)</a>
-      <a href="developers.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> FOR DEVELOPERS</a>
-      <a href="logbook.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> LOGBOOK(DOCUMENTATION)</a>
+      <a href="developers.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> FOR DEVELOPERS(DOCUMENTATION)</a>
+      <a href="logbook.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> LOGBOOK</a>
       <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-info"></i> ABOUT</a>
       <!--<a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
 	    <a href="#workDone" class="w3-bar-item w3-button"><i class="fa fa-th"></i> DOCUMENTATION</a> -->
@@ -145,7 +145,32 @@ body, html {
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 </footer>
  
-<script src="w3.js"></script>
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
 
 </body>
 </html>
