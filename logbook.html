@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <title>TRAFFIC MANAGEMENT PLATFORM</title>
@@ -7,26 +8,23 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+	body, html {
+  	height: 100%;
+  	line-height: 1.8;
+	}
+	.w3-bar .w3-button {
+  		padding: 16px;
+	}
 
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("Images/final.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
+	.wrapper1 {
+    text-align: center;
+  }
+  .map {
+      height: 550px;
+  }
+</style>
 </style>
 <body>
 
@@ -36,12 +34,10 @@ body, html {
     <a href="#home" class="w3-bar-item w3-button w3-wide">PEI PROJECT</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a href="app.html" class="w3-bar-item w3-button"><i class="fa fa-mobile"></i> APP (IN DEVELOPMENT)</a>
-      <a href="developers.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> For Developers</a>
-      <a href="logbook.html" class="w3-bar-item w3-button"><i class="fa fa-archive"></i> Logbook(Documentation)</a>
-      <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-info"></i> ABOUT</a>
-      <!--<a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
-	    <a href="#workDone" class="w3-bar-item w3-button"><i class="fa fa-th"></i> DOCUMENTATION</a> -->
+      <a href="index.html" class="w3-bar-item w3-button"><i class="fa fa-home"></i>Home</a>
+      <a href="#obj" class="w3-bar-item w3-button"><i class="fa fa-user"></i> OBJECTIVES</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+	  <a href="#workDone" class="w3-bar-item w3-button"><i class="fa fa-th"></i> DOCUMENTATION</a>
       <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT US</a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
@@ -51,45 +47,8 @@ body, html {
   </div>
 </div>
 
-<!-- Sidebar on small screens when clicking the menu icon -->
-<!--<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
-  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
-  <a href="#workDone" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
-</nav> -->
-
-<!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-left w3-text-white" style="padding:48px">
-    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more</a></p>
-  </div> 
-</header>
-
-<!-- About Section -->
-<div class="w3-container" style="padding:20px 16px" id="about">
-  <h3 class="w3-center">ABOUT OUR PROJECT</h3>
-  <p class="w3-center w3-large">Context</p>
-  <p class="w3-center" style="padding:30px 16px" >This Project is part of the project PASMO-"Plataforma Aberta para o desenvolvimento e experimentação de Soluções para a Mobilidade"<br>Support for mobility and road safety</p>
-  
-  <p class="w3-center w3-large">Functionalities and objectives</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px" > <!-- 64 -->
-    <div class="w3-col" style="width:50%">
-      <i class="fa fa fa-bar-chart w3-margin-bottom w3-jumbo w3-center"></i> 
-      <p class="w3-large">Data</p>
-      <p>Management and processing of data collected by radars and cameras. Graphics creation to represent information </p>
-    </div>
-    <div class="w3-col" style="width:50%">
-      <i class="fa fa-automobile w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">Recognition</p>
-      <p>Object recognition and division by subtypes, more specifically, people, bicycles/motorcycles, cars or trucks with the help of YOLO, a image recognition tool. </p>
-    </div>
-  </div>
-</div>
-
 <!-- Promo Section - "We know design"/-->
-<!--<div class="w3-container w3-light-grey" style="padding:64px 16px">
+<div class="w3-container w3-light-grey" style="padding:64px 16px" id="obj">
   <div class="w3-row-padding">
     <h2 class="w3-center" style="padding:30px">Project Objectives/Tasks:</h2>
     <div class="w3-col m6">
@@ -109,10 +68,9 @@ body, html {
     </div>
   </div>
 </div> 
--->
 
 <!-- Team Section -->
-<!--<div class="w3-container" style="padding:0px 16px" id="team">
+<div class="w3-container" style="padding:0px 16px" id="team">
   <h3 class="w3-center">Team</h3>
   <p class="w3-center w3-large">Development team</p>
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
@@ -183,6 +141,7 @@ body, html {
 		<div class="w3-col" style="width:25%">
 			<br></br>
 			<h5>Co-Advisor:</h5>
+			<img src="Images/jjcf_perfil.jpg" alt="Jane" style="width:91%">
 			<h6>Joaquim Ferreira</h6>
 			<p class="w3-opacity">ESTGA/IT</p>
 			<p> E-Mail : jcf@ua.pt </p>
@@ -207,7 +166,7 @@ body, html {
   </div>
 </div>
 
-<!-- Documentation Section 
+<!-- Documentation Section -->
 <div class="w3-container" style="padding:128px 16px" id="workDone">
   <h3 class="w3-center">OUR DOCUMENTATION</h3>
   <p class="w3-center w3-large">What we've done</p>
@@ -275,7 +234,7 @@ body, html {
     </div>
   </div>
 </div>
--->
+
 <!-- Modal for full size images on click-->
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
   <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
