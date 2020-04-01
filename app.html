@@ -73,7 +73,7 @@
                       </span>
                       Select Date: 
                     </label>
-                    <input id="date" type="date">
+                    <input id="dateinput" type="date" onchange="updateDate(this.id)">
                 </div>
             </div>
             <div class="w3-col" style="width:50%">
@@ -83,7 +83,7 @@
                       </span>
                       Select Dashboard: 
                     </label>
-                    <select id="dash" onchange="populateCharts(this.id)">
+                    <select id="dashinput" onchange="populateCharts(this.id)">
                         <option disabled selected value> -- select an option -- </option>
                         <option value="d1">Traffic Density - Hour</option>
                         <option value="d2">Traffic Density - 5 Minutes</option>

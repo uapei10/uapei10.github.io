@@ -21,6 +21,9 @@ var traffic5MinutesHomolh0 = [382,150,511,202,135,909,1047,402,1000,2267,286,314
 var traffic5Minutesh1 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomolh1 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
+document.getElementById("dateinput").disabled=true;
+document.getElementById("dashinput").disabled=true;
+
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
 function populateCharts(arg1){
@@ -113,6 +116,7 @@ function removeData(chart) {
 // ----------------------------------- OpenLayers -------------------------------------------
 // Update map div
 function getMap(arg1){
+  document.getElementById("dateinput").disabled=false;
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
@@ -181,6 +185,10 @@ function destroyPopup(feature) {
   feature.popup = null;
 }
 
+// ----------------------------------- Dates -------------------------------------------
+function updateDate(arg1){
+  document.getElementById("dashinput").disabled=false;
+}
 
 // ----------------------------------- HTML -------------------------------------------
 // Hide hour selection div
