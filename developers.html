@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" type="text/css" href="tabs2.css">
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	body, html {
@@ -76,9 +77,9 @@ body {top:0 !important;}
   </div>
 </div>
 
-<!-- Promo Section - "We know design"/-->
+<!-- Promo Section - "We know design"
 
-<div class="w3-container" style="padding:64px 16px">
+<div class="w3-container w3-light-grey" style="padding:64px 16px">
   <div class="w3-row-padding">
     <h3 class="w3-center" style="padding:30px">TASKS</h2>
     <div class="w3-col m6">
@@ -97,11 +98,11 @@ body {top:0 !important;}
       <p><i class="fa fa-terminal fa-fw w3-xxlarge w3-margin-right"></i>Storage of data obtained after the merge.</p>
     </div>
   </div>
-</div> 
+</div>  /-->
 
 <!-- Documentation Section -->
 
-<div class="w3-container w3-light-grey" style="padding:32px 4px" id="workDone">
+<!--<div class="w3-container w3-light-grey" style="padding:32px 4px" id="workDone">
     <h3 class="w3-center">DELIVERABLES</h3><div class="w3-row-padding" style="margin-top:16px">
     <div class="w3-col l3 m6">
       <h4>Milestone 1</h4>    
@@ -125,17 +126,71 @@ body {top:0 !important;}
     </div>
     <div class="w3-col l3 m6">
       <h4>Milestone 4</h4>    
-      <!--<div class="button_01"><a href= "Documentação/UNITCENTERDBsql.pdf " target="_blank">Unit Center SQL(inicial)</a></div>
-      <div class="button_01"><a href= "Documentação/RegionalDBsql.pdf " target="_blank">Region DB SQL(inicial</a></div>-->
     </div>
+  </div>
+</div> -->
+
+<div class="w3-container" style="padding:32px; margin-bottom:32px" id="workDone">
+  <div class="w3-center">
+   <h3 class="title">DELIVERABLES</h3><br>
+   <div class="tabContainer">
+      <div class="buttonContainer">
+       <button onclick="showPanel(0,'#676767')">Milestone 1</button>
+       <button onclick="showPanel(1,'#676767')">Milestone 2</button>
+       <button onclick="showPanel(2,'#676767')">Milestone 3</button>
+       <button onclick="showPanel(3,'#676767')">Milestone 4</button>
+      </div>
+      <div class="tabPanel">
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href="Documentação/Calendário(OLD VERSION).pdf">Calendar (Old)</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href="Documentação/Apresentacao.pdf">Presentation</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href="Documentação/Calendario.png">Calendar</a></div>
+        </div>
+      </div>
+      <div class="tabPanel"> 
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01"><a href= "Documentação/UML.pdf " target="_blank">DataBase UML</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01"><a href= "Documentação/Architecture.pdf " target="_blank">System Architecture</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01"><a href= "Documentação/Personas.pdf " target="_blank">Personas</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01"><a href= "Documentação/pei_g10_2apresentaçao.pdf " target="_blank">Presentation</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01"><a href= "Documentação/tasks.pdf " target="_blank">New Calendar</a></div>
+        </div>
+      </div>
+      <div class="tabPanel">
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href= "Documentação/UNITCENTERDBsql.pdf " target="_blank">Unit Center SQL(inicial)</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href= "Documentação/RegionalDBsql.pdf " target="_blank">Region DB SQL(inicial</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 16px"><a href= "Documentação/SWOT.png " target="_blank">SWOT</a></div>
+        </div>
+      </div>
+      <div class="tabPanel">
+        
+      </div>
+   </div>
   </div>
 </div>
 
 <!-- Team Section -->
-<div class="w3-container" style="padding:0px 16px" id="team">
+<div class="w3-container w3-light-grey" id="team">
   <h3 class="w3-center">TEAM</h3>
   <p class="w3-center w3-large">Development team</p>
-  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px; margin-bottom:64px">
     <div class="w3-col" style="width:20%">
       <div class="w3-card">       
         <img src="Images/korts.jpeg" alt="João Soares" style="width:100%">
@@ -258,5 +313,6 @@ function googleTranslateElementInit2() {new google.translate.TranslateElement({p
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}',43,43,'||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'),0,{}))
 </script>
 <script src="w3.js"></script>
+<script src="tabs.js"></script>
 </body>
 </html>
