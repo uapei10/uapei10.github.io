@@ -120,7 +120,12 @@ function getMap(arg1){
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
-    map = new OpenLayers.Map("mapdiv");
+    map = new OpenLayers.Map("mapdiv", {
+    controls: [
+        new OpenLayers.Control.Navigation(),
+        new OpenLayers.Control.ArgParser(),
+        new OpenLayers.Control.Attribution()]
+    });
     map.addLayer(new OpenLayers.Layer.OSM());
     epsg4326 =  new OpenLayers.Projection("EPSG:4326"); 
     projectTo = map.getProjectionObject();
