@@ -129,16 +129,6 @@ function getMap(arg1){
     map.setCenter (lonLat, zoom);
     addAveiroMarkers();
   }
-
-  else if(id1.value == "porto"){
-    map = new OpenLayers.Map("mapdiv");
-    map.addLayer(new OpenLayers.Layer.OSM());
-    epsg4326 =  new OpenLayers.Projection("EPSG:4326"); 
-    projectTo = map.getProjectionObject();
-    var lonLat = new OpenLayers.LonLat(-8.61099 ,41.14961).transform(epsg4326, projectTo);    
-    var zoom=13;
-    map.setCenter (lonLat, zoom);
-  }
 }
 
 //Adds Aveiro Markers
