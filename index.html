@@ -10,8 +10,11 @@
 <link rel="stylesheet" type="text/css" href="css/w3.css">
 <link rel="stylesheet" type="text/css" href="css/animate.css">
 
-<body>
+<head>
+  <script src="js/jquery-3.4.1.js"></script>
+</head>
 
+<body>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
@@ -32,20 +35,22 @@
 </div>
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+<header class="bgimg-1 w3-display-container w3-grayscale-min onscreen" id="home">
   <div class="w3-display-left w3-text-white" style="padding:48px">
   </div> 
 </header>
 
 <!-- About Section -->
+<section>
 <div class="w3-container" style="padding:20px 16px" id="about">
   <h3 class="w3-center">ABOUT OUR PROJECT</h3>
   <p class="w3-center w3-large">Context</p>
   <p class="w3-center" style="padding:30px 16px" >This Project is part of PASMO-"Plataforma Aberta para o desenvolvimento e experimentação de Soluções para a Mobilidade"<br>Support for mobility and road safety</p>
 </div>
-
+</section>
 
 <!-- data treat Section -->
+<section>
 <div class="w3-container w3-light-grey" style="padding:20px 16px" id="data">
   <h3 class="w3-center">WHAT WE CAN DO FOR YOU</h3> 
   <div class="w3-row-padding w3-center" style="margin-top:64px" > <!-- 64 -->
@@ -64,8 +69,10 @@
         </div>
   </div>
 </div>
+</section>
 
 <!-- capt data Section -->
+<section>
 <div class="w3-container" style="padding:20px 16px" id="sensor">
   <h3 class="w3-center">HOW WE GET DATA</h3> 
   <div class="w3-row-padding w3-center" style="margin-top:64px" > <!-- 64 -->
@@ -81,8 +88,10 @@
     </div>
   </div>
 </div>
+</section>
 
 <!-- data treat Section -->
+<section>
 <div class="w3-container w3-light-grey" style="padding:20px 16px" id="data">
   <h3 class="w3-center">DATA PRESENTATION</h3> 
   <div class="w3-row-padding w3-center" style="margin-top:64px" > <!-- 64 -->
@@ -95,8 +104,10 @@
     </div>
   </div>
 </div>
+</section>
 
 <!-- Modal for full size images on click-->
+<section>
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
   <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
   <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
@@ -104,8 +115,10 @@
     <p id="caption" class="w3-opacity w3-large"></p>
   </div>
 </div>
+</section>
 
 <!-- Contact Section -->
+<section>
 <div class="w3-container" style="padding:64px 16px" id="contact">
   <h3 class="w3-center">CONTACTS</h3>
   <p class="w3-center w3-large">Keep in touch. Check Pasmo Website too:</p>
@@ -117,6 +130,7 @@
     <p class="w3-col w3-center"><i class="fa fas fa-share fa-fw w3-xxlarge w3-margin-right"></i><a href="http://pasmo.av.it.pt">PASMO (direct Link)</a></p>   
   </div>
 </div>
+</section>
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64">
@@ -133,6 +147,5 @@
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
 <script src="js/w3.js"></script>
 <script src="js/animate.js"></script>
-<script src="js/jquery-3.4.1.js"></script>
 </body>
 </html>

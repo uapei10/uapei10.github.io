@@ -3,9 +3,12 @@ body, html {
   height: 100%;
   line-height: 1.8;
 }
-.w3-bar .w3-button {
-  padding: 16px;
+
+.w3-button{
+  transition: all 0.5s;
+  cursor: pointer;
 }
+
 .wrapper1 {
   text-align: center;
 }

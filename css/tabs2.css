@@ -18,10 +18,12 @@
     padding: 10px;
     font-family: sans-serif;
     font-size: 18px;
-    background-color: #eee;
+    background-color: black;
+    transition: all 0.5s;
+    cursor: pointer;
 }
 .tabContainer .buttonContainer button:hover{
-    background-color: #d7d4d4;
+    background-color: #676767;
 }
 .tabContainer .tabPanel{
     height: 85%;
@@ -31,6 +33,6 @@
     padding-top: 0px;
     box-sizing: border-box;
     font-family: sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     display: none;
 }
