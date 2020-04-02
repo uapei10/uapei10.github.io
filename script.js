@@ -21,16 +21,14 @@ var traffic5MinutesHomolh0 = [382,150,511,202,135,909,1047,402,1000,2267,286,314
 var traffic5Minutesh1 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomolh1 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
-// Init
-var chart = document.getElementById("Chart");
-    myChart = new Chart(chart, {
-      type: 'bar',
-    });
+document.getElementById("dateinput").disabled=true;
+document.getElementById("dashinput").disabled=true;
 
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
 function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
+  dashHourReset();
   if(myChart != undefined)
     myChart.destroy();
   if(id1.value == "d1"){
@@ -63,47 +61,40 @@ function populateCharts(arg1){
   }
   else if(id1.value == "d2"){
     showHour();
-    var chart = document.getElementById("Chart");
-    myChart = new Chart(chart, {
-      type: 'bar',
-      data: {
-        labels: minutes,
-        datasets: [
-          {
-            label: "Homologous Day",
-            backgroundColor: "#8e5ea2",
-            data: traffic5MinutesHomol
-          }, {
-            label: "Selected Day",
-            backgroundColor: "#2e42a2",
-            data: traffic5Minutes
-          }
-        ]
-      },
-      options: {
-        legend: { display: true },
-        title: {
-          display: true,
-          text: 'Traffic Density (Nº Vehicles / 5 Minutes)'
-        }
-      }
-    });
   }
 }
 
-// Update charts with x axis -> hours
-/*function updateHourChart(arg1){
+// Create charts that need hour argument
+function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
-  removeData(myChart);
-  if(id1 == "h0"){
-    addData(myChart, "Selected Day", traffic5Minutesh0);
-    addData(myChart, "Homologous Day", traffic5MinutesHomolh0);
-  }
-  else if(id1 == "h1"){
-    addData(myChart, "Selected Day", traffic5Minutesh1);
-    addData(myChart, "Homologous Day", traffic5MinutesHomolh1);
-  }
-}*/
+  if(myChart != undefined)
+    myChart.destroy();
+  var chart = document.getElementById("Chart");
+  myChart = new Chart(chart, {
+    type: 'bar',
+    data: {
+      labels: minutes,
+      datasets: [
+        {
+          label: "Homologous Day",
+          backgroundColor: "#8e5ea2",
+          data: traffic5MinutesHomol
+        }, {
+          label: "Selected Day",
+          backgroundColor: "#2e42a2",
+          data: traffic5Minutes
+        }
+      ]
+    },
+    options: {
+      legend: { display: true },
+      title: {
+        display: true,
+        text: 'Traffic Density (Nº Vehicles / 5 Minutes)'
+      }
+    }
+  });
+}
 
 // Add data to a chart
 function addData(chart, label, data) {
@@ -125,6 +116,7 @@ function removeData(chart) {
 // ----------------------------------- OpenLayers -------------------------------------------
 // Update map div
 function getMap(arg1){
+  document.getElementById("dateinput").disabled=false;
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
@@ -193,6 +185,10 @@ function destroyPopup(feature) {
   feature.popup = null;
 }
 
+// ----------------------------------- Dates -------------------------------------------
+function updateDate(arg1){
+  document.getElementById("dashinput").disabled=false;
+}
 
 // ----------------------------------- HTML -------------------------------------------
 // Hide hour selection div
@@ -205,4 +201,10 @@ function hideHour() {
 function showHour() {
   var x = document.getElementById("selHour");
   x.style.visibility = "visible";
+}
+
+// Reset Droplist
+function dashHourReset() {
+  var dropDown = document.getElementById("dashhour");
+  dropDown.selectedIndex = 0;
 }
