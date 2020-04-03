@@ -1,5 +1,5 @@
 // Chart
-var myChart;
+var chart1in, chart1out, chart2in, chart2out;
 // Map
 var map;
 // Popup Controls
@@ -15,15 +15,9 @@ var trafficHourHomol = [863,120,806,306,407,511,633,121,683,2978,186,214,706,606
 var traffic5Minutes = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomol = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
-// Hour charts data TEMPORARY
-var traffic5Minutesh0 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
-var traffic5MinutesHomolh0 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
-var traffic5Minutesh1 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
-var traffic5MinutesHomolh1 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
-
 // Types of Vehicles
-var typesOfVehicles = ["Ligeiro", "Pesado", "Motociclo", "Peão"];
-var percentageOfVehicles = [50, 25, 20, 5];
+var typesOfVehicles = ["Ligeiro", "Pesado", "Motociclo"];
+var percentageOfVehicles = [50, 25, 20];
 
 document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
@@ -33,13 +27,12 @@ document.getElementById("dashinput").disabled=true;
 function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
-  if(myChart != undefined)
-    myChart.destroy();
   if(id1.value == "d1"){
     hideHour();
+
     //Criar Chart In - Parte de Cima
     var chart = document.getElementById("ChartIn");
-    myChart = new Chart(chart, {
+    chart1in = new Chart(chart, {
       type: 'bar',
       data: {
         labels: hours,
@@ -63,15 +56,16 @@ function populateCharts(arg1){
         }
       }
     });
-  //Criar PieChart IN - Parte de Cima
+
+  // Criar PieChart IN - Parte de Cima
   var chart = document.getElementById("PieChartIn")
-  var myChart = new Chart(chart, {
+  chart2in = new Chart(chart, {
     type: 'pie',
     data: {
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: "#3333cd",
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
           data: percentageOfVehicles
         }
       ]
@@ -84,9 +78,10 @@ function populateCharts(arg1){
       }
     }
   });
-  //Criar Chart Out - Parte de Baixo
+
+  // Criar Chart Out - Parte de Baixo
   var chart = document.getElementById("ChartOut");
-  myChart = new Chart(chart, {
+  chart1out = new Chart(chart, {
     type: 'bar',
     data: {
       labels: hours,
@@ -110,15 +105,16 @@ function populateCharts(arg1){
       }
     }
   });
-  //PieChart Out - Parte de Baixo
+
+  // PieChart Out - Parte de Baixo
   var chart = document.getElementById("PieChartOut")
-  var myChart = new Chart(chart, {
+  chart2out = new Chart(chart, {
     type: 'pie',
     data: {
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: "#3333cd",
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
           data: percentageOfVehicles
         }
       ]
@@ -134,6 +130,14 @@ function populateCharts(arg1){
 }
   else if(id1.value == "d2"){
     showHour();
+  if(chart1in != undefined)
+    chart1in.destroy();
+  if(chart1out != undefined)
+    chart1out.destroy();
+  if(chart2in != undefined)
+    chart2in.destroy();
+  if(chart2out != undefined)
+    chart2out.destroy();
   }
 }
 
@@ -141,21 +145,70 @@ function populateCharts(arg1){
 // Create charts that need hour argument
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
-  if(myChart != undefined)
-    myChart.destroy();
-  var chart = document.getElementById("Chart");
-  myChart = new Chart(chart, {
+
+  //Criar Chart In - Parte de Cima
+    var chart = document.getElementById("ChartIn");
+    chart1in = new Chart(chart, {
+      type: 'bar',
+      data: {
+        labels: minutes,
+        datasets: [
+          {
+            label: "Homologous Day",
+            backgroundColor: "#3e95cd",
+            data: traffic5MinutesHomol
+          }, {
+            label: "Selected Day",
+            backgroundColor: "#3333cd",
+            data: traffic5Minutes
+          }
+        ]
+      },
+      options: {
+        legend: { display: true },
+        title: {
+          display: true,
+          text: 'Traffic Density - IN (Nº Vehicles / Hour)'
+        }
+      }
+    });
+
+  // Criar PieChart IN - Parte de Cima
+  var chart = document.getElementById("PieChartIn")
+  chart2in = new Chart(chart, {
+    type: 'pie',
+    data: {
+      labels:typesOfVehicles,
+      datasets:[
+        {
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          data: percentageOfVehicles
+        }
+      ]
+    },
+    options: {
+      legend: {display: true},
+      title: {
+        display: true,
+        text: 'Types of Vehicles - IN'
+      }
+    }
+  });
+
+  // Criar Chart Out - Parte de Baixo
+  var chart = document.getElementById("ChartOut");
+  chart1out = new Chart(chart, {
     type: 'bar',
     data: {
       labels: minutes,
       datasets: [
         {
           label: "Homologous Day",
-          backgroundColor: "#8e5ea2",
+          backgroundColor: "#3e95cd",
           data: traffic5MinutesHomol
         }, {
           label: "Selected Day",
-          backgroundColor: "#2e42a2",
+          backgroundColor: "#3333cd",
           data: traffic5Minutes
         }
       ]
@@ -164,27 +217,32 @@ function updateHourChart(arg1){
       legend: { display: true },
       title: {
         display: true,
-        text: 'Traffic Density (Nº Vehicles / 5 Minutes)'
+        text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
       }
     }
   });
-}
 
-// Add data to a chart
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-// Remove Data from a chart
-function removeData(chart) {
-    //chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
+  // PieChart Out - Parte de Baixo
+  var chart = document.getElementById("PieChartOut")
+  chart2out = new Chart(chart, {
+    type: 'pie',
+    data: {
+      labels:typesOfVehicles,
+      datasets:[
+        {
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          data: percentageOfVehicles
+        }
+      ]
+    },
+    options: {
+      legend: {display: true},
+      title: {
+        display: true,
+        text: 'Types of Vehicles - OUT'
+      }
+    }
+  });
 }
 
 // ----------------------------------- OpenLayers -------------------------------------------
@@ -196,10 +254,12 @@ function getMap(arg1){
   if(id1.value == "aveiro"){
     map = new OpenLayers.Map("mapdiv", {
     controls: [
-        new OpenLayers.Control.Navigation(),
-        new OpenLayers.Control.ArgParser(),
-        new OpenLayers.Control.Attribution()]
+        new OpenLayers.Control.Navigation()]
     });
+    var i, l, c = map.getControlsBy( "zoomWheelEnabled", true );
+    for ( i = 0, l = c.length; i < l; i++ ) {
+      c[i].disableZoomWheel();
+    }
     map.addLayer(new OpenLayers.Layer.OSM());
     epsg4326 =  new OpenLayers.Projection("EPSG:4326");
     projectTo = map.getProjectionObject();
