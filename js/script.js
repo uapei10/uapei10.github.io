@@ -1,7 +1,7 @@
 // Chart
 var chart1in, chart1out, chart2in, chart2out;
 // Map
-var map;
+var mymap;
 // Popup Controls
 var controls;
 
@@ -252,20 +252,18 @@ function getMap(arg1){
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
-    map = new OpenLayers.Map("mapdiv", {
-    controls: [
-        new OpenLayers.Control.Navigation()]
-    });
-    var i, l, c = map.getControlsBy( "zoomWheelEnabled", true );
-    for ( i = 0, l = c.length; i < l; i++ ) {
-      c[i].disableZoomWheel();
-    }
-    map.addLayer(new OpenLayers.Layer.OSM());
-    epsg4326 =  new OpenLayers.Projection("EPSG:4326");
-    projectTo = map.getProjectionObject();
-    var lonLat = new OpenLayers.LonLat( -8.75278 ,40.61771 ).transform(epsg4326, projectTo);
-    var zoom=13;
-    map.setCenter (lonLat, zoom);
+    var map = new ol.Map({
+        target: 'mapdiv',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-8.75278, 40.61771]),
+          zoom: 13
+        })
+      });
     addAveiroMarkers();
   }
 }
@@ -279,7 +277,7 @@ function addAveiroMarkers(){
             {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
         );
   vectorLayer.addFeatures(feature);
-  map.addLayer(vectorLayer);
+  mymap.addLayer(vectorLayer);
 
   var feature = new OpenLayers.Feature.Vector(
             new OpenLayers.Geometry.Point( -8.732, 40.6268 ).transform(epsg4326, projectTo),
@@ -291,7 +289,7 @@ function addAveiroMarkers(){
   controls = {
      selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: createPopup, onUnselect: destroyPopup })
   };
-  map.addControl(controls['selector']);
+  mymap.addControl(controls['selector']);
   controls['selector'].activate();
 }
 
@@ -305,7 +303,7 @@ function createPopup(feature) {
     false,
     function() { controls['selector'].unselectAll(); }
   );
-  map.addPopup(feature.popup);
+  mymap.addPopup(feature.popup);
 }
 
 // Destroys Popup
