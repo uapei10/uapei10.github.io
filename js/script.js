@@ -64,7 +64,7 @@ function populateCharts(arg1){
   // Criar PieChart IN - Parte de Cima
   var chart = document.getElementById("PieChartIn")
   chart2in = new Chart(chart, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels:typesOfVehicles,
       datasets:[
@@ -115,7 +115,7 @@ function populateCharts(arg1){
   // PieChart Out - Parte de Baixo
   var chart = document.getElementById("PieChartOut")
   chart2out = new Chart(chart, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels:typesOfVehicles,
       datasets:[
@@ -177,7 +177,7 @@ function updateHourChart(arg1){
   // Criar PieChart IN - Parte de Cima
   var chart = document.getElementById("PieChartIn")
   chart2in = new Chart(chart, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels:typesOfVehicles,
       datasets:[
@@ -228,7 +228,7 @@ function updateHourChart(arg1){
   // PieChart Out - Parte de Baixo
   var chart = document.getElementById("PieChartOut")
   chart2out = new Chart(chart, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels:typesOfVehicles,
       datasets:[
