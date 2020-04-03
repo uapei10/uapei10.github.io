@@ -22,6 +22,8 @@ var percentageOfVehicles = [50, 25, 20];
 document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
 
+fixCanvasSizes();
+
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
 function populateCharts(arg1){
@@ -50,6 +52,7 @@ function populateCharts(arg1){
       },
       options: {
         legend: { display: true },
+        responsive: false,
         title: {
           display: true,
           text: 'Traffic Density - IN (Nº Vehicles / Hour)'
@@ -72,6 +75,7 @@ function populateCharts(arg1){
     },
     options: {
       legend: {display: true},
+      responsive: false,
       title: {
         display: true,
         text: 'Types of Vehicles - IN'
@@ -99,6 +103,7 @@ function populateCharts(arg1){
     },
     options: {
       legend: { display: true },
+      responsive: false,
       title: {
         display: true,
         text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
@@ -121,6 +126,7 @@ function populateCharts(arg1){
     },
     options: {
       legend: {display: true},
+      responsive: false,
       title: {
         display: true,
         text: 'Types of Vehicles - OUT'
@@ -129,7 +135,7 @@ function populateCharts(arg1){
   });
 }
   else if(id1.value == "d2"){
-    showHour();
+  showHour();
   if(chart1in != undefined)
     chart1in.destroy();
   if(chart1out != undefined)
@@ -166,6 +172,7 @@ function updateHourChart(arg1){
       },
       options: {
         legend: { display: true },
+        responsive: false,
         title: {
           display: true,
           text: 'Traffic Density - IN (Nº Vehicles / Hour)'
@@ -188,6 +195,7 @@ function updateHourChart(arg1){
     },
     options: {
       legend: {display: true},
+      responsive: false,
       title: {
         display: true,
         text: 'Types of Vehicles - IN'
@@ -215,6 +223,7 @@ function updateHourChart(arg1){
     },
     options: {
       legend: { display: true },
+      responsive: false,
       title: {
         display: true,
         text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
@@ -237,6 +246,7 @@ function updateHourChart(arg1){
     },
     options: {
       legend: {display: true},
+      responsive: false,
       title: {
         display: true,
         text: 'Types of Vehicles - OUT'
@@ -334,4 +344,23 @@ function showHour() {
 function dashHourReset() {
   var dropDown = document.getElementById("dashhour");
   dropDown.selectedIndex = 0;
+}
+
+function fixCanvasSizes(){
+  var canvas = document.getElementById("ChartIn");
+  var parent = document.getElementById("chart1div1");
+  canvas.width = parent.offsetWidth*0.9;
+  canvas.height = parent.offsetHeight*0.9;
+  var canvas = document.getElementById("PieChartIn");
+  var parent = document.getElementById("chart2div1");
+  canvas.width = parent.offsetWidth*0.9;
+  canvas.height = parent.offsetHeight*0.9;
+  var canvas = document.getElementById("ChartOut");
+  var parent = document.getElementById("chart1div2");
+  canvas.width = parent.offsetWidth*0.9;
+  canvas.height = parent.offsetHeight*0.9;
+  var canvas = document.getElementById("PieChartOut");
+  var parent = document.getElementById("chart2div2");
+  canvas.width = parent.offsetWidth*0.9;
+  canvas.height = parent.offsetHeight*0.9;
 }

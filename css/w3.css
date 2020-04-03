@@ -15,17 +15,22 @@ body, html {
 .map {
   height: 450px;
 }
-.chartim {
+.chartcont {
   height: 350px;
 }
 .textinf{
-  height:250px;
+  height: 250px;
 }
 .bgimg-1 {
   background-position: center;
   background-size: cover;
   background-image: url("../Images/final2.jpg");
   min-height: 100%;
+}
+
+canvas {
+    margin: 0 auto;
+    display: block;
 }
 
 <!--
