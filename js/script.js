@@ -16,8 +16,8 @@ var traffic5Minutes = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomol = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
 // Types of Vehicles
-var typesOfVehicles = ["Ligeiro", "Pesado", "Motociclo"];
-var percentageOfVehicles = [50, 25, 20];
+var typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
+var percentageOfVehicles = [50, 25, 20, 5];
 
 document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
@@ -29,6 +29,7 @@ fixCanvasSizes();
 function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
+  resetGraphs();
   if(id1.value == "d1"){
     hideHour();
 
@@ -68,7 +69,7 @@ function populateCharts(arg1){
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
           data: percentageOfVehicles
         }
       ]
@@ -78,7 +79,7 @@ function populateCharts(arg1){
       responsive: false,
       title: {
         display: true,
-        text: 'Types of Vehicles - IN'
+        text: 'Categorization - IN'
       }
     }
   });
@@ -119,7 +120,7 @@ function populateCharts(arg1){
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
           data: percentageOfVehicles
         }
       ]
@@ -129,21 +130,14 @@ function populateCharts(arg1){
       responsive: false,
       title: {
         display: true,
-        text: 'Types of Vehicles - OUT'
+        text: 'Categorization - OUT'
       }
     }
   });
 }
   else if(id1.value == "d2"){
   showHour();
-  if(chart1in != undefined)
-    chart1in.destroy();
-  if(chart1out != undefined)
-    chart1out.destroy();
-  if(chart2in != undefined)
-    chart2in.destroy();
-  if(chart2out != undefined)
-    chart2out.destroy();
+  resetGraphs();
   }
 }
 
@@ -188,7 +182,7 @@ function updateHourChart(arg1){
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
           data: percentageOfVehicles
         }
       ]
@@ -198,7 +192,7 @@ function updateHourChart(arg1){
       responsive: false,
       title: {
         display: true,
-        text: 'Types of Vehicles - IN'
+        text: 'Categorization - IN'
       }
     }
   });
@@ -239,7 +233,7 @@ function updateHourChart(arg1){
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
           data: percentageOfVehicles
         }
       ]
@@ -249,7 +243,7 @@ function updateHourChart(arg1){
       responsive: false,
       title: {
         display: true,
-        text: 'Types of Vehicles - OUT'
+        text: 'Categorization - OUT'
       }
     }
   });
@@ -363,4 +357,15 @@ function fixCanvasSizes(){
   var parent = document.getElementById("chart2div2");
   canvas.width = parent.offsetWidth*0.9;
   canvas.height = parent.offsetHeight*0.9;
+}
+
+function resetGraphs(){
+  if(chart1in != undefined)
+    chart1in.destroy();
+  if(chart1out != undefined)
+    chart1out.destroy();
+  if(chart2in != undefined)
+    chart2in.destroy();
+  if(chart2out != undefined)
+    chart2out.destroy();
 }
