@@ -21,6 +21,10 @@ var traffic5MinutesHomolh0 = [382,150,511,202,135,909,1047,402,1000,2267,286,314
 var traffic5Minutesh1 = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
 var traffic5MinutesHomolh1 = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
 
+// Types of Vehicles
+var typesOfVehicles = ["Ligeiro", "Pesado", "Motociclo", "Peão"];
+var percentageOfVehicles = [50, 25, 20, 5];
+
 document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
 
@@ -33,7 +37,8 @@ function populateCharts(arg1){
     myChart.destroy();
   if(id1.value == "d1"){
     hideHour();
-    var chart = document.getElementById("Chart");
+    //Criar Chart In - Parte de Cima
+    var chart = document.getElementById("ChartIn");
     myChart = new Chart(chart, {
       type: 'bar',
       data: {
@@ -54,15 +59,84 @@ function populateCharts(arg1){
         legend: { display: true },
         title: {
           display: true,
-          text: 'Traffic Density (Nº Vehicles / Hour)'
+          text: 'Traffic Density - IN (Nº Vehicles / Hour)'
         }
       }
     });
-  }
+  //Criar PieChart IN - Parte de Cima
+  var chart = document.getElementById("PieChartIn")
+  var myChart = new Chart(chart, {
+    type: 'pie',
+    data: {
+      labels:typesOfVehicles,
+      datasets:[
+        {
+          backgroundColor: "#3333cd",
+          data: percentageOfVehicles
+        }
+      ]
+    },
+    options: {
+      legend: {display: true},
+      title: {
+        display: true,
+        text: 'Types of Vehicles - IN'
+      }
+    }
+  });
+  //Criar Chart Out - Parte de Baixo
+  var chart = document.getElementById("ChartOut");
+  myChart = new Chart(chart, {
+    type: 'bar',
+    data: {
+      labels: hours,
+      datasets: [
+        {
+          label: "Homologous Day",
+          backgroundColor: "#3e95cd",
+          data: trafficHourHomol
+        }, {
+          label: "Selected Day",
+          backgroundColor: "#3333cd",
+          data: trafficHour
+        }
+      ]
+    },
+    options: {
+      legend: { display: true },
+      title: {
+        display: true,
+        text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
+      }
+    }
+  });
+  //PieChart Out - Parte de Baixo
+  var chart = document.getElementById("PieChartOut")
+  var myChart = new Chart(chart, {
+    type: 'pie',
+    data: {
+      labels:typesOfVehicles,
+      datasets:[
+        {
+          backgroundColor: "#3333cd",
+          data: percentageOfVehicles
+        }
+      ]
+    },
+    options: {
+      legend: {display: true},
+      title: {
+        display: true,
+        text: 'Types of Vehicles - OUT'
+      }
+    }
+  });
+}
   else if(id1.value == "d2"){
     showHour();
   }
 }
+
 
 // Create charts that need hour argument
 function updateHourChart(arg1){
@@ -127,9 +201,9 @@ function getMap(arg1){
         new OpenLayers.Control.Attribution()]
     });
     map.addLayer(new OpenLayers.Layer.OSM());
-    epsg4326 =  new OpenLayers.Projection("EPSG:4326"); 
+    epsg4326 =  new OpenLayers.Projection("EPSG:4326");
     projectTo = map.getProjectionObject();
-    var lonLat = new OpenLayers.LonLat( -8.75278 ,40.61771 ).transform(epsg4326, projectTo);    
+    var lonLat = new OpenLayers.LonLat( -8.75278 ,40.61771 ).transform(epsg4326, projectTo);
     var zoom=13;
     map.setCenter (lonLat, zoom);
     addAveiroMarkers();
@@ -143,7 +217,7 @@ function addAveiroMarkers(){
             new OpenLayers.Geometry.Point( -8.75278, 40.61771 ).transform(epsg4326, projectTo),
             {description:'Av. José Estevão'} ,
             {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
-        );    
+        );
   vectorLayer.addFeatures(feature);
   map.addLayer(vectorLayer);
 
@@ -151,7 +225,7 @@ function addAveiroMarkers(){
             new OpenLayers.Geometry.Point( -8.732, 40.6268 ).transform(epsg4326, projectTo),
             {description:'A25'} ,
             {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
-        );    
+        );
   vectorLayer.addFeatures(feature);
 
   controls = {

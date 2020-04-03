@@ -33,7 +33,7 @@
                 <label for="region">
                   <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">1</strong>
                   </span>
-                  Select Region: 
+                  Select Region:
                 </label>
                 <select id="reg" onchange="getMap(this.id)">
                   <option disabled selected value> -- select an option -- </option>
@@ -47,7 +47,7 @@
                     <label for="date">
                       <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">2</strong>
                       </span>
-                      Select Date: 
+                      Select Date:
                     </label>
                     <input id="dateinput" type="date" onchange="updateDate(this.id)">
                 </div>
@@ -57,7 +57,7 @@
                     <label for="dashboard">
                       <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">3</strong>
                       </span>
-                      Select Dashboard: 
+                      Select Dashboard:
                     </label>
                     <select id="dashinput" onchange="populateCharts(this.id)">
                         <option disabled selected value> -- select an option -- </option>
@@ -68,7 +68,7 @@
                       <label for="dashboard">
                         <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">4</strong>
                         </span>
-                        Select Hour: 
+                        Select Hour:
                       </label>
                       <select id="dashhour" onchange="updateHourChart(this.id)">
                         <option disabled selected value> -- select an option -- </option>
@@ -105,22 +105,41 @@
 </div>
 
 <div class="w3-container onscreen">
-    <div class="w3-row-padding" style="margin-top:4px">
-        <div class="w3-col" style="width:40%">
-            <div class="w3-card">       
-                <p><div id="mapdiv" class="map"> <!--<img src="Images/map.jpg" id="mapimage">--> </div></p>
-            </div>
+  <div class="w3-row-padding" style="margin-top:4px">
+      <div class="w3-col" style="width:30%">
+        <div class="w3-card w3-row" style="height:70%">
+          <div id="mapdiv" class="map"></div>
         </div>
-        <div class="w3-col" style="width:60%">
-            <div id="charts" class="w3-card">
-      	       <p><div id="chartdiv" class="chartim"> <canvas id="Chart"></canvas></div></p>
-            </div>
+        </br>
+        <div class="w3-card w3-row" style="height:30%">
+          <div>info em texto</div>
         </div>
-    </div>
+      </div>
+      <div class="w3-col" style="width:70%">
+        <div class="w3-row w3-card" style="height:50%" id="charts">
+          <div class="w3-col" style="width:70%">
+            <div id="chartdiv1" class="chartim"> <canvas id="ChartIn"></canvas></div>
+          </div>
+          <div class="w3-col" style="width:30%">
+            <div id="chartdiv2" class="chartim"> <canvas id="PieChartIn"></canvas></div>
+          </div>
+        </div>
+        </br>
+        <div class="w3-row w3-card" style="height:50%" id="charts">
+          <div class="w3-col" style="width:70%">
+            <div id="chartdiv1" class="chartim"> <canvas id="ChartOut"></canvas></div>
+          </div>
+          <div class="w3-col" style="width:30%">
+            <div id="chartdiv2" class="chartim"> <canvas id="PieChartOut"></canvas></div>
+          </div>
+        </div>
+        </br>
+      </div>
+  </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="js/w3.js"></script>
 <script src="js/script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/lib/OpenLayers.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/lib/OpenLayers.js"></script>
 </body>
 </html>
