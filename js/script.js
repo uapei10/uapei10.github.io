@@ -23,6 +23,7 @@ document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
 
 fixCanvasSizes();
+hideInfo();
 
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
@@ -136,8 +137,8 @@ function populateCharts(arg1){
   });
 }
   else if(id1.value == "d2"){
-  showHour();
-  resetGraphs();
+    showHour();
+    resetGraphs();
   }
 }
 
@@ -145,7 +146,7 @@ function populateCharts(arg1){
 // Create charts that need hour argument
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
-
+  resetGraphs();
   //Criar Chart In - Parte de Cima
     var chart = document.getElementById("ChartIn");
     chart1in = new Chart(chart, {
@@ -255,6 +256,7 @@ function getMap(arg1){
   document.getElementById("dateinput").disabled=false;
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
+  showInfo();
   if(id1.value == "aveiro"){
     var map = new ol.Map({
         target: 'mapdiv',
@@ -274,7 +276,7 @@ function getMap(arg1){
 
 //Adds Aveiro Markers
 function addAveiroMarkers(){
-  var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+  /*var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
   var feature = new OpenLayers.Feature.Vector(
             new OpenLayers.Geometry.Point( -8.75278, 40.61771 ).transform(epsg4326, projectTo),
             {description:'Av. José Estevão'} ,
@@ -294,7 +296,7 @@ function addAveiroMarkers(){
      selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: createPopup, onUnselect: destroyPopup })
   };
   mymap.addControl(controls['selector']);
-  controls['selector'].activate();
+  controls['selector'].activate();*/
 }
 
 // Creates Popup
@@ -328,9 +330,21 @@ function hideHour() {
   x.style.visibility = "hidden";
 }
 
-// Hhow hour selection div
+// Show hour selection div
 function showHour() {
   var x = document.getElementById("selHour");
+  x.style.visibility = "visible";
+}
+
+// Hide textinfo
+function hideInfo() {
+  var x = document.getElementById("textinfo");
+  x.style.visibility = "hidden";
+}
+
+// Show textinfo
+function showInfo() {
+  var x = document.getElementById("textinfo");
   x.style.visibility = "visible";
 }
 
