@@ -255,13 +255,11 @@ function updateHourChart(arg1){
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
 // Update map div
 function getMap(arg1){
-  document.getElementById("dateinput").disabled=false;
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
   showInfo();
   if(id1.value == "aveiro"){
       var mymap = L.map('mapdiv').setView([40.61771, -8.75], 13);
-
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 15,
@@ -279,9 +277,13 @@ function getMap(arg1){
 
       var marker1 = L.marker([40.62, -8.748], {icon: markerIcon}).addTo(mymap);
       var marker2 = L.marker([40.6268, -8.732], {icon: markerIcon}).addTo(mymap);
-      marker1.bindPopup("<center><b>Av. José Estêvão</b><br><button>Select</button></center>");
-      marker2.bindPopup("<center><b>A25</b><br><button>Select</button></center>");
+      marker1.bindPopup("<center><b>Av. José Estêvão</b><br><button onclick='getEquipment()'>Select</button></center>");
+      marker2.bindPopup("<center><b>A25</b><br><button onclick='getEquipment()'>Select</button></center>");
   }
+}
+
+function getEquipment(){
+  document.getElementById("dateinput").disabled=false;
 }
 
 // ----------------------------------- Dates -------------------------------------------
