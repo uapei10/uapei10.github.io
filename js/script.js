@@ -271,17 +271,16 @@ function getMap(arg1){
         accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
       }).addTo(mymap);
 
-      var greenIcon = L.icon({
+      var markerIcon = L.icon({
         iconUrl: 'Images/marker.png',
-
         iconSize:     [25, 30], // size of the icon
         iconAnchor:   [25, 30], // point of the icon which will correspond to marker's location
       });
 
-      var marker1 = L.marker([40.61771, -8.75278], {icon: greenIcon}).addTo(mymap);
-      var marker2 = L.marker([40.6268, -8.732], {icon: greenIcon}).addTo(mymap);
-      marker1.bindPopup("<b>Hello world!</b><br>I am a popup.");
-      marker2.bindPopup("<b>Hello world!</b><br>I am a popup.");
+      var marker1 = L.marker([40.62, -8.748], {icon: markerIcon}).addTo(mymap);
+      var marker2 = L.marker([40.6268, -8.732], {icon: markerIcon}).addTo(mymap);
+      marker1.bindPopup("<center><b>Av. José Estêvão</b><br><button>Select</button></center>");
+      marker2.bindPopup("<center><b>A25</b><br><button>Select</button></center>");
   }
 }
 
