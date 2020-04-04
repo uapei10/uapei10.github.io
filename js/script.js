@@ -257,7 +257,6 @@ function updateHourChart(arg1){
 function getMap(arg1){
   document.getElementById("mapdiv").innerHTML = "";
   var id1 = document.getElementById(arg1);
-  showInfo();
   if(id1.value == "aveiro"){
       var mymap = L.map('mapdiv').setView([40.61771, -8.75], 13);
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -284,6 +283,7 @@ function getMap(arg1){
 
 function getEquipment(){
   document.getElementById("dateinput").disabled=false;
+  showInfo();
 }
 
 // ----------------------------------- Dates -------------------------------------------
