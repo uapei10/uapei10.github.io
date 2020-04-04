@@ -252,7 +252,7 @@ function updateHourChart(arg1){
   });
 }
 
-// ----------------------------------- OpenLayers -------------------------------------------
+// ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
 // Update map div
 function getMap(arg1){
   document.getElementById("dateinput").disabled=false;
@@ -260,64 +260,29 @@ function getMap(arg1){
   var id1 = document.getElementById(arg1);
   showInfo();
   if(id1.value == "aveiro"){
-    var map = new ol.Map({
-        target: 'mapdiv',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([-8.75278, 40.61771]),
-          zoom: 13
-        })
+      var mymap = L.map('mapdiv').setView([40.61771, -8.75], 13);
+
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 15,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
+      }).addTo(mymap);
+
+      var greenIcon = L.icon({
+        iconUrl: 'Images/marker.png',
+
+        iconSize:     [25, 30], // size of the icon
+        iconAnchor:   [25, 30], // point of the icon which will correspond to marker's location
       });
-    //addAveiroMarkers();
+
+      var marker1 = L.marker([40.61771, -8.75278], {icon: greenIcon}).addTo(mymap);
+      var marker2 = L.marker([40.6268, -8.732], {icon: greenIcon}).addTo(mymap);
+      marker1.bindPopup("<b>Hello world!</b><br>I am a popup.");
+      marker2.bindPopup("<b>Hello world!</b><br>I am a popup.");
   }
-}
-
-//Adds Aveiro Markers
-function addAveiroMarkers(){
-  /*var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
-  var feature = new OpenLayers.Feature.Vector(
-            new OpenLayers.Geometry.Point( -8.75278, 40.61771 ).transform(epsg4326, projectTo),
-            {description:'Av. José Estevão'} ,
-            {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
-        );
-  vectorLayer.addFeatures(feature);
-  mymap.addLayer(vectorLayer);
-
-  var feature = new OpenLayers.Feature.Vector(
-            new OpenLayers.Geometry.Point( -8.732, 40.6268 ).transform(epsg4326, projectTo),
-            {description:'A25'} ,
-            {externalGraphic: 'Images/marker.png', graphicHeight: 25, graphicWidth: 21, graphicXOffset:-12, graphicYOffset:-25  }
-        );
-  vectorLayer.addFeatures(feature);
-
-  controls = {
-     selector: new OpenLayers.Control.SelectFeature(vectorLayer, { onSelect: createPopup, onUnselect: destroyPopup })
-  };
-  mymap.addControl(controls['selector']);
-  controls['selector'].activate();*/
-}
-
-// Creates Popup
-function createPopup(feature) {
-  feature.popup = new OpenLayers.Popup.FramedCloud("pop",
-    feature.geometry.getBounds().getCenterLonLat(),
-    null,
-    '<div style="text-align:center">' +feature.attributes.description +'<br><button type="button">Select</button>' +'</div>',
-    null,
-    false,
-    function() { controls['selector'].unselectAll(); }
-  );
-  mymap.addPopup(feature.popup);
-}
-
-// Destroys Popup
-function destroyPopup(feature) {
-  feature.popup.destroy();
-  feature.popup = null;
 }
 
 // ----------------------------------- Dates -------------------------------------------

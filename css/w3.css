@@ -8,11 +8,16 @@ body, html {
   transition: all 0.5s;
   cursor: pointer;
 }
+.w3-top{
+  z-index: 1;
+  position: fixed; 
+}
 .wrapper1 {
   text-align: center;
 }
 .map {
   height: 450px;
+  z-index: 0;
 }
 .chartcont {
   height: 350px;
