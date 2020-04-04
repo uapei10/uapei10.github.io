@@ -1,7 +1,9 @@
 // Chart
 var chart1in, chart1out, chart2in, chart2out;
+
 // Map
 var mymap;
+
 // Popup Controls
 var controls;
 
@@ -270,7 +272,7 @@ function getMap(arg1){
           zoom: 13
         })
       });
-    addAveiroMarkers();
+    //addAveiroMarkers();
   }
 }
 
@@ -319,8 +321,16 @@ function destroyPopup(feature) {
 }
 
 // ----------------------------------- Dates -------------------------------------------
+// Gets Homol Day 
 function updateDate(arg1){
   document.getElementById("dashinput").disabled=false;
+  showHday();
+
+  var date = new Date(document.getElementById('dateinput').value);
+  var daysPrior = 7;
+  date.setDate(date.getDate() - daysPrior);
+
+  document.getElementById("homolday").innerHTML="Homologous Date: " +date.toDateString(); 
 }
 
 // ----------------------------------- HTML -------------------------------------------
@@ -348,12 +358,25 @@ function showInfo() {
   x.style.visibility = "visible";
 }
 
+// Hide homolday
+function hideHday() {
+  var x = document.getElementById("homolday");
+  x.style.visibility = "hidden";
+}
+
+// Show homolday
+function showHday() {
+  var x = document.getElementById("homolday");
+  x.style.visibility = "visible";
+}
+
 // Reset Droplist
 function dashHourReset() {
   var dropDown = document.getElementById("dashhour");
   dropDown.selectedIndex = 0;
 }
 
+// Resets Graph Sizes
 function fixCanvasSizes(){
   var canvas = document.getElementById("ChartIn");
   var parent = document.getElementById("chart1div1");
@@ -373,6 +396,7 @@ function fixCanvasSizes(){
   canvas.height = parent.offsetHeight*0.9;
 }
 
+// Destroys graphs if the exist
 function resetGraphs(){
   if(chart1in != undefined)
     chart1in.destroy();
