@@ -43,6 +43,7 @@ function populateCharts(arg1){
   dashHourReset();
   resetGraphs();
   getyData()
+  showInfo();
   if(id1.value == "d1"){
     hideHour();
     //Criar Chart In - Parte de Cima
@@ -294,7 +295,6 @@ function getMap(arg1){
 // When pressing a map popup button
 function getEquipment(){
   document.getElementById("dateinput").disabled=false;
-  showInfo();
 }
 
 // ----------------------------------- Dates -------------------------------------------
