@@ -281,6 +281,7 @@ function getMap(arg1){
   }
 }
 
+// When pressing a map popup button
 function getEquipment(){
   document.getElementById("dateinput").disabled=false;
   showInfo();
@@ -297,6 +298,7 @@ function updateDate(arg1){
   date.setDate(date.getDate() - daysPrior);
 
   document.getElementById("homolday").innerHTML="Homologous Date: " +date.toDateString(); 
+
 }
 
 // ----------------------------------- HTML -------------------------------------------

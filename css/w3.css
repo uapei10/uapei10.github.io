@@ -31,6 +31,10 @@ body, html {
   background-image: url("../Images/final2.jpg");
   min-height: 100%;
 }
+.overflow {
+  width: 100%;
+  overflow: auto;
+}
 
 canvas {
     margin: 0 auto;
