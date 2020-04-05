@@ -12,14 +12,19 @@ var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
 var minutes = [5,10,15,20,25,30,35,40,45,50,55,60];
 
 // Chart y axis
-var trafficHour = new Array();
-var trafficHourHomol = new Array();
-var traffic5Minutes = new Array();
-var traffic5MinutesHomol = new Array();
+var trafficHourin = new Array();
+var trafficHourHomolin = new Array();
+var trafficHourout = new Array();
+var trafficHourHomolout = new Array();
+var traffic5Minutesin = new Array();
+var traffic5MinutesHomolin = new Array();
+var traffic5Minutesout = new Array();
+var traffic5MinutesHomolout = new Array();
 
 // Types of Vehicles
 var typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
-var percentageOfVehicles = new Array();
+var percentageOfVehiclesin = new Array();
+var percentageOfVehiclesout = new Array();
 
 // Blocks date input and dashboard input
 document.getElementById("dateinput").disabled=true;
@@ -50,11 +55,11 @@ function populateCharts(arg1){
           {
             label: "Homologous Date",
             backgroundColor: "#3e95cd",
-            data: trafficHourHomol
+            data: trafficHourHomolin
           }, {
             label: "Selected Date",
             backgroundColor: "#3333cd",
-            data: trafficHour
+            data: trafficHourin
           }
         ]
       },
@@ -77,7 +82,7 @@ function populateCharts(arg1){
       datasets:[
         {
           backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehicles
+          data: percentageOfVehiclesin
         }
       ]
     },
@@ -101,11 +106,11 @@ function populateCharts(arg1){
         {
           label: "Homologous Date",
           backgroundColor: "#3e95cd",
-          data: trafficHourHomol
+          data: trafficHourHomolout
         }, {
           label: "Selected Date",
           backgroundColor: "#3333cd",
-          data: trafficHour
+          data: trafficHourout
         }
       ]
     },
@@ -128,7 +133,7 @@ function populateCharts(arg1){
       datasets:[
         {
           backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehicles
+          data: percentageOfVehiclesout
         }
       ]
     },
@@ -164,11 +169,11 @@ function updateHourChart(arg1){
           {
             label: "Homologous Date",
             backgroundColor: "#3e95cd",
-            data: traffic5MinutesHomol
+            data: traffic5MinutesHomolin
           }, {
             label: "Selected Date",
             backgroundColor: "#3333cd",
-            data: traffic5Minutes
+            data: traffic5Minutesin
           }
         ]
       },
@@ -191,7 +196,7 @@ function updateHourChart(arg1){
       datasets:[
         {
           backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehicles
+          data: percentageOfVehiclesin
         }
       ]
     },
@@ -215,11 +220,11 @@ function updateHourChart(arg1){
         {
           label: "Homologous Date",
           backgroundColor: "#3e95cd",
-          data: traffic5MinutesHomol
+          data: traffic5MinutesHomolout
         }, {
           label: "Selected Date",
           backgroundColor: "#3333cd",
-          data: traffic5Minutes
+          data: traffic5Minutesout
         }
       ]
     },
@@ -242,7 +247,7 @@ function updateHourChart(arg1){
       datasets:[
         {
           backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehicles
+          data: percentageOfVehiclesout
         }
       ]
     },
@@ -383,14 +388,19 @@ function resetGraphs(){
 // Get data for charts, currently random
 function getyData(){
   for (i = 0; i < 24; i++) {
-    trafficHour[i] = Math.floor(Math.random() * 50); 
-    trafficHourHomol[i] = Math.floor(Math.random() * 50); 
+    trafficHourin[i] = Math.floor(Math.random() * 50); 
+    trafficHourHomolin[i] = Math.floor(Math.random() * 50); 
+    trafficHourout[i] = Math.floor(Math.random() * 50); 
+    trafficHourHomolout[i] = Math.floor(Math.random() * 50); 
   }
   for (i = 0; i < 12; i++) {
-    traffic5Minutes[i] = Math.floor(Math.random() * 20); 
-    traffic5MinutesHomol[i] = Math.floor(Math.random() * 20); 
+    traffic5Minutesin[i] = Math.floor(Math.random() * 20); 
+    traffic5MinutesHomolin[i] = Math.floor(Math.random() * 20); 
+    traffic5Minutesout[i] = Math.floor(Math.random() * 20); 
+    traffic5MinutesHomolout[i] = Math.floor(Math.random() * 20); 
   }
   for (i = 0; i < 4; i++) {
-    percentageOfVehicles[i] = Math.floor(Math.random() * 20); 
+    percentageOfVehiclesin[i] = Math.floor(Math.random() * 20); 
+    percentageOfVehiclesout[i] = Math.floor(Math.random() * 20); 
   }
 }
