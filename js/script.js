@@ -12,19 +12,23 @@ var hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
 var minutes = [5,10,15,20,25,30,35,40,45,50,55,60];
 
 // Chart y axis
-var trafficHour = [86,114,106,106,107,111,133,221,783,2478,86,114,106,106,107,111,133,221,783,2478,133,221,783,2478];
-var trafficHourHomol = [863,120,806,306,407,511,633,121,683,2978,186,214,706,606,507,511,633,321,283,1478,433,321,683,1478];
-var traffic5Minutes = [282,350,411,502,635,809,947,1402,3700,5267,86,114];
-var traffic5MinutesHomol = [382,150,511,202,135,909,1047,402,1000,2267,286,314];
+var trafficHour = new Array();
+var trafficHourHomol = new Array();
+var traffic5Minutes = new Array();
+var traffic5MinutesHomol = new Array();
 
 // Types of Vehicles
 var typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
-var percentageOfVehicles = [50, 25, 20, 5];
+var percentageOfVehicles = new Array();
 
+// Blocks date input and dashboard input
 document.getElementById("dateinput").disabled=true;
 document.getElementById("dashinput").disabled=true;
 
+// Adjusts chart sizes to windows size
 fixCanvasSizes();
+
+// Hides text below map
 hideInfo();
 
 // ----------------------------------- Chart.js -------------------------------------------
@@ -33,9 +37,9 @@ function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
   resetGraphs();
+  getyData()
   if(id1.value == "d1"){
     hideHour();
-
     //Criar Chart In - Parte de Cima
     var chart = document.getElementById("ChartIn");
     chart1in = new Chart(chart, {
@@ -144,12 +148,13 @@ function populateCharts(arg1){
   }
 }
 
-
 // Create charts that need hour argument
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
   resetGraphs();
-  //Criar Chart In - Parte de Cima
+  getyData()
+
+  // Criar Chart In - Parte de Cima
     var chart = document.getElementById("ChartIn");
     chart1in = new Chart(chart, {
       type: 'bar',
@@ -298,7 +303,6 @@ function updateDate(arg1){
   date.setDate(date.getDate() - daysPrior);
 
   document.getElementById("homolday").innerHTML="Homologous Date: " +date.toDateString(); 
-
 }
 
 // ----------------------------------- HTML -------------------------------------------
@@ -374,4 +378,19 @@ function resetGraphs(){
     chart2in.destroy();
   if(chart2out != undefined)
     chart2out.destroy();
+}
+
+// Get data for charts, currently random
+function getyData(){
+  for (i = 0; i < 24; i++) {
+    trafficHour[i] = Math.floor(Math.random() * 50); 
+    trafficHourHomol[i] = Math.floor(Math.random() * 50); 
+  }
+  for (i = 0; i < 12; i++) {
+    traffic5Minutes[i] = Math.floor(Math.random() * 20); 
+    traffic5MinutesHomol[i] = Math.floor(Math.random() * 20); 
+  }
+  for (i = 0; i < 4; i++) {
+    percentageOfVehicles[i] = Math.floor(Math.random() * 20); 
+  }
 }
