@@ -36,6 +36,9 @@ fixCanvasSizes();
 // Hides text below map
 hideInfo();
 
+// temp
+var eq = false;
+
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
 function populateCharts(arg1){
@@ -267,6 +270,8 @@ function updateHourChart(arg1){
 // Update map div
 function getMap(arg1){
   document.getElementById("mapdiv").innerHTML = "";
+  // Temp
+getEquipment();
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
       var mymap = L.map('mapdiv').setView([40.61771, -8.75], 13);
@@ -295,6 +300,12 @@ function getMap(arg1){
 // When pressing a map popup button
 function getEquipment(){
   document.getElementById("dateinput").disabled=false;
+  showEquip();
+  eq = !eq;
+  if(eq)
+    document.getElementById("equip").innerHTML="Equipment: A25"; 
+  else
+    document.getElementById("equip").innerHTML="Equipment: Av. José Estêvão"; 
 }
 
 // ----------------------------------- Dates -------------------------------------------
@@ -344,6 +355,12 @@ function hideHday() {
 // Show homolday
 function showHday() {
   var x = document.getElementById("homolday");
+  x.style.visibility = "visible";
+}
+
+// Show Selected Equipment
+function showEquip() {
+  var x = document.getElementById("equip");
   x.style.visibility = "visible";
 }
 
