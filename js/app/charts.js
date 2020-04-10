@@ -20,12 +20,11 @@ var typesOfVehicles;
 var percentageOfVehiclesin;
 var percentageOfVehiclesout;
 
-// Executes on boot
+// To executes on boot
 init();
 function init(){
   hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
   minutes = [5,10,15,20,25,30,35,40,45,50,55,60];
-
   trafficHourin = new Array();
   trafficHourHomolin = new Array();
   trafficHourout = new Array();
@@ -34,20 +33,14 @@ function init(){
   traffic5MinutesHomolin = new Array();
   traffic5Minutesout = new Array();
   traffic5MinutesHomolout = new Array();
-
   typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
   percentageOfVehiclesin = new Array();
   percentageOfVehiclesout = new Array();
 
-  // Blocks date input and dashboard input
-  document.getElementById("dateinput").disabled=true;
-  document.getElementById("dashinput").disabled=true;
-
-  // Adjusts chart sizes to windows size
-  fixCanvasSizes();
-
-  // Hides text below map
-  hideInfo();
+  document.getElementById("dateinput").disabled=true; // Blocks date input
+  document.getElementById("dashinput").disabled=true; // Blocks dashboard input
+  fixCanvasSizes(); // Adjusts chart sizes to windows size
+  hideInfo();       // Hides text below map
 }
 
 // ----------------------------------- Chart.js -------------------------------------------
@@ -56,111 +49,23 @@ function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
   resetGraphs();
-  getyData()
+  getRandomData();
   showInfo();
   if(id1.value == "d1"){
     hideHour();
-    //Criar Chart In - Parte de Cima
-    var chart = document.getElementById("ChartIn");
-    chart1in = new Chart(chart, {
-      type: 'bar',
-      data: {
-        labels: hours,
-        datasets: [
-          {
-            label: "Homologous Date",
-            backgroundColor: "#3e95cd",
-            data: trafficHourHomolin
-          }, {
-            label: "Selected Date",
-            backgroundColor: "#3333cd",
-            data: trafficHourin
-          }
-        ]
-      },
-      options: {
-        legend: { display: true },
-        responsive: false,
-        title: {
-          display: true,
-          text: 'Traffic Density - IN (Nº Vehicles / Hour)'
-        }
-      }
-    });
+    var chart;
 
-  // Criar PieChart IN - Parte de Cima
-  var chart = document.getElementById("PieChartIn")
-  chart2in = new Chart(chart, {
-    type: 'doughnut',
-    data: {
-      labels:typesOfVehicles,
-      datasets:[
-        {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehiclesin
-        }
-      ]
-    },
-    options: {
-      legend: {display: true},
-      responsive: false,
-      title: {
-        display: true,
-        text: 'Categorization - IN'
-      }
-    }
-  });
+    // Criar Chart In - Parte de Cima
+    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
 
-  // Criar Chart Out - Parte de Baixo
-  var chart = document.getElementById("ChartOut");
-  chart1out = new Chart(chart, {
-    type: 'bar',
-    data: {
-      labels: hours,
-      datasets: [
-        {
-          label: "Homologous Date",
-          backgroundColor: "#3e95cd",
-          data: trafficHourHomolout
-        }, {
-          label: "Selected Date",
-          backgroundColor: "#3333cd",
-          data: trafficHourout
-        }
-      ]
-    },
-    options: {
-      legend: { display: true },
-      responsive: false,
-      title: {
-        display: true,
-        text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
-      }
-    }
-  });
+    // Criar PieChart IN - Parte de Cima
+    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
 
-  // PieChart Out - Parte de Baixo
-  var chart = document.getElementById("PieChartOut")
-  chart2out = new Chart(chart, {
-    type: 'doughnut',
-    data: {
-      labels:typesOfVehicles,
-      datasets:[
-        {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehiclesout
-        }
-      ]
-    },
-    options: {
-      legend: {display: true},
-      responsive: false,
-      title: {
-        display: true,
-        text: 'Categorization - OUT'
-      }
-    }
-  });
+    // Criar Chart Out - Parte de Baixo
+    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Hour)', trafficHourHomolout, trafficHourout, hours);
+
+    // PieChart Out - Parte de Baixo
+    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
 }
   else if(id1.value == "d2"){
     showHour();
@@ -171,24 +76,38 @@ function populateCharts(arg1){
 // Create charts that need hour argument
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
+  var chart;
   resetGraphs();
-  getyData()
+  getRandomData();
 
   // Criar Chart In - Parte de Cima
-    var chart = document.getElementById("ChartIn");
-    chart1in = new Chart(chart, {
+  chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
+
+  // Criar PieChart IN - Parte de Cima
+  chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
+
+  // Criar Chart Out - Parte de Baixo
+  chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Hour)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
+
+  // PieChart Out - Parte de Baixo
+  chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+}
+
+// Creates Bar Chart
+function makeBarChart(chartInput, titleText, dataHomol, dataSelect, labelType){
+  return new Chart(chartInput, {
       type: 'bar',
       data: {
-        labels: minutes,
+        labels: labelType,
         datasets: [
           {
             label: "Homologous Date",
             backgroundColor: "#3e95cd",
-            data: traffic5MinutesHomolin
+            data: dataHomol
           }, {
             label: "Selected Date",
             backgroundColor: "#3333cd",
-            data: traffic5Minutesin
+            data: dataSelect
           }
         ]
       },
@@ -197,21 +116,22 @@ function updateHourChart(arg1){
         responsive: false,
         title: {
           display: true,
-          text: 'Traffic Density - IN (Nº Vehicles / Hour)'
+          text: titleText
         }
       }
     });
+}
 
-  // Criar PieChart IN - Parte de Cima
-  var chart = document.getElementById("PieChartIn")
-  chart2in = new Chart(chart, {
+// Creates Pie Chart
+function makePieChart(chartInput, titleText, dataPie){
+  return new Chart(chartInput, {
     type: 'doughnut',
     data: {
       labels:typesOfVehicles,
       datasets:[
         {
           backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehiclesin
+          data: dataPie
         }
       ]
     },
@@ -220,61 +140,11 @@ function updateHourChart(arg1){
       responsive: false,
       title: {
         display: true,
-        text: 'Categorization - IN'
+        text: titleText
       }
     }
   });
-
-  // Criar Chart Out - Parte de Baixo
-  var chart = document.getElementById("ChartOut");
-  chart1out = new Chart(chart, {
-    type: 'bar',
-    data: {
-      labels: minutes,
-      datasets: [
-        {
-          label: "Homologous Date",
-          backgroundColor: "#3e95cd",
-          data: traffic5MinutesHomolout
-        }, {
-          label: "Selected Date",
-          backgroundColor: "#3333cd",
-          data: traffic5Minutesout
-        }
-      ]
-    },
-    options: {
-      legend: { display: true },
-      responsive: false,
-      title: {
-        display: true,
-        text: 'Traffic Density - OUT (Nº Vehicles / Hour)'
-      }
-    }
-  });
-
-  // PieChart Out - Parte de Baixo
-  var chart = document.getElementById("PieChartOut")
-  chart2out = new Chart(chart, {
-    type: 'doughnut',
-    data: {
-      labels:typesOfVehicles,
-      datasets:[
-        {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
-          data: percentageOfVehiclesout
-        }
-      ]
-    },
-    options: {
-      legend: {display: true},
-      responsive: false,
-      title: {
-        display: true,
-        text: 'Categorization - OUT'
-      }
-    }
-  });
+  return chart2in
 }
 
 // Resets Graph Sizes
@@ -310,7 +180,7 @@ function resetGraphs(){
 }
 
 // Get data for charts, currently random
-function getyData(){
+function getRandomData(){
   for (i = 0; i < 24; i++) {
     trafficHourin[i] = Math.floor(Math.random() * 50); 
     trafficHourHomolin[i] = Math.floor(Math.random() * 50); 
