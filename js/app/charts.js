@@ -99,6 +99,39 @@ function populateCharts(arg1){
   else if(id1.value == "d2"){
     putImage();
     showHour();
+    document.getElementById("selHour").innerHTML=`<div class="onscreen">
+                      <label for="dashboard">
+                        <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">4</strong>
+                        </span>
+                        Select Hour:
+                      </label>
+                      <select id="dashhour" onchange="updateHourChart(this.id)">
+                        <option value="hnull" disabled selected value> -- select an option -- </option>
+                        <option value="h0">0:00</option>
+                        <option value="h1">1:00</option>
+                        <option value="h2">2:00</option>
+                        <option value="h3">3:00</option>
+                        <option value="h4">4:00</option>
+                        <option value="h5">5:00</option>
+                        <option value="h6">6:00</option>
+                        <option value="h7">7:00</option>
+                        <option value="h8">8:00</option>
+                        <option value="h9">9:00</option>
+                        <option value="h10">10:00</option>
+                        <option value="h11">11:00</option>
+                        <option value="h12">12:00</option>
+                        <option value="h13">13:00</option>
+                        <option value="h14">14:00</option>
+                        <option value="h15">15:00</option>
+                        <option value="h16">16:00</option>
+                        <option value="h17">17:00</option>
+                        <option value="h18">18:00</option>
+                        <option value="h19">19:00</option>
+                        <option value="h20">20:00</option>
+                        <option value="h21">21:00</option>
+                        <option value="h22">22:00</option>
+                        <option value="h23">23:00</option>
+                      </select></div>`;
     hideInfo();
     hideTextCard();
   }
