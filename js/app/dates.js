@@ -16,4 +16,22 @@ function updateDate(arg1){
   	populateCharts("dashinput");
   else if(hourValue.value != "hnull" && dashValue.value == "d2")
   	updateHourChart("dashhour");
+
+  if(!isValidDate(date)){
+    putImage();
+    hideHday();
+    hideTextCard();
+    hideInfo();
+    hideHour();
+    document.getElementById("dashinput").disabled=true;
+    document.getElementById("dashinput").value="dnull";
+    document.getElementById("dashhour").value="hnull";
+
+  }
+
+}
+
+// Checks if date d is valid
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
 }
