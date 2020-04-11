@@ -38,7 +38,7 @@ function getMap(arg1){
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
       }).addTo(mymap);
-      addMarkers(id1);
+      addMarkers();
   }
 }
 

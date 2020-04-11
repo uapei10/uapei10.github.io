@@ -4,8 +4,13 @@ var chart1in, chart1out, chart2in, chart2out;
 // Chart x axis
 var hours;
 var minutes;
+var week;
 
 // Chart y axis
+var trafficWeekin;
+var trafficWeekHomolin;
+var trafficWeekout;
+var trafficWeekHomolout;
 var trafficHourin;
 var trafficHourHomolin;
 var trafficHourout;
@@ -23,8 +28,13 @@ var percentageOfVehiclesout;
 // To executes on boot
 init();
 function init(){
+  week = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.']
   hours = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
   minutes = [5,10,15,20,25,30,35,40,45,50,55,60];
+  trafficWeekin = new Array();
+  trafficWeekHomolin = new Array();
+  trafficWeekout = new Array();
+  trafficWeekHomolout = new Array();
   trafficHourin = new Array();
   trafficHourHomolin = new Array();
   trafficHourout = new Array();
@@ -39,8 +49,8 @@ function init(){
 
   document.getElementById("dateinput").disabled=true; // Blocks date input
   document.getElementById("dashinput").disabled=true; // Blocks dashboard input
-  fixCanvasSizes(); // Adjusts chart sizes to windows size
-  hideInfo();       // Hides text below map
+  fixCanvasSizes();                                   // Adjusts chart sizes to windows size
+  hideInfo();                                         // Hides text below map
 }
 
 // ----------------------------------- Chart.js -------------------------------------------
@@ -51,9 +61,24 @@ function populateCharts(arg1){
   resetGraphs();
   getRandomData();
   showInfo();
-  if(id1.value == "d1"){
+  if(id1.value == "d0"){
     hideHour();
-    var chart;
+
+    // Criar Chart In - Parte de Cima
+    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
+
+    // Criar PieChart IN - Parte de Cima
+    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
+
+    // Criar Chart Out - Parte de Baixo
+    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Day)', trafficWeekHomolout, trafficWeekout, week);
+
+    // PieChart Out - Parte de Baixo
+    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+  }
+
+  else if(id1.value == "d1"){
+    hideHour();
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -66,28 +91,28 @@ function populateCharts(arg1){
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
-}
+  }
+
   else if(id1.value == "d2"){
     showHour();
-    resetGraphs();
   }
+
 }
 
 // Create charts that need hour argument
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
-  var chart;
   resetGraphs();
   getRandomData();
 
   // Criar Chart In - Parte de Cima
-  chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
+  chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
 
   // Criar PieChart IN - Parte de Cima
   chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
 
   // Criar Chart Out - Parte de Baixo
-  chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Hour)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
+  chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
 
   // PieChart Out - Parte de Baixo
   chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
@@ -181,18 +206,31 @@ function resetGraphs(){
 
 // Get data for charts, currently random
 function getRandomData(){
+  // Week Dashboard
+  for (i = 0; i < 7; i++) {
+    trafficWeekin[i] = Math.floor(Math.random() * 50); 
+    trafficWeekHomolin[i] = Math.floor(Math.random() * 50); 
+    trafficWeekout[i] = Math.floor(Math.random() * 50); 
+    trafficWeekHomolout[i] = Math.floor(Math.random() * 50); 
+  }
+
+  // Day Dashboard
   for (i = 0; i < 24; i++) {
     trafficHourin[i] = Math.floor(Math.random() * 50); 
     trafficHourHomolin[i] = Math.floor(Math.random() * 50); 
     trafficHourout[i] = Math.floor(Math.random() * 50); 
     trafficHourHomolout[i] = Math.floor(Math.random() * 50); 
   }
+
+  // Hour Dashboard
   for (i = 0; i < 12; i++) {
     traffic5Minutesin[i] = Math.floor(Math.random() * 20); 
     traffic5MinutesHomolin[i] = Math.floor(Math.random() * 20); 
     traffic5Minutesout[i] = Math.floor(Math.random() * 20); 
     traffic5MinutesHomolout[i] = Math.floor(Math.random() * 20); 
   }
+
+  // Pie Chart
   for (i = 0; i < 4; i++) {
     percentageOfVehiclesin[i] = Math.floor(Math.random() * 20); 
     percentageOfVehiclesout[i] = Math.floor(Math.random() * 20); 
