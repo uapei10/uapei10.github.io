@@ -58,7 +58,10 @@ function addMarkers(){
 
   for (i = 0; i < markers.length; i++) {
     var buttonID = "buttonMarker" +i;
-    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button id= \"" +buttonID +"\" onclick='getEquipment(\"" +markers[i][2] +"\"); changeText(this.id);'>Select</button></center>");
+    var bText = "Select";
+    if (locations.includes(markers[i][2]))
+      bText = "Deselect";
+    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button id= \"" +buttonID +"\" onclick='getEquipment(\"" +markers[i][2] +"\"); changeText(this.id);'>" +bText +"</button></center>");
   }
 }
 
@@ -85,11 +88,12 @@ function getEquipment(eqName){
   document.getElementById("equip").innerHTML=("<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names);
 }
 
+// Corrects button text when pressing
 function changeText(arg1){
   if(document.getElementById(arg1).innerHTML == "Select")
-    document.getElementById(arg1).innerHTML="Deselect";
+    document.getElementById(arg1).innerHTML = "Deselect";
   else
-    document.getElementById(arg1).innerHTML="Select";
+    document.getElementById(arg1).innerHTML = "Select";
 }
 
 // Adds Equipment to locations

@@ -35,6 +35,13 @@ body, html {
   width: 100%;
   overflow: auto;
 }
+.chartImage{
+  width:830px;
+  height:450px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 canvas {
     margin: 0 auto;

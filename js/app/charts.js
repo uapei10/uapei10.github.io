@@ -49,7 +49,6 @@ function init(){
 
   document.getElementById("dateinput").disabled=true; // Blocks date input
   document.getElementById("dashinput").disabled=true; // Blocks dashboard input
-  fixCanvasSizes();                                   // Adjusts chart sizes to windows size
   hideInfo();                                         // Hides text below map
 }
 
@@ -61,6 +60,9 @@ function populateCharts(arg1){
   resetGraphs();
   getRandomData();
   showInfo();
+  showTextCard();
+  swapCharts();
+  fixCanvasSizes();
   updateTextInfo();
   if(id1.value == "d0"){
     hideHour();
