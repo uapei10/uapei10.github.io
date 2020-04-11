@@ -25,7 +25,7 @@ var typesOfVehicles;
 var percentageOfVehiclesin;
 var percentageOfVehiclesout;
 
-// To executes on boot
+// To execute on boot
 init();
 function init(){
   week = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.']
@@ -61,6 +61,7 @@ function populateCharts(arg1){
   resetGraphs();
   getRandomData();
   showInfo();
+  updateTextInfo();
   if(id1.value == "d0"){
     hideHour();
 
@@ -95,6 +96,7 @@ function populateCharts(arg1){
 
   else if(id1.value == "d2"){
     showHour();
+    hideInfo();
   }
 
 }
@@ -104,6 +106,7 @@ function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
   resetGraphs();
   getRandomData();
+  updateTextInfo();
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -235,4 +238,9 @@ function getRandomData(){
     percentageOfVehiclesin[i] = Math.floor(Math.random() * 20); 
     percentageOfVehiclesout[i] = Math.floor(Math.random() * 20); 
   }
+}
+
+function updateTextInfo(){
+  var x = document.getElementById("textinfo");
+  x.innerHTML = "<br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br>";
 }
