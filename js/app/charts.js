@@ -250,5 +250,5 @@ function getRandomData(){
 
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
-  x.innerHTML = "<br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br>";
+  x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
 }
