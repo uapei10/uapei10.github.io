@@ -1,7 +1,11 @@
 // Map
 var mymap;
 
+// Markers
 var markers;
+
+// Select Locations
+var locations;
 
 // To execute on boot
 init();
@@ -20,6 +24,8 @@ function init(){
     [40.62, -8.748, 'Av. José Estêvão'],
     [40.6268, -8.732, 'A25']
   ];
+
+  locations = new Array();
 }
 
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
@@ -59,7 +65,17 @@ function addMarkers(){
 function getEquipment(eqName){
   document.getElementById("dateinput").disabled=false;
   showEquip();
-  document.getElementById("equip").innerHTML=("<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i> Equipment: "+eqName); 
+  locations.push(eqName)
+  locations = removeEmptyElements(locations);
+  locations = removeDuplicates(locations);
+  var names = " Equipment: ";
+  for (i = 0; i < locations.length; i++){
+    if(i == 0)
+      names = names.concat(locations[i]);
+    else 
+      names = names.concat(", " +locations[i]);
+  }
+  document.getElementById("equip").innerHTML=("<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names);
 }
 
 // Destroys mymap

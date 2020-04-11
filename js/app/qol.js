@@ -46,3 +46,19 @@ function dashHourReset() {
   var dropDown = document.getElementById("dashhour");
   dropDown.selectedIndex = 0;
 }
+
+// Removes empty Elements from array
+function removeEmptyElements(array){
+  var processed = array.filter(function (el) {
+    return el != null;
+  });
+  return processed;
+}
+// Removes duplicates from array
+function removeDuplicates(array){
+  var uniqueNames = [];
+  $.each(array, function(i, el){
+    if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+  });
+  return uniqueNames;
+}
