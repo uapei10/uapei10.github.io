@@ -1,6 +1,8 @@
 // Map
 var mymap;
 
+var markers;
+
 // To execute on boot
 init();
 function init(){
@@ -13,6 +15,11 @@ function init(){
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
       }).addTo(mymap);
+
+  markers = [
+    [40.62, -8.748, 'Av. José Estêvão'],
+    [40.6268, -8.732, 'A25']
+  ];
 }
 
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
@@ -43,10 +50,9 @@ function addMarkers(){
         iconAnchor:   [25, 30],
       });
 
-  var marker1 = L.marker([40.62, -8.748], {icon: markerIcon}).addTo(mymap);
-  var marker2 = L.marker([40.6268, -8.732], {icon: markerIcon}).addTo(mymap);
-  marker1.bindPopup("<center><b>Av. José Estêvão</b><br><button onclick='getEquipment(Av. José Estêvão)'>Select</button></center>");
-  marker2.bindPopup("<center><b>A25</b><br><button onclick='getEquipment("+"A25"+")'>Select</button></center>");
+  for (i = 0; i < markers.length; i++) {
+    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button onclick='getEquipment(\"" +markers[i][2] +"\")'>Select</button></center>");
+  }
 }
 
 // When pressing a map popup button
