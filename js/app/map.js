@@ -4,6 +4,8 @@ var mymap;
 // Markers
 var markers;
 
+var markersLayer;
+
 // Select Locations
 var locations;
 
@@ -26,6 +28,8 @@ function init(){
   ];
 
   locations = ['A25'];
+
+  markersLayer = L.layerGroup();
 }
 
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
@@ -51,9 +55,9 @@ function getMap(arg1){
 // Adds Markers to map
 function addMarkers(){
   var markerIcon = L.icon({
-        iconUrl: 'Images/marker.png',
-        iconSize:     [25, 30],
-        iconAnchor:   [25, 30],
+        iconUrl: 'Images/marker2.png',
+        iconSize:     [35, 35],
+        iconAnchor:   [35, 35],
       });
 
   for (i = 0; i < markers.length; i++) {
@@ -61,14 +65,18 @@ function addMarkers(){
     var bText = "Select";
     if (locations.includes(markers[i][2]))
       bText = "Deselect";
-    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button id= \"" +buttonID +"\" onclick='getEquipment(\"" +markers[i][2] +"\"); changeText(this.id);'>" +bText +"</button></center>");
+
+    var marker = L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).bindPopup("<center><b>" +markers[i][2] +"</b><br><button id= \"" +buttonID +"\" onclick='getEquipment(\"" +markers[i][2] +"\"); changeText(this.id);'>" +bText +"</button></center>");
+    marker.addTo(markersLayer);
   }
+  mymap.addLayer(markersLayer);
 }
 
 // When pressing a map popup button
 function getEquipment(eqName){
   document.getElementById("dateinput").disabled=false;
   showEquip();
+
   // Selects or deselects a equipment
   if(locations.includes(eqName)){
     removeEquipment(eqName);
@@ -97,6 +105,9 @@ function changeText(arg1){
     document.getElementById(arg1).innerHTML = "Deselect";
   else
     document.getElementById(arg1).innerHTML = "Select";
+
+  mymap.removeLayer(markersLayer);
+  addMarkers();
 }
 
 // Adds Equipment to locations
