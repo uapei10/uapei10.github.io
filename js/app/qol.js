@@ -26,7 +26,7 @@ function showInfo() {
 // Swap Charts
 function swapCharts() {
   var x = document.getElementById("chartscontainer");
-  x.innerHTML = `<div class="w3-row w3-card" id="charts">
+  x.innerHTML = `<div class="w3-row w3-card onscreen" id="charts">
                   <div class="w3-col" style="width:70%">
                     <div id="chart1div1" class="chartcont"> <canvas id="ChartIn"></canvas></div>
                   </div>
@@ -34,7 +34,7 @@ function swapCharts() {
                     <div id="chart2div1" class="chartcont"> <canvas id="PieChartIn"></canvas></div>
                   </div>
                 </div>
-                <div class="w3-row w3-card" id="charts2" style="margin-top:16px">
+                <div class="w3-row w3-card onscreen" id="charts2" style="margin-top:16px">
                   <div class="w3-col" style="width:70%">
                     <div id="chart1div2" class="chartcont"> <canvas id="ChartOut"></canvas></div>
                   </div>

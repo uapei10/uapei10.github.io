@@ -8,5 +8,5 @@ function updateDate(arg1){
   var daysPrior = 7;
   date.setDate(date.getDate() - daysPrior);
 
-  document.getElementById("homolday").innerHTML="<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-calendar'></strong></span></i> Homologous Date: " +date.toDateString(); 
+  document.getElementById("homolday").innerHTML="<div class='onscreen'> <span class='fa-stack onscreen'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-calendar'></strong></span></i> Homologous Date: " +date.toDateString() +"</div>"; 
 }

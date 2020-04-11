@@ -85,7 +85,10 @@ function getEquipment(eqName){
     else 
       names = names.concat(", " +locations[i]);
   }
-  document.getElementById("equip").innerHTML=("<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names);
+  if(locations.length == 0)
+    document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i> Equipment: Undefined<div>");
+  else
+    document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names +"<div>");
 }
 
 // Corrects button text when pressing
