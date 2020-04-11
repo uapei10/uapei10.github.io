@@ -25,7 +25,7 @@ function init(){
     [40.6268, -8.732, 'A25']
   ];
 
-  locations = new Array();
+  locations = ['A25'];
 }
 
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
