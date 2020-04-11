@@ -56,8 +56,8 @@ function getMap(arg1){
 function addMarkers(){
   var markerIcon = L.icon({
         iconUrl: 'Images/marker2.png',
-        iconSize:     [35, 35],
-        iconAnchor:   [35, 35],
+        iconSize:     [35, 40],
+        iconAnchor:   [35, 40],
       });
 
   for (i = 0; i < markers.length; i++) {
