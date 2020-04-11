@@ -65,7 +65,7 @@
                       Select Dashboard:
                     </label>
                     <select id="dashinput" onchange="populateCharts(this.id)">
-                        <option disabled selected value> -- select an option -- </option>
+                        <option value= "dnull" disabled selected value> -- select an option -- </option>
                         <option value="d0">Traffic Density - Week</option>
                         <option value="d1">Traffic Density - Day</option>
                         <option value="d2">Traffic Density - Hour</option>
@@ -77,7 +77,7 @@
                         Select Hour:
                       </label>
                       <select id="dashhour" onchange="updateHourChart(this.id)">
-                        <option disabled selected value> -- select an option -- </option>
+                        <option value="hnull" disabled selected value> -- select an option -- </option>
                         <option value="h0">0:00</option>
                         <option value="h1">1:00</option>
                         <option value="h2">2:00</option>
