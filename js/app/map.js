@@ -57,7 +57,8 @@ function addMarkers(){
       });
 
   for (i = 0; i < markers.length; i++) {
-    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button onclick='getEquipment(\"" +markers[i][2] +"\")'>Select</button></center>");
+    var buttonID = "buttonMarker" +i;
+    L.marker([markers[i][0], markers[i][1]], {icon: markerIcon}).addTo(mymap).bindPopup("<center><b>" +markers[i][2] +"</b><br><button id= \"" +buttonID +"\" onclick='getEquipment(\"" +markers[i][2] +"\"); changeText(this.id);'>Select</button></center>");
   }
 }
 
@@ -65,9 +66,15 @@ function addMarkers(){
 function getEquipment(eqName){
   document.getElementById("dateinput").disabled=false;
   showEquip();
-  locations.push(eqName)
-  locations = removeEmptyElements(locations);
-  locations = removeDuplicates(locations);
+  // Selects or deselects a equipment
+  if(locations.includes(eqName)){
+    removeEquipment(eqName);
+  }
+  else{
+    addEquipment(eqName);
+  }
+
+  // Writes on the app page
   var names = " Equipment: ";
   for (i = 0; i < locations.length; i++){
     if(i == 0)
@@ -76,6 +83,28 @@ function getEquipment(eqName){
       names = names.concat(", " +locations[i]);
   }
   document.getElementById("equip").innerHTML=("<span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names);
+}
+
+function changeText(arg1){
+  if(document.getElementById(arg1).innerHTML == "Select")
+    document.getElementById(arg1).innerHTML="Deselect";
+  else
+    document.getElementById(arg1).innerHTML="Select";
+}
+
+// Adds Equipment to locations
+function addEquipment(eqName){
+  locations.push(eqName)
+  locations = removeEmptyElements(locations);
+  locations = removeDuplicates(locations);
+}
+
+// Removes Equipment to locations
+function removeEquipment(eqName){
+  const index = locations.indexOf(eqName);
+  if (index > -1) {
+    locations.splice(index, 1);
+  }
 }
 
 // Destroys mymap
