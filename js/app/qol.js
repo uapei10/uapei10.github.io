@@ -44,6 +44,12 @@ function swapCharts() {
                 </div>`;
 }
 
+// Puts image again
+function putImage(){
+  var x = document.getElementById("chartscontainer");
+  x.innerHTML = "<img class='chartImage onscreen' src='Images/chartsubs3.png' alt='Dan'>"
+}
+
 // Hide homolday
 function hideHday() {
   var x = document.getElementById("homolday");

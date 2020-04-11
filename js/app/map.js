@@ -86,7 +86,7 @@ function getEquipment(eqName){
       names = names.concat(", " +locations[i]);
   }
   if(locations.length == 0)
-    document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i> Equipment: Undefined<div>");
+    document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i> Equipment: <b>Undefined</b><div>");
   else
     document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names +"<div>");
 }

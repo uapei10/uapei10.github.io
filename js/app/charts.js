@@ -97,8 +97,10 @@ function populateCharts(arg1){
   }
 
   else if(id1.value == "d2"){
+    putImage();
     showHour();
     hideInfo();
+    hideTextCard();
   }
 
 }
@@ -109,6 +111,10 @@ function updateHourChart(arg1){
   resetGraphs();
   getRandomData();
   updateTextInfo();
+  swapCharts();
+  fixCanvasSizes();
+  showTextCard();
+  showInfo();
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
