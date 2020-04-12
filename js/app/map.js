@@ -93,10 +93,19 @@ function getEquipment(eqName){
     else 
       names = names.concat(", " +locations[i]);
   }
-  if(locations.length == 0)
+  if(locations.length == 0){
     document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i> Equipment: <b>Undefined</b><div>");
-  else
+    equipmentCheck();
+  }
+  else{
     document.getElementById("equip").innerHTML=("<div class='onscreen'><span class='fa-stack'><span class='fa fa-circle-o fa-stack-2x'></span><strong class='fa-stack-1x fa fa-camera'></strong></span></i>" +names +"<div>");
+    var dashValue = document.getElementById("dashinput");
+    var hourValue = document.getElementById("dashhour");
+    if(dashValue.value != "dnull" && dashValue.value != "d2")
+      populateCharts("dashinput");
+    else if(hourValue.value != "hnull" && dashValue.value == "d2")
+      updateHourChart("dashhour");
+  }
 }
 
 // Corrects button text when pressing
@@ -129,4 +138,20 @@ function removeEquipment(eqName){
 function destroyMap(){
   mymap.off();
   mymap.remove();
+}
+
+// Defensive Programming
+function equipmentCheck(){
+  if(locations.length==0){
+    putImage();
+    hideHday();
+    hideTextCard();
+    hideInfo();
+    hideHour();
+    document.getElementById("dateinput").value = "";
+    document.getElementById("dashinput").disabled=true;
+    document.getElementById("dateinput").disabled=true;
+    document.getElementById("dashinput").value="dnull";
+    document.getElementById("dashhour").value="hnull";
+  }
 }
