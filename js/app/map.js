@@ -155,3 +155,14 @@ function equipmentCheck(){
     document.getElementById("dashhour").value="hnull";
   }
 }
+
+// Get XML radars file from Server
+function getDataRadarsXLM(url, region){
+  $.get(
+      url,
+      {paramOne : region},
+      function(data) {
+        console.log(data);
+      }
+    );
+}
