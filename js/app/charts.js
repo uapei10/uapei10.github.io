@@ -67,7 +67,8 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
-    getDataXLM("http://fjunior.f2mobile.eu/testelixo.php", "22/03/2020", "Week");
+    getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Week");
+    //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Week");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -84,6 +85,9 @@ function populateCharts(arg1){
 
   else if(id1.value == "d1"){
     hideHour();
+
+    getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Day");
+    //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Day");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -118,6 +122,9 @@ function updateHourChart(arg1){
   fixCanvasSizes();
   showTextCard();
   showInfo();
+
+  getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Hour");
+  //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Hour");
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -257,8 +264,19 @@ function updateTextInfo(){
   x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
 }
 
-// Get XML file from Server
-function getDataXLM(url, date, timeSpace){
+// Get XML in file from Server
+function getDataInXLM(url, date, timeSpace){
+  $.get(
+      url,
+      {paramOne : date, paramTwo : timeSpace},
+      function(data) {
+        console.log(data);
+      }
+    );
+}
+
+// Get XML out file from Server
+function getDataOutXLM(url, date, timeSpace){
   $.get(
       url,
       {paramOne : date, paramTwo : timeSpace},
