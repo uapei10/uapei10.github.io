@@ -67,7 +67,7 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
-    getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Week");
+    getDataXLM("http://fjunior.f2mobile.eu/testelixo.php", "22/03/2020", "Week");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -84,8 +84,6 @@ function populateCharts(arg1){
 
   else if(id1.value == "d1"){
     hideHour();
-
-    getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Day");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -120,8 +118,6 @@ function updateHourChart(arg1){
   fixCanvasSizes();
   showTextCard();
   showInfo();
-
-  getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Hour");
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
