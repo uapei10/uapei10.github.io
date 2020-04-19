@@ -67,6 +67,15 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
+    $.get(
+      "http://fjunior.f2mobile.eu/teste.php",
+      {paramOne : 1, paramX : 'abc'},
+      function(data) {
+      alert('page content: ' + data);
+      console.log(data);
+      }
+    );
+
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
 
@@ -249,6 +258,7 @@ function getRandomData(){
   }
 }
 
+// Updates Textbox Info
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
   x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
