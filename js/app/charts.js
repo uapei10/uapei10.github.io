@@ -67,14 +67,7 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
-    $.get(
-      "http://fjunior.f2mobile.eu/teste.php",
-      {paramOne : 1, paramX : 'abc'},
-      function(data) {
-      alert('page content: ' + data);
-      console.log(data);
-      }
-    );
+    getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Week");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -91,6 +84,8 @@ function populateCharts(arg1){
 
   else if(id1.value == "d1"){
     hideHour();
+
+    getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Day");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -125,6 +120,8 @@ function updateHourChart(arg1){
   fixCanvasSizes();
   showTextCard();
   showInfo();
+
+  getDataXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Hour");
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -262,4 +259,15 @@ function getRandomData(){
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
   x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
+}
+
+// Get XML file from Server
+function getDataXLM(url, date, timeSpace){
+  $.get(
+      url,
+      {paramOne : date, paramTwo : timeSpace},
+      function(data) {
+        console.log(data);
+      }
+    );
 }
