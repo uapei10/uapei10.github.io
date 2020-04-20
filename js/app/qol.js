@@ -1,3 +1,5 @@
+var login = false;
+
 // ----------------------------------- HTML -------------------------------------------
 // Hide hour selection div
 function hideHour() {
@@ -137,4 +139,34 @@ function removeDuplicates(array){
     if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
   });
   return uniqueNames;
+}
+
+// Changes Navbar to Log in
+function putLoggin(){
+  document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
+    <div class="w3-right w3-hide-small">
+      <a href="login.html" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN </a>
+    </div>`;
+}
+
+// Changes Navbar to Profile
+function putLoggedIn(){
+  document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
+    <div class="w3-right w3-hide-small">
+      <a href="profile.html" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE </a>
+    </div>`;
+}
+
+// Changes Log in boolean
+function logIn(){
+  login = true;
+  alert(login);
+}
+
+// Changes Bar
+function changeAppBar(){
+  if(login)
+    putLoggedIn();
+  else
+    putLoggin();
 }

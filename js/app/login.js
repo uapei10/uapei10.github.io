@@ -1,34 +1,33 @@
-
-//Login variables
+// Login variables
 const name = document.getElementById('name')
 const password = document.getElementById('password')
 const form = document.getElementById('form')
 const errorElement = document.getElementById('error')
 
-//Profile variables
+// Profile variables
 const popup = document.getElementById('popup')
 
-//Login Functions
+// Login Functions
 form.addEventListener('submit', (e) => {
     let messages = []
     if (name.value === '' || name.value == null){
-        messages.push('Name is required')
+        messages.push('Name is required.')
     }
     if (password.value.length <= 3){
-        messages.push("Password must be longer than 3 characters")
+        messages.push("Password must be longer than 3 characters.")
     }
     if(name.value != 'admin' || password.value != 'admin'){
-        messages.push("Username and password do not match")
+        messages.push("Username and password do not match.")
     }
     if (messages.length > 0){
         e.preventDefault()
-        errorElement.innerText = messages.join(', ')
+        errorElement.innerText = messages.join(' ')
     }
 
 })
 
 
-//Profile Functions
+// Profile Functions
 function radarButtonFunction()
 {
   var list = document.getElementById('radars')
