@@ -20,7 +20,7 @@
 
 <style>
 
-#popup{display: none; background:#efefef; border:1px solid black; width:50%; height:200px;}
+#popup{display: none; background:#efefef; border:1px solid black; width:50%; height:90px; margin: auto;}
 
 </style>
 
@@ -29,70 +29,54 @@
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
     <a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
-    <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-	  <!--<a href="#workDone" class="w3-bar-item w3-button"><i class="fa fa-th"></i> DOCUMENTATION</a>-->
     </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
 </div>
-</br>
-</br>
-</br>
-<div class="w3-col" style="width:50%">
-    <div class="centered">
-    </br>
-      <h2 style="text-align:center">Associated Radars:</h2>
+
+<div class="w3-container" style="margin-top: 200px">
+  <div class="w3-col" style="width:50%;">
+    <div style="text-align: center">
+      <h2 style="text-align:center"><b>Associated Radars:</b></h2>
       <form name="radarForm" id="radarForm">
-      <select id="radars" style="text-align:center">
-        <option selected disabled value="select">- Select -</option>
-        <option value="costa">Costa-Nova</option>
-        <option value="barra">Barra</option>
-      </select>
-    </br>
-      <button id="radarbutton" type="button" onclick="radarButtonFunction()">Share radar with another user!</button>
-    </form>
-    <form name="popupForm" id="popupForm" action="profile.html">
-      <div id="popup">
-        <select id="users" style="text-align:center">
+        <select id="radars" style="text-align:center">
           <option selected disabled value="select">- Select -</option>
-          <option value="costa">Admin2</option>
-          <option value="barra">Admin3</option>
-        </select>
-      </br>
-        <button id="shareButton" type="button" onclick="shareFunction()">Share!</button>
-        <button onclick="popup.style.display=''">Close.</button>
+          <option value="costa">Costa-Nova</option>
+          <option value="barra">Barra</option>
+        </select><br>
+        <button style="margin-top:6px" id="radarbutton" type="button" onclick="radarButtonFunction()">Share radar with another user!</button>
+      </form>
+      <div style="text-align: center">
+        <div name="popupForm" id="popupForm" action="profile.html">
+          <br>
+          <div id="popup">
+            <br>
+            <select id="users">
+              <option selected disabled value="select">- Select -</option>
+              <option value="costa">Admin2</option>
+              <option value="barra">Admin3</option>
+            </select>
+            <button id="shareButton" type="button" onclick="shareFunction()">Share!</button>
+            <button onclick="popup.style.display=''; ">Close</button>
+          </div>
+        </div>
       </div>
-    </form>
     </div>
   </div>
-  <div class="w3-col" style="width:50%">
+  <div class="w3-col" style="width:50%;">
     <div class="centered">
-    </br>
-      <h2 style="text-align:center">Admin</h2>
-      <p style="text-align:center">Email: admin@admin.com</p>
-      <p style="text-align:center">Name: </p>
-      <p style="text-align:center">Institution: </p>
+      <h2 style="text-align:center"><b>Paulo Rodrigues</b></h2>
+      <p style="text-align:center"><b>Email:</b> admin@admin.com</p>
+      <p style="text-align:center"><b>Region:</b> Barra, Costa Nova</p>
     </div>
   </div>
+</div>
 
-
-</br>
-</br>
-</br></br>
-</br>
-</br></br>
-</br>
-</br></br>
-</br>
-</br></br>
-</br>
-</br>
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
+<footer class="w3-center w3-black w3-padding-64" style="margin-top: 256px">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <div style="padding:10px">
     <select onchange="doGTranslate(this);"><option value="">Change Language</option><option value="en|af">Afrikaans</option><option value="en|sq">Albanian</option><option value="en|ar">Arabic</option><option value="en|hy">Armenian</option><option value="en|az">Azerbaijani</option><option value="en|eu">Basque</option><option value="en|be">Belarusian</option><option value="en|bg">Bulgarian</option><option value="en|ca">Catalan</option><option value="en|zh-CN">Chinese (Simplified)</option><option value="en|zh-TW">Chinese (Traditional)</option><option value="en|hr">Croatian</option><option value="en|cs">Czech</option><option value="en|da">Danish</option><option value="en|nl">Dutch</option><option value="en|en">English</option><option value="en|et">Estonian</option><option value="en|tl">Filipino</option><option value="en|fi">Finnish</option><option value="en|fr">French</option><option value="en|gl">Galician</option><option value="en|ka">Georgian</option><option value="en|de">German</option><option value="en|el">Greek</option><option value="en|ht">Haitian Creole</option><option value="en|iw">Hebrew</option><option value="en|hi">Hindi</option><option value="en|hu">Hungarian</option><option value="en|is">Icelandic</option><option value="en|id">Indonesian</option><option value="en|ga">Irish</option><option value="en|it">Italian</option><option value="en|ja">Japanese</option><option value="en|ko">Korean</option><option value="en|lv">Latvian</option><option value="en|lt">Lithuanian</option><option value="en|mk">Macedonian</option><option value="en|ms">Malay</option><option value="en|mt">Maltese</option><option value="en|no">Norwegian</option><option value="en|fa">Persian</option><option value="en|pl">Polish</option><option value="en|pt">Portuguese</option><option value="en|ro">Romanian</option><option value="en|ru">Russian</option><option value="en|sr">Serbian</option><option value="en|sk">Slovak</option><option value="en|sl">Slovenian</option><option value="en|es">Spanish</option><option value="en|sw">Swahili</option><option value="en|sv">Swedish</option><option value="en|th">Thai</option><option value="en|tr">Turkish</option><option value="en|uk">Ukrainian</option><option value="en|ur">Urdu</option><option value="en|vi">Vietnamese</option><option value="en|cy">Welsh</option><option value="en|yi">Yiddish</option></select><div id="google_translate_element2"></div>
