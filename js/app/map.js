@@ -12,30 +12,23 @@ var locations;
 
 // To execute on boot
 init();
+// ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
 function init(){
   mymap = L.map('mapdiv').setView([40, -9], 6);
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
-      }).addTo(mymap);
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
+  }).addTo(mymap);
 
-  markers = [
-    [40.62, -8.748, 'Av. José Estêvão'],
-    [40.6268, -8.732, 'A25']
-  ];
-
-  locations = ['A25'];
-
-  markersLayer = L.layerGroup();
+  markers = new Array();
+  locations = new Array();
 }
 
-// ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
 // Update map div
 function getMap(arg1){
-  getEquipment(); 
   destroyMap();
   var id1 = document.getElementById(arg1);
   if(id1.value == "aveiro"){
@@ -48,18 +41,23 @@ function getMap(arg1){
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoieGFja2EiLCJhIjoiY2s4bHc3NWo3MDVteTNsbzd4cTloZDRzNyJ9.k47kNQJQNpoyZQOlD3Rozg'
       }).addTo(mymap);
+
+      getDataRadarsXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_RADARS", "Aveiro");
+
       addMarkers();
+      getEquipment(); 
   }
 }
 
 // Adds Markers to map
 function addMarkers(){
+  markersLayer = L.layerGroup();
   var markerIcon = L.icon({
         iconUrl: 'Images/marker2.png',
         iconSize:     [35, 40],
         iconAnchor:   [35, 40],
       });
-
+  console.log(markers);
   for (i = 0; i < markers.length; i++) {
     var buttonID = "buttonMarker" +i;
     var bText = "Select";
@@ -157,12 +155,21 @@ function equipmentCheck(){
 }
 
 // Get XML radars file from Server
-function getDataRadarsXLM(url, region){
-  $.get(
-      url,
-      {paramOne : region},
-      function(data) {
-        console.log(data);
-      }
-    );
+function getDataRadarsXLM(urle, region){
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: urle,
+     success: function(data) {
+        //console.log(data);
+        var x = data.getElementsByTagName("REGISTO");
+        for (i = 0; i <x.length; i++) {
+          var lat = parseFloat(x[i].childNodes[1].childNodes[0].nodeValue);
+          var lon = parseFloat(x[i].childNodes[2].childNodes[0].nodeValue);
+          var name = x[i].childNodes[3].childNodes[0].nodeValue;
+          markers.push([lat, lon, name]);
+          locations = [name];
+        }
+     }
+});
 }
