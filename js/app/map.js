@@ -57,7 +57,6 @@ function addMarkers(){
         iconSize:     [35, 40],
         iconAnchor:   [35, 40],
       });
-  console.log(markers);
   for (i = 0; i < markers.length; i++) {
     var buttonID = "buttonMarker" +i;
     var bText = "Select";
@@ -161,7 +160,6 @@ function getDataRadarsXLM(urle, region){
      type: 'GET',
      url: urle,
      success: function(data) {
-        //console.log(data);
         var x = data.getElementsByTagName("REGISTO");
         for (i = 0; i <x.length; i++) {
           var lat = parseFloat(x[i].childNodes[1].childNodes[0].nodeValue);
@@ -171,5 +169,5 @@ function getDataRadarsXLM(urle, region){
           locations = [name];
         }
      }
-});
+  });
 }

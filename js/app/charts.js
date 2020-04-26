@@ -67,8 +67,7 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
-    getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Week");
-    //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Week");
+    getDataWeekXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_SEMANA");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -86,8 +85,7 @@ function populateCharts(arg1){
   else if(id1.value == "d1"){
     hideHour();
 
-    getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Day");
-    //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Day");
+    getDataDayXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA");
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -123,8 +121,7 @@ function updateHourChart(arg1){
   showTextCard();
   showInfo();
 
-  getDataInXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_IN", "22/03/2020", "Hour");
-  //getDataOutXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_CARS_OUT", "22/03/2020", "Hour");
+  getDataHourXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_HORA");
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -264,24 +261,79 @@ function updateTextInfo(){
   x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
 }
 
-// Get XML in file from Server
-function getDataInXLM(url, date, timeSpace){
-  $.get(
-      url,
-      {paramOne : date, paramTwo : timeSpace},
-      function(data) {
-        console.log(data);
-      }
-    );
+// Get XML Radars Hour file from Server
+function getDataHourXLM(urle){
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: urle,
+     success: function(data) {
+        var x = data.getElementsByTagName("REGISTO");
+        var array = new Array();
+        var arrayHomol = new Array();
+        for (i = 0; i < 12; i++) {
+          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        for (i = 12; i < 24; i++) {
+          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        console.log(array);
+        console.log(arrayHomol);
+        traffic5Minutesin = array;
+        traffic5MinutesHomolin = arrayHomol;
+        traffic5Minutesout = array;
+        traffic5MinutesHomolout = arrayHomol;
+     }
+  });
+}
+// Get XML Radars Day file from Server
+function getDataDayXLM(urle){
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: urle,
+     success: function(data) {
+        var x = data.getElementsByTagName("REGISTO");
+        var array = new Array();
+        var arrayHomol = new Array();
+        for (i = 0; i < 24; i++) {
+          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        for (i = 24; i < 48; i++) {
+          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        console.log(array);
+        console.log(arrayHomol);
+        trafficHourin = array;
+        trafficHourHomolin = arrayHomol;
+        trafficHourout = array;
+        trafficHourHomolout = arrayHomol;
+     }
+  });
 }
 
-// Get XML out file from Server
-function getDataOutXLM(url, date, timeSpace){
-  $.get(
-      url,
-      {paramOne : date, paramTwo : timeSpace},
-      function(data) {
-        console.log(data);
-      }
-    );
+// Get XML Radars Week file from Server
+function getDataWeekXLM(urle){
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: urle,
+     success: function(data) {
+        var x = data.getElementsByTagName("REGISTO");
+        var array = new Array();
+        var arrayHomol = new Array();
+        for (i = 0; i < 7; i++) {
+          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        for (i = 7; i < 14; i++) {
+          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+        }
+        console.log(array);
+        console.log(arrayHomol);
+        trafficWeekin = array;
+        trafficWeekHomolin = arrayHomol;
+        trafficWeekout = array;
+        trafficWeekHomolout = arrayHomol;
+     }
+  });
 }
