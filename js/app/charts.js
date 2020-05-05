@@ -58,7 +58,7 @@ function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
   resetGraphs();
-  getRandomData();
+  ResetData();
   showInfo();
   showTextCard();
   swapCharts();
@@ -67,7 +67,7 @@ function populateCharts(arg1){
   if(id1.value == "d0"){
     hideHour();
 
-    getDataWeekXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_SEMANA");
+    // http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA_TOTAL&dia=04-05-2020&inOut=in&radar=ponte
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -85,7 +85,39 @@ function populateCharts(arg1){
   else if(id1.value == "d1"){
     hideHour();
 
-    getDataDayXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA");
+    // http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA&dia=04-05-2020&inOut=in&radar=ponte
+
+    var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA&dia=";
+
+    var date = new Date(document.getElementById('dateinput').value);
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; 
+    var yyyy = date.getFullYear();
+    if(dd<10) 
+      dd='0'+dd;
+    if(mm<10) 
+      mm='0'+mm;
+    var dateS = dd+'-'+mm+'-'+yyyy;
+
+    date.setDate(date.getDate() - 7);
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; 
+    var yyyy = date.getFullYear();
+    if(dd<10) 
+      dd='0'+dd;
+    if(mm<10) 
+      mm='0'+mm;
+    var dateHomol = dd+'-'+mm+'-'+yyyy;
+
+    urlIn = url.concat(dateS ,"&inOut=in&radar=ponte");
+    urlOut = url.concat(dateS ,"&inOut=out&radar=ponte");
+    urlHomolIn = url.concat(dateHomol ,"&inOut=in&radar=ponte");
+    urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=ponte");
+
+    trafficHourin = getDataDayXLM(urlIn);
+    trafficHourOut = getDataDayXLM(urlOut);
+    trafficHourHomolin = getDataDayXLM(urlHomolIn);
+    trafficHourHomolOut = getDataDayXLM(urlHomolOut);
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -114,14 +146,14 @@ function populateCharts(arg1){
 function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
   resetGraphs();
-  getRandomData();
+  ResetData();
   updateTextInfo();
   swapCharts();
   fixCanvasSizes();
   showTextCard();
   showInfo();
 
-  getDataHourXLM("http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_HORA");
+  // http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_HORA&dia=04-05-2020&hora=2&inOut=in&radar=ponte
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -223,35 +255,35 @@ function resetGraphs(){
 }
 
 // Get data for charts, currently random
-function getRandomData(){
+function ResetData(){
   // Week Dashboard
   for (i = 0; i < 7; i++) {
-    trafficWeekin[i] = Math.floor(Math.random() * 50); 
-    trafficWeekHomolin[i] = Math.floor(Math.random() * 50); 
-    trafficWeekout[i] = Math.floor(Math.random() * 50); 
-    trafficWeekHomolout[i] = Math.floor(Math.random() * 50); 
+    trafficWeekin[i] = 0; 
+    trafficWeekHomolin[i] = 0; 
+    trafficWeekout[i] = 0; 
+    trafficWeekHomolout[i] =0; 
   }
 
   // Day Dashboard
   for (i = 0; i < 24; i++) {
-    trafficHourin[i] = Math.floor(Math.random() * 50); 
-    trafficHourHomolin[i] = Math.floor(Math.random() * 50); 
-    trafficHourout[i] = Math.floor(Math.random() * 50); 
-    trafficHourHomolout[i] = Math.floor(Math.random() * 50); 
+    trafficHourin[i] = 0; 
+    trafficHourHomolin[i] = 0; 
+    trafficHourout[i] = 0; 
+    trafficHourHomolout[i] = 0; 
   }
 
   // Hour Dashboard
   for (i = 0; i < 12; i++) {
-    traffic5Minutesin[i] = Math.floor(Math.random() * 20); 
-    traffic5MinutesHomolin[i] = Math.floor(Math.random() * 20); 
-    traffic5Minutesout[i] = Math.floor(Math.random() * 20); 
-    traffic5MinutesHomolout[i] = Math.floor(Math.random() * 20); 
+    traffic5Minutesin[i] = 0; 
+    traffic5MinutesHomolin[i] = 0; 
+    traffic5Minutesout[i] = 0; 
+    traffic5MinutesHomolout[i] = 0; 
   }
 
   // Pie Chart
   for (i = 0; i < 4; i++) {
-    percentageOfVehiclesin[i] = Math.floor(Math.random() * 20); 
-    percentageOfVehiclesout[i] = Math.floor(Math.random() * 20); 
+    percentageOfVehiclesin[i] = 2; 
+    percentageOfVehiclesout[i] = 2; 
   }
 }
 
@@ -263,77 +295,49 @@ function updateTextInfo(){
 
 // Get XML Radars Hour file from Server
 function getDataHourXLM(urle){
+  var array = new Array();
     $.ajax({
      async: false,
      type: 'GET',
      url: urle,
      success: function(data) {
         var x = data.getElementsByTagName("REGISTO");
-        var array = new Array();
-        var arrayHomol = new Array();
         for (i = 0; i < 12; i++) {
-          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+          array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
-        for (i = 12; i < 24; i++) {
-          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
-        }
-        console.log(array);
-        console.log(arrayHomol);
-        traffic5Minutesin = array;
-        traffic5MinutesHomolin = arrayHomol;
-        traffic5Minutesout = array;
-        traffic5MinutesHomolout = arrayHomol;
      }
   });
 }
 // Get XML Radars Day file from Server
 function getDataDayXLM(urle){
+  var array = new Array();
     $.ajax({
      async: false,
      type: 'GET',
      url: urle,
      success: function(data) {
         var x = data.getElementsByTagName("REGISTO");
-        var array = new Array();
-        var arrayHomol = new Array();
         for (i = 0; i < 24; i++) {
-          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+          array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
-        for (i = 24; i < 48; i++) {
-          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
-        }
-        console.log(array);
-        console.log(arrayHomol);
-        trafficHourin = array;
-        trafficHourHomolin = arrayHomol;
-        trafficHourout = array;
-        trafficHourHomolout = arrayHomol;
      }
   });
+  return array;
 }
 
 // Get XML Radars Week file from Server
 function getDataWeekXLM(urle){
+  var array = new Array();
     $.ajax({
      async: false,
      type: 'GET',
      url: urle,
      success: function(data) {
         var x = data.getElementsByTagName("REGISTO");
-        var array = new Array();
-        var arrayHomol = new Array();
         for (i = 0; i < 7; i++) {
-          array.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
+          array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
-        for (i = 7; i < 14; i++) {
-          arrayHomol.push(parseInt(x[i].childNodes[4].childNodes[0].nodeValue));
-        }
-        console.log(array);
-        console.log(arrayHomol);
-        trafficWeekin = array;
-        trafficWeekHomolin = arrayHomol;
-        trafficWeekout = array;
-        trafficWeekHomolout = arrayHomol;
      }
   });
+  return array;
 }
