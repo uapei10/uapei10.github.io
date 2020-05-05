@@ -109,15 +109,17 @@ function populateCharts(arg1){
       mm='0'+mm;
     var dateHomol = dd+'-'+mm+'-'+yyyy;
 
-    urlIn = url.concat(dateS ,"&inOut=in&radar=ponte");
-    urlOut = url.concat(dateS ,"&inOut=out&radar=ponte");
-    urlHomolIn = url.concat(dateHomol ,"&inOut=in&radar=ponte");
-    urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=ponte");
+    for (i = 0; i < locations.length; i++) {
+      urlIn = url.concat(dateS ,"&inOut=in&radar=", locations[i]);
+      urlOut = url.concat(dateS ,"&inOut=out&radar=", locations[i]);
+      urlHomolIn = url.concat(dateHomol ,"&inOut=in&radar=", locations[i]);
+      urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=", locations[i]);
 
-    trafficHourin = getDataDayXLM(urlIn);
-    trafficHourOut = getDataDayXLM(urlOut);
-    trafficHourHomolin = getDataDayXLM(urlHomolIn);
-    trafficHourHomolOut = getDataDayXLM(urlHomolOut);
+      trafficHourin = getDataDayXLM(urlIn);
+      trafficHourOut = getDataDayXLM(urlOut);
+      trafficHourHomolin = getDataDayXLM(urlHomolIn);
+      trafficHourHomolOut = getDataDayXLM(urlHomolOut);
+    }
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -154,6 +156,43 @@ function updateHourChart(arg1){
   showInfo();
 
   // http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_HORA&dia=04-05-2020&hora=2&inOut=in&radar=ponte
+
+  var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_HORA&dia=";
+
+  var date = new Date(document.getElementById('dateinput').value);
+  var dd = date.getDate();
+  var mm = date.getMonth()+1; 
+  var yyyy = date.getFullYear();
+  if(dd<10) 
+    dd='0'+dd;
+  if(mm<10) 
+    mm='0'+mm;
+  var dateS = dd+'-'+mm+'-'+yyyy;
+
+  date.setDate(date.getDate() - 7);
+  var dd = date.getDate();
+  var mm = date.getMonth()+1; 
+  var yyyy = date.getFullYear();
+  if(dd<10) 
+    dd='0'+dd;
+  if(mm<10) 
+    mm='0'+mm;
+  var dateHomol = dd+'-'+mm+'-'+yyyy;
+
+  var hour = document.getElementById('dashhour').value;
+  console.log(hour);
+
+  for (i = 0; i < locations.length; i++) {
+    urlIn = url.concat(dateS ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
+    urlOut = url.concat(dateS ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
+    urlHomolIn = url.concat(dateHomol ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
+    urlHomolOut = url.concat(dateHomol ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
+
+    trafficHourin = getDataDayXLM(urlIn);
+    trafficHourOut = getDataDayXLM(urlOut);
+    trafficHourHomolin = getDataDayXLM(urlHomolIn);
+    trafficHourHomolOut = getDataDayXLM(urlHomolOut);
+  }
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -301,10 +340,12 @@ function getDataHourXLM(urle){
      type: 'GET',
      url: urle,
      success: function(data) {
+      try{
         var x = data.getElementsByTagName("REGISTO");
         for (i = 0; i < 12; i++) {
           array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
+      }catch(err){}
      }
   });
 }
@@ -316,10 +357,12 @@ function getDataDayXLM(urle){
      type: 'GET',
      url: urle,
      success: function(data) {
+      try{
         var x = data.getElementsByTagName("REGISTO");
         for (i = 0; i < 24; i++) {
           array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
+      }catch(err){}
      }
   });
   return array;
@@ -333,10 +376,12 @@ function getDataWeekXLM(urle){
      type: 'GET',
      url: urle,
      success: function(data) {
+      try{
         var x = data.getElementsByTagName("REGISTO");
         for (i = 0; i < 7; i++) {
           array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
         }
+      }catch(err){}
      }
   });
   return array;
