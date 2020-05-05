@@ -179,19 +179,17 @@ function updateHourChart(arg1){
     mm='0'+mm;
   var dateHomol = dd+'-'+mm+'-'+yyyy;
 
-  var hour = document.getElementById('dashhour').value;
-  console.log(hour);
-
+  var hour = (document.getElementById('dashhour').value).slice(1);
   for (i = 0; i < locations.length; i++) {
     urlIn = url.concat(dateS ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
     urlOut = url.concat(dateS ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
     urlHomolIn = url.concat(dateHomol ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
     urlHomolOut = url.concat(dateHomol ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
 
-    trafficHourin = getDataDayXLM(urlIn);
-    trafficHourOut = getDataDayXLM(urlOut);
-    trafficHourHomolin = getDataDayXLM(urlHomolIn);
-    trafficHourHomolOut = getDataDayXLM(urlHomolOut);
+    traffic5Minutesin = getDataDayXLM(urlIn);
+    traffic5Minutesout = getDataDayXLM(urlOut);
+    traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
+    traffic5MinutesHomolout = getDataDayXLM(urlHomolOut);
   }
 
   // Criar Chart In - Parte de Cima
@@ -226,6 +224,13 @@ function makeBarChart(chartInput, titleText, dataHomol, dataSelect, labelType){
         ]
       },
       options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
         legend: { display: true },
         responsive: false,
         title: {
