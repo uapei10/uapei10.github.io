@@ -73,9 +73,7 @@ function populateCharts(arg1){
 
     var datesS = new Array();
     var date = (new Date(document.getElementById('dateinput').value));
-    var dateS = (new Date(document.getElementById('dateinput').value));
-    for(i = (date.getDay()), t=0; i >= 0; i--, t++){
-      date.setDate(dateS.getDate()-t);
+    for(i = (date.getDay()); i >= 0; i--){
       var dd = date.getDate();
       var mm = date.getMonth()+1; 
       var yyyy = date.getFullYear();
@@ -84,16 +82,13 @@ function populateCharts(arg1){
       if(mm<10) 
         mm='0'+mm;
       datesS[i] = dd+'-'+mm+'-'+yyyy;
+      date.setDate(date.getDate()-1);
     }
-
-    console.log(datesS);
 
     var dateHomol = new Array();
     date = (new Date(document.getElementById('dateinput').value));
     date.setDate(date.getDate() - 7);
-    var dateS = date;
-    for(i = (date.getDay()), t=0; i >= 0; i--, t++){
-      date.setDate(dateS.getDate()-t);
+    for(i = (date.getDay()); i >= 0; i--){
       var dd = date.getDate();
       var mm = date.getMonth()+1; 
       var yyyy = date.getFullYear();
@@ -102,9 +97,8 @@ function populateCharts(arg1){
       if(mm<10) 
         mm='0'+mm;
       dateHomol[i] = dd+'-'+mm+'-'+yyyy;
+      date.setDate(date.getDate()-1);
     }
-
-    console.log(dateHomol);
 
     for (i = 0; i < locations.length; i++) {
       var location = locations[i];
