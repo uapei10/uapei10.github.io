@@ -69,6 +69,62 @@ function populateCharts(arg1){
 
     // http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA_TOTAL&dia=04-05-2020&inOut=in&radar=ponte
 
+    var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_DIA_TOTAL&dia=";
+
+    var datesS = new Array();
+    var date = (new Date(document.getElementById('dateinput').value));
+    var dateS = (new Date(document.getElementById('dateinput').value));
+    for(i = (date.getDay()), t=0; i >= 0; i--, t++){
+      date.setDate(dateS.getDate()-t);
+      var dd = date.getDate();
+      var mm = date.getMonth()+1; 
+      var yyyy = date.getFullYear();
+      if(dd<10) 
+        dd='0'+dd;
+      if(mm<10) 
+        mm='0'+mm;
+      datesS[i] = dd+'-'+mm+'-'+yyyy;
+    }
+
+    console.log(datesS);
+
+    var dateHomol = new Array();
+    date = (new Date(document.getElementById('dateinput').value));
+    date.setDate(date.getDate() - 7);
+    var dateS = date;
+    for(i = (date.getDay()), t=0; i >= 0; i--, t++){
+      date.setDate(dateS.getDate()-t);
+      var dd = date.getDate();
+      var mm = date.getMonth()+1; 
+      var yyyy = date.getFullYear();
+      if(dd<10) 
+        dd='0'+dd;
+      if(mm<10) 
+        mm='0'+mm;
+      dateHomol[i] = dd+'-'+mm+'-'+yyyy;
+    }
+
+    console.log(dateHomol);
+
+    for (i = 0; i < locations.length; i++) {
+      var location = locations[i];
+      for(t = 0; t < datesS.length; t++){
+        urlIn = url.concat(datesS[t] ,"&inOut=in&radar=", location);
+        urlOut = url.concat(datesS[t] ,"&inOut=out&radar=", location);
+        urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", location);
+        urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", location);
+
+        trafficWeekin[t] = getDataWeekXLM(urlIn);
+        trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
+        trafficWeekout[t] = getDataWeekXLM(urlOut);
+        trafficWeekHomolout[t] = getDataWeekXLM(urlHomolOut);
+      }
+    }
+
+    console.log(trafficWeekin);
+    console.log(trafficWeekHomolin);
+
+
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
 
@@ -375,7 +431,7 @@ function getDataDayXLM(urle){
 
 // Get XML Radars Week file from Server
 function getDataWeekXLM(urle){
-  var array = new Array();
+  var array;
     $.ajax({
      async: false,
      type: 'GET',
@@ -383,9 +439,7 @@ function getDataWeekXLM(urle){
      success: function(data) {
       try{
         var x = data.getElementsByTagName("REGISTO");
-        for (i = 0; i < 7; i++) {
-          array.push(parseInt(x[i].childNodes[2].childNodes[0].nodeValue));
-        }
+        array = parseInt(x[i].childNodes[2].childNodes[0].nodeValue);
       }catch(err){}
      }
   });
