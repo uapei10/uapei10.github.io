@@ -25,6 +25,8 @@ var typesOfVehicles;
 var percentageOfVehiclesin;
 var percentageOfVehiclesout;
 
+var chartYSum;
+
 // To execute on boot
 init();
 function init(){
@@ -46,6 +48,7 @@ function init(){
   typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
   percentageOfVehiclesin = new Array();
   percentageOfVehiclesout = new Array();
+  chartYSum = 0;
 
   document.getElementById("dateinput").disabled=true; // Blocks date input
   document.getElementById("dashinput").disabled=true; // Blocks dashboard input
@@ -63,7 +66,6 @@ function populateCharts(arg1){
   showTextCard();
   swapCharts();
   fixCanvasSizes();
-  updateTextInfo();
   if(id1.value == "d0"){
     hideHour();
 
@@ -115,9 +117,8 @@ function populateCharts(arg1){
       }
     }
 
-    console.log(trafficWeekin);
-    console.log(trafficWeekHomolin);
-
+    chartYSum = sum(trafficWeekin);
+    updateTextInfo();
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
@@ -171,6 +172,9 @@ function populateCharts(arg1){
       trafficHourHomolOut = getDataDayXLM(urlHomolOut);
     }
 
+    chartYSum = sum(trafficHourin);
+    updateTextInfo();
+
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
 
@@ -199,7 +203,6 @@ function updateHourChart(arg1){
   var id1 = document.getElementById(arg1);
   resetGraphs();
   ResetData();
-  updateTextInfo();
   swapCharts();
   fixCanvasSizes();
   showTextCard();
@@ -241,6 +244,9 @@ function updateHourChart(arg1){
     traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
     traffic5MinutesHomolout = getDataDayXLM(urlHomolOut);
   }
+
+  chartYSum = sum(traffic5Minutesin);
+  updateTextInfo();
 
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
@@ -384,7 +390,7 @@ function ResetData(){
 // Updates Textbox Info
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
-  x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: 254<br>Total Number of Vehicles Out: 302<br><br><div>";
+  x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: "+ chartYSum+"<br><br><br><div>";
 }
 
 // Get XML Radars Hour file from Server
@@ -439,3 +445,19 @@ function getDataWeekXLM(urle){
   });
   return array;
 }
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+      
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
