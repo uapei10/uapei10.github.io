@@ -26,6 +26,8 @@ var percentageOfVehiclesin;
 var percentageOfVehiclesout;
 
 var chartYSum;
+var chartYHomolSum;
+
 
 // To execute on boot
 init();
@@ -118,6 +120,7 @@ function populateCharts(arg1){
     }
 
     chartYSum = sum(trafficWeekin);
+    chartYHomolSum = sum(trafficWeekHomolin);
     updateTextInfo();
 
     // Criar Chart In - Parte de Cima
@@ -173,6 +176,7 @@ function populateCharts(arg1){
     }
 
     chartYSum = sum(trafficHourin);
+    chartYHomolSum = sum(trafficHourHomolin);
     updateTextInfo();
 
     // Criar Chart In - Parte de Cima
@@ -246,6 +250,7 @@ function updateHourChart(arg1){
   }
 
   chartYSum = sum(traffic5Minutesin);
+  chartYHomolSum = sum(traffic5MinutesHomolin);
   updateTextInfo();
 
   // Criar Chart In - Parte de Cima
@@ -390,7 +395,7 @@ function ResetData(){
 // Updates Textbox Info
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
-  x.innerHTML = "<div class='onscreen'><br><br>Average Traffic Speed In: 75 km/h <br>Average Traffic Speed Out: 65 km/h <br><br>Total Number of Vehicles In: "+ chartYSum+"<br><br><br><div>";
+  x.innerHTML = "<div class='onscreen'><br><br><br><br>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br><div>";
 }
 
 // Get XML Radars Hour file from Server
