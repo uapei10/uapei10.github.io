@@ -27,6 +27,8 @@ var percentageOfVehiclesout;
 
 var chartYSum;
 var chartYHomolSum;
+var chartYOutSum;
+var chartYOutHomolSum;
 
 
 // To execute on boot
@@ -104,23 +106,26 @@ function populateCharts(arg1){
       date.setDate(date.getDate()-1);
     }
 
-    for (i = 0; i < locations.length; i++) {
-      var location = locations[i];
-      for(t = 0; t < datesS.length; t++){
+    for(t = 0; t < datesS.length; t++){
+      for (i = 0; i < locations.length; i++) {
+        var location = locations[i];
+
         urlIn = url.concat(datesS[t] ,"&inOut=in&radar=", location);
         urlOut = url.concat(datesS[t] ,"&inOut=out&radar=", location);
         urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", location);
         urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", location);
 
-        trafficWeekin[t] = getDataWeekXLM(urlIn);
-        trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
-        trafficWeekout[t] = getDataWeekXLM(urlOut);
-        trafficWeekHomolout[t] = getDataWeekXLM(urlHomolOut);
+        trafficWeekin[t] = trafficWeekin[t] + getDataWeekXLM(urlIn);
+        trafficWeekHomolin[t] = trafficWeekHomolin[t] + getDataWeekXLM(urlHomolIn);
+        trafficWeekout[t] = trafficWeekout[t] + getDataWeekXLM(urlOut);
+        trafficWeekHomolout[t] = trafficWeekHomolout[t] + getDataWeekXLM(urlHomolOut);
       }
     }
 
     chartYSum = sum(trafficWeekin);
     chartYHomolSum = sum(trafficWeekHomolin);
+    chartYOutSum = sum(trafficWeekout);
+    chartYOutHomolSum = sum(trafficWeekHomolout);
     updateTextInfo();
 
     // Criar Chart In - Parte de Cima
@@ -177,6 +182,8 @@ function populateCharts(arg1){
 
     chartYSum = sum(trafficHourin);
     chartYHomolSum = sum(trafficHourHomolin);
+    chartYOutSum = sum(trafficHourout);
+    chartYOutHomolSum = sum(trafficHourHomolout);
     updateTextInfo();
 
     // Criar Chart In - Parte de Cima
@@ -246,11 +253,13 @@ function updateHourChart(arg1){
     traffic5Minutesin = getDataDayXLM(urlIn);
     traffic5Minutesout = getDataDayXLM(urlOut);
     traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
-    traffic5MinutesHomolout = getDataDayXLM(urlHomolOut);
+    chartYOutHomolSum= getDataDayXLM(urlHomolOut);
   }
 
   chartYSum = sum(traffic5Minutesin);
   chartYHomolSum = sum(traffic5MinutesHomolin);
+  chartYOutSum = sum(traffic5Minutesout);
+  chartYOuHomolSum = sum(traffic5MinutesHomolout);
   updateTextInfo();
 
   // Criar Chart In - Parte de Cima
@@ -395,7 +404,7 @@ function ResetData(){
 // Updates Textbox Info
 function updateTextInfo(){
   var x = document.getElementById("textinfo");
-  x.innerHTML = "<div class='onscreen'><br><br><br><br>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br><div>";
+  x.innerHTML = "<div class='onscreen'><br><br>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br>Total nº of Vehicles Out (Selected Date): "+ chartYOutSum+"<br>Total nº of Vehicles Out (Homologous Date): "+ chartYOutHomolSum +"<div>";
 }
 
 // Get XML Radars Hour file from Server
@@ -414,6 +423,7 @@ function getDataHourXLM(urle){
       }catch(err){}
      }
   });
+  return array;
 }
 // Get XML Radars Day file from Server
 function getDataDayXLM(urle){
@@ -455,14 +465,12 @@ function getDataWeekXLM(urle){
 function sum(input){   
  if (toString.call(input) !== "[object Array]")
     return false;
-      
-            var total =  0;
-            for(var i=0;i<input.length;i++)
-              {                  
-                if(isNaN(input[i])){
-                continue;
-                 }
-                  total += Number(input[i]);
-               }
-             return total;
-            }
+  var total =  0;
+  for(var i=0;i<input.length;i++){                  
+    if(isNaN(input[i])){
+      continue;
+    }
+    total += Number(input[i]);
+  }
+  return total;
+}
