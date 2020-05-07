@@ -115,10 +115,10 @@ function populateCharts(arg1){
         urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", location);
         urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", location);
 
-        trafficWeekin[t] = trafficWeekin[t] + getDataWeekXLM(urlIn);
-        trafficWeekHomolin[t] = trafficWeekHomolin[t] + getDataWeekXLM(urlHomolIn);
-        trafficWeekout[t] = trafficWeekout[t] + getDataWeekXLM(urlOut);
-        trafficWeekHomolout[t] = trafficWeekHomolout[t] + getDataWeekXLM(urlHomolOut);
+        trafficWeekin[t] = getDataWeekXLM(urlIn);
+        trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
+        trafficWeekout[t] = getDataWeekXLM(urlOut);
+        trafficWeekHomolout[t] = getDataWeekXLM(urlHomolOut);
       }
     }
 
