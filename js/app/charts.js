@@ -170,9 +170,9 @@ function populateCharts(arg1){
       urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=", locations[i]);
 
       trafficHourin = getDataDayXLM(urlIn);
-      trafficHourOut = getDataDayXLM(urlOut);
+      trafficHourout = getDataDayXLM(urlOut);
       trafficHourHomolin = getDataDayXLM(urlHomolIn);
-      trafficHourHomolOut = getDataDayXLM(urlHomolOut);
+      trafficHourHomolout = getDataDayXLM(urlHomolOut);
     }
 
     chartYSum = sum(trafficHourin);
@@ -451,8 +451,8 @@ function getDataWeekXLM(urle){
   return array;
 }
 
-function sum(input){
-             
+// Sums a int array
+function sum(input){   
  if (toString.call(input) !== "[object Array]")
     return false;
       
