@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<title>Traffic Management Platform</title>
+<meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" type="text/css" href="../Scripts/css/tabs2.css">
+<link rel="stylesheet" type="text/css" href="../Scripts/css/w3.css">
+<link rel="stylesheet" type="text/css" href="../Scripts/css/animate.css">
+
+<head>
+  <script src="../Scripts/js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="../" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#obj" class="w3-bar-item w3-button"><i class="fa fa-user"></i> OBJECTIVES</a>
+	    <a href="#workDone" class="w3-bar-item w3-button"><i class="fa fa-th"></i> DELIVERABLES</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<div class="w3-container w3-light-grey onscreen" style="padding:80px 16px" id="obj">
+  <h3 class="w3-center">OBJECTIVES</h3>
+  <div class="w3-row-padding w3-center" style="margin-top:64px" > <!-- 64 -->
+    <div class="w3-col" style="width:50%">
+      <i class="fa fa fa-bar-chart w3-margin-bottom w3-jumbo w3-center"></i> 
+      <p class="w3-large">Data</p>
+      <p>Data management and processing collected by radars and cameras. Graphics creation to represent traffic information. </p>
+    </div>
+    <div class="w3-col" style="width:50%">
+      <i class="fa fa-automobile w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Recognition</p>
+      <p>Object recognition and division by subtypes, specifically people, bicycles/motorcycles, cars or trucks, with the help of YOLO, a image recognition tool. </p>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container onscreen" style="padding:32px; margin-bottom:32px" id="workDone">
+  <div class="w3-center">
+   <h3 class="title">DELIVERABLES</h3><br>
+   <div class="tabContainer">
+      <div class="buttonContainer">
+       <button onclick="showPanel(0,'#676767')">Milestone 1</button>
+       <button onclick="showPanel(1,'#676767')">Milestone 2</button>
+       <button onclick="showPanel(2,'#676767')">Milestone 3</button>
+       <button onclick="showPanel(3,'#676767')">Milestone 4</button>
+      </div>
+      <div class="tabPanel">
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 20px"><a href="../Documentation/Calendário(OLD VERSION).pdf">Calendar (Old)</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 20px"><a href="../Documentation/Apresentacao.pdf">Presentation</a></div>
+        </div>
+        <div class="w3-row" style="height: 33%">
+          <div class="button_01" style="padding: 20px"><a href="../Documentation/Calendario.png">Calendar</a></div>
+        </div>
+      </div>
+      <div class="tabPanel"> 
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/UML.pdf " target="_blank">DataBase UML</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/Architecture.pdf " target="_blank">System Architecture</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/Personas.pdf " target="_blank">Personas</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/pei_g10_2apresentaçao.pdf " target="_blank">Presentation</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/tasks.pdf " target="_blank">New Calendar</a></div>
+        </div>
+      </div>
+      <div class="tabPanel overflow">
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/UNITCENTERDBsql.pdf " target="_blank">Unit Center SQL(inicial)</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/RegionalDBsql.pdf " target="_blank">Region DB SQL(inicial)</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/SWOT.png " target="_blank">SWOT</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/Architecture v2.png " target="_blank">New System Architecture</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/Relatório PEI - M3.pdf " target="_blank">M3 - Report</a></div>
+        </div>
+        <div class="w3-row" style="height: 20%">
+          <div class="button_01" style="padding: 4px"><a href= "../Documentation/PEI-pasmo-demo.mp4 " target="_blank">Prototype Video</a></div>
+        </div>
+      </div>
+      <div class="tabPanel">
+      </div>
+   </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<section>
+<div class="w3-container w3-light-grey" id="team">
+  <h3 class="w3-center">TEAM</h3>
+  <p class="w3-center w3-large">Development team</p>
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px; margin-bottom:64px">
+    <div class="w3-col" style="width:20%">
+      <div class="w3-card">       
+        <img src="../Images/korts.jpeg" alt="João Soares" style="width:100%">
+        <div class="w3-container">
+          <h3>Francisco<br> Morgado</h3>
+          <p class="w3-opacity">Universidade de Aveiro - ECT</p>
+          <p> NMEC : 85009 </p>
+          <p> E-Mail : fmpfmorgado@ua.pt </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col" style="width:20%">
+      <div class="w3-card">
+        <img src="../Images/david.jpg" alt="Jane" style="width:100%">
+        <div class="w3-container">
+          <h3>David<br> Rocha</h3>
+          <p class="w3-opacity">Universidade de Aveiro - ECT</p>
+           <p> NMEC : 84807 </p>
+          <p> E-Mail : dmtar@ua.pt </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col" style="width:20%">
+      <div class="w3-card">
+        <img src="../Images/leandro.jpeg" alt="Leandro Cardoso" style="width:100%">
+        <div class="w3-container">
+          <h3>Leandro<br>Cardoso</h3>
+          <p class="w3-opacity">Universidade de Aveiro - ECT</p>
+          <p> NMEC : 80311 </p>
+          <p> E-Mail : leandrocardoso@ua.pt </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col" style="width:20%">
+      <div class="w3-card">
+        <img src="../Images/cris.jpeg" alt="Dan" style="width:100%">
+        <div class="w3-container">
+          <h3>José Cristiano<br> Moreira</h3>
+          <p class="w3-opacity">Universidade de Aveiro - ECT</p>
+          <p> NMEC : 79671 </p>
+          <p> E-Mail : jcristianosm@ua.pt </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col" style="width:20%">
+      <div class="w3-card">
+        <img src="../Images/jsoares.jpeg" alt="João Soares" style="width:100%">
+        <div class="w3-container">
+          <h3>João Francisco<br> Soares</h3>
+          <p class="w3-opacity">Universidade de Aveiro - ECT</p>
+          <p> NMEC : 79955 </p>
+          <p> E-Mail : joao.f.soares@ua.pt </p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+		<div class="w3-col" style="width:25%">
+			<br></br>
+			<h5>Advisor:</h5>
+			<img src="../Images/team-jaf.jpg" alt="Jane" style="width:100%">
+			<h6>José Fonseca</h6>
+			<p class="w3-opacity">DETI/IT</p>
+			<p> E-Mail : jaf@ua.pt </p>
+		</div>
+		<div class="w3-col" style="width:25%">
+			<br></br>
+			<h5>Co-Advisor:</h5>
+			<img src="../Images/jjcf_perfil.jpg" alt="Jane" style="width:91%">
+			<h6>Joaquim Ferreira</h6>
+			<p class="w3-opacity">ESTGA/IT</p>
+			<p> E-Mail : jcf@ua.pt </p>
+		</div>
+		<div class="w3-col" style="width:25%">
+			<br></br>
+			<h5>Collaborator:</h5>
+			<img src="../Images/team-paulo.jpg" alt="Jane" style="width:100%">
+			<h6>Paulo Vasconcelos</h6>
+			<p class="w3-opacity">DETI</p>
+			<p> E-Mail : paulobvasconcelos@ua.pt </p>
+		</div>
+		<div class="w3-col" style="width:25%">
+			<br></br>
+			<h5>Collaborator:</h5>
+			<img src="../Images/team-pedro.jpg" alt="Jane" style="width:100%">
+			<h6>Pedro Teixeira</h6>
+			<p class="w3-opacity">DETI</p>
+			<p> E-Mail : pedro.teix@ua.pt </p>
+		</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div style="padding:10px">
+    <select onchange="doGTranslate(this);"><option value="">Change Language</option><option value="en|af">Afrikaans</option><option value="en|sq">Albanian</option><option value="en|ar">Arabic</option><option value="en|hy">Armenian</option><option value="en|az">Azerbaijani</option><option value="en|eu">Basque</option><option value="en|be">Belarusian</option><option value="en|bg">Bulgarian</option><option value="en|ca">Catalan</option><option value="en|zh-CN">Chinese (Simplified)</option><option value="en|zh-TW">Chinese (Traditional)</option><option value="en|hr">Croatian</option><option value="en|cs">Czech</option><option value="en|da">Danish</option><option value="en|nl">Dutch</option><option value="en|en">English</option><option value="en|et">Estonian</option><option value="en|tl">Filipino</option><option value="en|fi">Finnish</option><option value="en|fr">French</option><option value="en|gl">Galician</option><option value="en|ka">Georgian</option><option value="en|de">German</option><option value="en|el">Greek</option><option value="en|ht">Haitian Creole</option><option value="en|iw">Hebrew</option><option value="en|hi">Hindi</option><option value="en|hu">Hungarian</option><option value="en|is">Icelandic</option><option value="en|id">Indonesian</option><option value="en|ga">Irish</option><option value="en|it">Italian</option><option value="en|ja">Japanese</option><option value="en|ko">Korean</option><option value="en|lv">Latvian</option><option value="en|lt">Lithuanian</option><option value="en|mk">Macedonian</option><option value="en|ms">Malay</option><option value="en|mt">Maltese</option><option value="en|no">Norwegian</option><option value="en|fa">Persian</option><option value="en|pl">Polish</option><option value="en|pt">Portuguese</option><option value="en|ro">Romanian</option><option value="en|ru">Russian</option><option value="en|sr">Serbian</option><option value="en|sk">Slovak</option><option value="en|sl">Slovenian</option><option value="en|es">Spanish</option><option value="en|sw">Swahili</option><option value="en|sv">Swedish</option><option value="en|th">Thai</option><option value="en|tr">Turkish</option><option value="en|uk">Ukrainian</option><option value="en|ur">Urdu</option><option value="en|vi">Vietnamese</option><option value="en|cy">Welsh</option><option value="en|yi">Yiddish</option></select><div id="google_translate_element2"></div>
+  </div>
+  <div style="padding:10px">
+    <img src="../Images/ua.png" alt="Dan" style="width:10%">
+    <img src="../Images/it.png" alt="Dan" style="width:10%; margin-left:64px">
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+<script src="../Scripts/js/w3.js"></script>
+<script src="../Scripts/js/tabs.js"></script>
+<script src="../Scripts/js/animate.js"></script>
+</body>
+</html>

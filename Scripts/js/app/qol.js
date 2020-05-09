@@ -86,7 +86,7 @@ function swapCharts() {
 // Puts image again
 function putImage(){
   var x = document.getElementById("chartscontainer");
-  x.innerHTML = "<img class='chartImage onscreen' src='Images/chartsubs3.png' alt='Dan'>"
+  x.innerHTML = "<img class='chartImage onscreen' src='../Images/chartsubs3.png' alt='Dan'>"
 }
 
 // Hide homolday
@@ -145,7 +145,7 @@ function removeDuplicates(array){
 function putLoggin(){
   document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
     <div class="w3-right w3-hide-small">
-      <a href="login.html" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN </a>
+      <a href="/Login" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN </a>
     </div>`;
 }
 
@@ -153,7 +153,7 @@ function putLoggin(){
 function putLoggedIn(){
   document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
     <div class="w3-right w3-hide-small">
-      <a href="profile.html" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE </a>
+      <a href="/Profile" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE </a>
     </div>`;
 }
 
