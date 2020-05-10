@@ -370,6 +370,18 @@ function resetGraphs(){
 
 // Get data for charts, currently random
 function ResetData(){
+  trafficWeekin = new Array();
+  trafficWeekHomolin = new Array();
+  trafficWeekout = new Array();
+  trafficWeekHomolout = new Array();
+  trafficHourin = new Array();
+  trafficHourHomolin = new Array();
+  trafficHourout = new Array();
+  trafficHourHomolout = new Array();
+  traffic5Minutesin = new Array();
+  traffic5MinutesHomolin = new Array();
+  traffic5Minutesout = new Array();
+  traffic5MinutesHomolout = new Array();
   // Week Dashboard
   for (i = 0; i < 7; i++) {
     trafficWeekin[i] = 0; 
@@ -446,7 +458,7 @@ function getDataDayXLM(urle){
 
 // Get XML Radars Week file from Server
 function getDataWeekXLM(urle){
-  var array;
+  var value = 0;
     $.ajax({
      async: false,
      type: 'GET',
@@ -454,11 +466,11 @@ function getDataWeekXLM(urle){
      success: function(data) {
       try{
         var x = data.getElementsByTagName("REGISTO");
-        array = parseInt(x[i].childNodes[2].childNodes[0].nodeValue);
+        value = parseInt(x[i].childNodes[2].childNodes[0].nodeValue);
       }catch(err){}
      }
   });
-  return array;
+  return value;
 }
 
 // Sums a int array
