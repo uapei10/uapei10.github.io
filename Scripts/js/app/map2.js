@@ -215,14 +215,14 @@ function init(){
 
   // method that we will use to update the control based on feature properties passed
   info.update = function (props) {
-    this._div.innerHTML = '<h4>Traffic Density</h4>' +  (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' cars / hour'
+    this._div.innerHTML = '<h4><b>Traffic Density</b></h4><br>' +  (props ?
+        '<h3><b>' + props.name + '</b><br />' + props.density + ' cars / hour</h3>'
         : 'Hover over a City');
   };
 
   info.addTo(mymap);
 
-  legend = L.control({position: 'bottomright'});
+  legend = L.control({position: 'bottomleft'});
   legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
@@ -257,9 +257,8 @@ function style(feature) {
     return {
         fillColor: getColor(feature.properties.density),
         weight: 2,
-        opacity: 1,
+        opacity: 0.1,
         color: 'black',
-        dashArray: '3',
         fillOpacity: 0.4
     };
 }
@@ -268,10 +267,12 @@ function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 5,
+        color: 'black',
+        weight: 2.5,
+        opacity: 1,
         color: '#666',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 0.6
     });
 
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
