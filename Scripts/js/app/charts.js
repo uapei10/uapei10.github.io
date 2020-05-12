@@ -106,20 +106,21 @@ function populateCharts(arg1){
       date.setDate(date.getDate()-1);
     }
 
+    var locationString = locations[0];
+    for (i = 1; i < locations.length; i++) {
+    locationString = locationString.concat("+", locations[i]);
+    }
+
     for(t = 0; t < datesS.length; t++){
-      for (i = 0; i < locations.length; i++) {
-        var location = locations[i];
+      urlIn = url.concat(datesS[t] ,"&inOut=in&radar=", locationString);
+      urlOut = url.concat(datesS[t] ,"&inOut=out&radar=", locationString);
+      urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", locationString);
+      urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", locationString);
 
-        urlIn = url.concat(datesS[t] ,"&inOut=in&radar=", location);
-        urlOut = url.concat(datesS[t] ,"&inOut=out&radar=", location);
-        urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", location);
-        urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", location);
-
-        trafficWeekin[t] = getDataWeekXLM(urlIn);
-        trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
-        trafficWeekout[t] = getDataWeekXLM(urlOut);
-        trafficWeekHomolout[t] = getDataWeekXLM(urlHomolOut);
-      }
+      trafficWeekin[t] = getDataWeekXLM(urlIn);
+      trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
+      trafficWeekout[t] = getDataWeekXLM(urlOut);
+      trafficWeekHomolout[t] = getDataWeekXLM(urlHomolOut);
     }
 
     chartYSum = sum(trafficWeekin);
@@ -168,17 +169,20 @@ function populateCharts(arg1){
       mm='0'+mm;
     var dateHomol = dd+'-'+mm+'-'+yyyy;
 
-    for (i = 0; i < locations.length; i++) {
-      urlIn = url.concat(dateS ,"&inOut=in&radar=", locations[i]);
-      urlOut = url.concat(dateS ,"&inOut=out&radar=", locations[i]);
-      urlHomolIn = url.concat(dateHomol ,"&inOut=in&radar=", locations[i]);
-      urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=", locations[i]);
-
-      trafficHourin = getDataDayXLM(urlIn);
-      trafficHourout = getDataDayXLM(urlOut);
-      trafficHourHomolin = getDataDayXLM(urlHomolIn);
-      trafficHourHomolout = getDataDayXLM(urlHomolOut);
+    var locationString = locations[0];
+    for (i = 1; i < locations.length; i++) {
+    locationString = locationString.concat("+", locations[i]);
     }
+
+    urlIn = url.concat(dateS ,"&inOut=in&radar=", locationString);
+    urlOut = url.concat(dateS ,"&inOut=out&radar=", locationString);
+    urlHomolIn = url.concat(dateHomol ,"&inOut=in&radar=", locationString);
+    urlHomolOut = url.concat(dateHomol ,"&inOut=out&radar=", locationString);
+
+    trafficHourin = getDataDayXLM(urlIn);
+    trafficHourout = getDataDayXLM(urlOut);
+    trafficHourHomolin = getDataDayXLM(urlHomolIn);
+    trafficHourHomolout = getDataDayXLM(urlHomolOut);
 
     chartYSum = sum(trafficHourin);
     chartYHomolSum = sum(trafficHourHomolin);
@@ -244,17 +248,22 @@ function updateHourChart(arg1){
   var dateHomol = dd+'-'+mm+'-'+yyyy;
 
   var hour = (document.getElementById('dashhour').value).slice(1);
-  for (i = 0; i < locations.length; i++) {
-    urlIn = url.concat(dateS ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
-    urlOut = url.concat(dateS ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
-    urlHomolIn = url.concat(dateHomol ,"&hora=", hour ,"&inOut=in&radar=", locations[i]);
-    urlHomolOut = url.concat(dateHomol ,"&hora=", hour ,"&inOut=out&radar=", locations[i]);
-
-    traffic5Minutesin = getDataDayXLM(urlIn);
-    traffic5Minutesout = getDataDayXLM(urlOut);
-    traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
-    chartYOutHomolSum= getDataDayXLM(urlHomolOut);
+  var locationString = locations[0];
+  for (i = 1; i < locations.length; i++) {
+    locationString = locationString.concat("+", locations[i]);
   }
+
+  urlIn = url.concat(dateS ,"&hora=", hour ,"&inOut=in&radar=", locationString);
+  urlOut = url.concat(dateS ,"&hora=", hour ,"&inOut=out&radar=", locationString);
+  urlHomolIn = url.concat(dateHomol ,"&hora=", hour ,"&inOut=in&radar=", locationString);
+  urlHomolOut = url.concat(dateHomol ,"&hora=", hour ,"&inOut=out&radar=", locationString);
+
+  console.log(urlIn);
+
+  traffic5Minutesin = getDataDayXLM(urlIn);
+  traffic5Minutesout = getDataDayXLM(urlOut);
+  traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
+  chartYOutHomolSum= getDataDayXLM(urlHomolOut);
 
   chartYSum = sum(traffic5Minutesin);
   chartYHomolSum = sum(traffic5MinutesHomolin);
