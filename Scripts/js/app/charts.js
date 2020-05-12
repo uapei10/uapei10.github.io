@@ -117,8 +117,6 @@ function populateCharts(arg1){
       urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", locationString);
       urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", locationString);
 
-      console.log(urlIn);
-
       trafficWeekin[t] = getDataWeekXLM(urlIn);
       trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
       trafficWeekout[t] = getDataWeekXLM(urlOut);
@@ -259,8 +257,6 @@ function updateHourChart(arg1){
   urlOut = url.concat(dateS ,"&hora=", hour ,"&inOut=out&radar=", locationString);
   urlHomolIn = url.concat(dateHomol ,"&hora=", hour ,"&inOut=in&radar=", locationString);
   urlHomolOut = url.concat(dateHomol ,"&hora=", hour ,"&inOut=out&radar=", locationString);
-
-  console.log(urlIn);
 
   traffic5Minutesin = getDataDayXLM(urlIn);
   traffic5Minutesout = getDataDayXLM(urlOut);
@@ -481,7 +477,6 @@ function getDataWeekXLM(urle){
       }catch(err){}
      }
   });
-    console.log(value);
   return value;
 }
 
