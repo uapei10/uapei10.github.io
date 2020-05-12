@@ -53,7 +53,7 @@ function getMap(arg1){
 function addMarkers(){
   markersLayer = L.layerGroup();
   var markerIcon = L.icon({
-        iconUrl: '../Images/marker2.png',
+        iconUrl: '../../Images/marker2.png',
         iconSize:     [35, 40],
         iconAnchor:   [35, 40],
       });
