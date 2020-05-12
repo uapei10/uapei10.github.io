@@ -12,7 +12,11 @@ var statesData = {
       "type": "Feature",
       "properties": {
         "name": "Barra",
-        "density": 250
+        "densityIn": 250,
+        "densityOut": 180,
+        "temperature": 25,
+        "wind": 17,
+        "humidity": 24
       },
       "geometry": {
         "type": "Polygon",
@@ -86,7 +90,11 @@ var statesData = {
       "type": "Feature",
       "properties": {
         "name": "Costa Nova",
-        "density": 100
+        "densityIn": 100,
+        "densityOut": 120,
+        "temperature": 24,
+        "wind": 25,
+        "humidity": 12
       },
       "geometry": {
         "type": "Polygon",
@@ -215,9 +223,13 @@ function init(){
 
   // method that we will use to update the control based on feature properties passed
   info.update = function (props) {
-    this._div.innerHTML = '<h4><b>Traffic Density</b></h4><br>' +  (props ?
-        '<h3><b>' + props.name + '</b><br />' + props.density + ' cars / hour</h3>'
-        : 'Hover over a Region');
+    this._div.innerHTML = '<div class="onscreen">' +  (props ?
+        '<h4><b>' + props.name + '</b><br><br></h4><i class="fa fa-car-side icon"></i>' + props.densityIn + ' cars / hour <br>'+
+        '<i class="fa fa-car-side fa-flip-horizontal icon"><br></i>' + props.densityOut + ' cars / hour <br>'+
+        '<i class="fa fa-thermometer-three-quarters icon"></i>' + props.temperature + ' ºC <br>'+
+        '<i class="fa fa-wind icon"></i>' + props.wind + ' km/h <br>'+
+        '<i class="fa fa-tint icon"></i>' + props.humidity + ' % <br></div>'
+        : '<h6><b>Hover over a region.</b></h6> </div>');
   };
 
   info.addTo(mymap);
@@ -230,9 +242,9 @@ function init(){
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
+    div.innerHTML += 'Traffic Density<br><br>'
     for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+        div.innerHTML +='<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? ' &ndash; ' + grades[i + 1] + '<br>' : '+');
     }
 
@@ -255,7 +267,7 @@ function getColor(d) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.density),
+        fillColor: getColor(feature.properties.densityIn),
         weight: 2,
         opacity: 0.1,
         color: 'black',

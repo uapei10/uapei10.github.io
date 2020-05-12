@@ -1,27 +1,41 @@
 .info {
-    padding: 15px 20px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
+    padding: 20px 30px;
+    font: 18px/16px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
+    line-height: 30px;
+    width: 250px;
 }
 
 .info h4 {
-    font: 20px/16px Arial, Helvetica, sans-serif;
+    font: 24px/16px Arial, Helvetica, sans-serif;
     margin: 0 0 5px;
     color: 'black';
+    line-height: 30px;
+    text-align: center;
 }
 
 .info h3 {
-    font: 14px/16px Arial, Helvetica, sans-serif;
+    font: 22px/16px Arial, Helvetica, sans-serif;
     margin: 0 0 5px;
     color: 'black';
+    line-height: 30px;
+}
+
+.info h6 {
+    font: 18px/16px Arial, Helvetica, sans-serif;
+    margin: 0 0 5px;
+    color: 'black';
+    line-height: 30px;
 }
 
 .legend {
     line-height: 25px;
+    font: 16px/20px Arial, Helvetica, sans-serif;
     color: #555;
+    width: 165px;
 }
 
 .legend i {
@@ -30,4 +44,9 @@
     float: left;
     margin-right: 4px;
     opacity: 0.7;
+}
+
+.icon{
+    width:40px;
+    text-align: center;
 }
