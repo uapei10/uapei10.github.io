@@ -117,6 +117,8 @@ function populateCharts(arg1){
       urlHomolIn = url.concat(dateHomol[t] ,"&inOut=in&radar=", locationString);
       urlHomolOut = url.concat(dateHomol[t] ,"&inOut=out&radar=", locationString);
 
+      console.log(urlIn);
+
       trafficWeekin[t] = getDataWeekXLM(urlIn);
       trafficWeekHomolin[t] = getDataWeekXLM(urlHomolIn);
       trafficWeekout[t] = getDataWeekXLM(urlOut);
@@ -475,10 +477,11 @@ function getDataWeekXLM(urle){
      success: function(data) {
       try{
         var x = data.getElementsByTagName("REGISTO");
-        value = parseInt(x[i].childNodes[2].childNodes[0].nodeValue);
+        value = parseInt(x[0].childNodes[2].childNodes[0].nodeValue);
       }catch(err){}
      }
   });
+    console.log(value);
   return value;
 }
 
