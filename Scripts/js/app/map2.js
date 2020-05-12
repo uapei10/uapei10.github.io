@@ -229,7 +229,7 @@ function init(){
         '<i class="fa fa-thermometer-three-quarters icon"></i>' + props.temperature + ' ºC <br>'+
         '<i class="fa fa-wind icon"></i>' + props.wind + ' km/h <br>'+
         '<i class="fa fa-tint icon"></i>' + props.humidity + ' % <br></div>'
-        : '<h6><b>Hover over a region.</b></h6> </div>');
+        : '<h6><center><b>Hover over a Region</b></center></h6> </div>');
   };
 
   info.addTo(mymap);
