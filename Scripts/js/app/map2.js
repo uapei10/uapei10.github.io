@@ -217,7 +217,7 @@ function init(){
   info.update = function (props) {
     this._div.innerHTML = '<h4><b>Traffic Density</b></h4><br>' +  (props ?
         '<h3><b>' + props.name + '</b><br />' + props.density + ' cars / hour</h3>'
-        : 'Hover over a City');
+        : 'Hover over a Region');
   };
 
   info.addTo(mymap);
