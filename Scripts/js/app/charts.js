@@ -79,7 +79,9 @@ function populateCharts(arg1){
 
     var datesS = new Array();
     var date = (new Date(document.getElementById('dateinput').value));
-    for(i = (date.getDay()); i >= 0; i--){
+    var daysAfter = (6-date.getDay());
+    date.setDate(date.getDate() + daysAfter);
+    for(i = 6; i >= 0; i--){
       var dd = date.getDate();
       var mm = date.getMonth()+1; 
       var yyyy = date.getFullYear();
@@ -91,10 +93,14 @@ function populateCharts(arg1){
       date.setDate(date.getDate()-1);
     }
 
+    console.log(datesS);
+
     var dateHomol = new Array();
     date = (new Date(document.getElementById('dateinput').value));
+    var daysAfter = (6-date.getDay());
+    date.setDate(date.getDate() + daysAfter);
     date.setDate(date.getDate() - 7);
-    for(i = (date.getDay()); i >= 0; i--){
+    for(i = 6; i >= 0; i--){
       var dd = date.getDate();
       var mm = date.getMonth()+1; 
       var yyyy = date.getFullYear();
