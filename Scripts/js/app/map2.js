@@ -12,11 +12,12 @@ var statesData = {
       "type": "Feature",
       "properties": {
         "name": "Barra",
+        "cityID": 2742611,
         "densityIn": 250,
         "densityOut": 180,
-        "temperature": 25,
-        "wind": 17,
-        "humidity": 24
+        "temperature": 0,
+        "wind": 0,
+        "humidity": 0
       },
       "geometry": {
         "type": "Polygon",
@@ -90,11 +91,12 @@ var statesData = {
       "type": "Feature",
       "properties": {
         "name": "Costa Nova",
+        "cityID": 2738707,
         "densityIn": 100,
         "densityOut": 120,
-        "temperature": 24,
-        "wind": 25,
-        "humidity": 12
+        "temperature": 0,
+        "wind": 0,
+        "humidity": 0
       },
       "geometry": {
         "type": "Polygon",
@@ -195,8 +197,11 @@ var statesData = {
 
 // To execute on boot
 init();
+
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
 function init(){
+  getInfoData();
+
   mymap = L.map('mapdiv2').setView([40.61771, -8.75], 13);
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -236,7 +241,6 @@ function init(){
 
   legend = L.control({position: 'bottomleft'});
   legend.onAdd = function (map) {
-
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 10, 20, 50, 100, 200, 500, 1000],
         labels = [];
@@ -247,13 +251,34 @@ function init(){
         div.innerHTML +='<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? ' &ndash; ' + grades[i + 1] + '<br>' : '+');
     }
-
     return div;
   };
 
   legend.addTo(mymap);
 }
 
+// Gets current info data
+function getInfoData(){
+  var urle = "http://api.openweathermap.org/data/2.5/weather?id=";
+  var apikey = "e88ed05524c759c4f431a030fb656814";
+  for(var key in statesData.features){
+    var url = urle.concat(statesData.features[key].properties.cityID, "&appid=", apikey);
+    console.log(url);
+
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: url,
+     success: function(data) {
+      statesData.features[key].properties.temperature = Math.round((data.main.temp-272.15) * 100) / 100;
+      statesData.features[key].properties.wind = data.wind.speed;
+      statesData.features[key].properties.humidity = data.main.humidity;
+     }
+    });
+  }
+}
+
+// Changes color intensity
 function getColor(d) {
     return d > 1000 ? '#800026' :
            d > 500  ? '#BD0026' :
@@ -265,6 +290,7 @@ function getColor(d) {
                       '#FFEDA0';
 }
 
+// When mousing out polygon
 function style(feature) {
     return {
         fillColor: getColor(feature.properties.densityIn),
@@ -275,6 +301,7 @@ function style(feature) {
     };
 }
 
+// When mousing over polygon
 function highlightFeature(e) {
     var layer = e.target;
 
@@ -294,15 +321,18 @@ function highlightFeature(e) {
     info.update(layer.feature.properties);
 }
 
+// Resets style and popup
 function resetHighlight(e) {
     geojson.resetStyle(e.target);
     info.update();
 }
 
+// When clicking polygon
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
 }
 
+// Attachs listeners
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
