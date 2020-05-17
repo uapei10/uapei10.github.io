@@ -13,8 +13,7 @@ var statesData = {
       "properties": {
         "name": "Barra",
         "cityID": 2742611,
-        "densityIn": 250,
-        "densityOut": 180,
+        "density": 250,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -92,8 +91,7 @@ var statesData = {
       "properties": {
         "name": "Costa Nova",
         "cityID": 2738707,
-        "densityIn": 100,
-        "densityOut": 120,
+        "density": 100,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -229,8 +227,7 @@ function init(){
   // method that we will use to update the control based on feature properties passed
   info.update = function (props) {
     this._div.innerHTML = '<div class="onscreen">' +  (props ?
-        '<h4><b>' + props.name + '</b><br><br></h4><i class="fa fa-car-side icon"></i>' + props.densityIn + ' cars / hour <br>'+
-        '<i class="fa fa-car-side fa-flip-horizontal icon"><br></i>' + props.densityOut + ' cars / hour <br>'+
+        '<h4><b>' + props.name + '</b><br><br></h4><i class="fa fa-car-side icon"></i>' + props.density + ' cars <br>'+
         '<i class="fa fa-thermometer-three-quarters icon"></i>' + props.temperature + ' ºC <br>'+
         '<i class="fa fa-wind icon"></i>' + props.wind + ' km/h <br>'+
         '<i class="fa fa-tint icon"></i>' + props.humidity + ' % <br></div>'
@@ -293,7 +290,7 @@ function getColor(d) {
 // When mousing out polygon
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.densityIn),
+        fillColor: getColor(feature.properties.density),
         weight: 2,
         opacity: 0.1,
         color: 'black',
