@@ -72,6 +72,7 @@ function addMarkers(){
 // When pressing a map popup button
 function getEquipment(eqName){
   document.getElementById("dateinput").disabled=false;
+  document.getElementById("dateHomolinput").disabled=false;
   showEquip();
 
   // Selects or deselects a equipment
@@ -146,8 +147,10 @@ function equipmentCheck(){
     hideInfo();
     hideHour();
     document.getElementById("dateinput").value = "";
+    document.getElementById("dateHomolinput").value = "";
     document.getElementById("dashinput").disabled=true;
     document.getElementById("dateinput").disabled=true;
+    document.getElementById("dateHomolinput").disabled=true;
     document.getElementById("dashinput").value="dnull";
     document.getElementById("dashhour").value="hnull";
   }

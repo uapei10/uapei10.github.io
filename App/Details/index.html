@@ -43,18 +43,26 @@
         <div class="w3-col" style="width:65%">
             <div class="w3-col" style="width:50%">
                 <div class="wrapper1">
+                  <div style="margin-right: 18px">
                     <label for="date">
                       <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">2</strong></span>
                       Select Date:
                     </label>
-                    <input id="dateinput" type="date" onchange="updateDate(this.id)">
-                    <div id="homolday" style="visibility:hidden; margin-top: 6px"></div>
+                    <input id="dateinput" type="date" style="float:right" onchange="updateDate(this.id)">
+                  </div>
+                  <div style="margin-top: 6px; margin-right:18px">
+                    <label for="date">
+                      <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">3</strong></span>
+                      Select Homologous Date:
+                    </label>
+                    <input style="float:right" onchange="updateHomolDate(this.id)" id="dateHomolinput" type="date">
+                  </div>
                 </div>
             </div>
             <div class="w3-col" style="width:50%">
                 <div class="wrapper1">
                     <label for="dashboard">
-                      <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">3</strong>
+                      <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">4</strong>
                       </span>
                       Select Dashboard:
                     </label>
@@ -66,7 +74,7 @@
                     </select>
                     <div id="selHour" style="visibility:hidden; margin-top: 6px">
                       <label for="dashboard">
-                        <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">4</strong>
+                        <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">5</strong>
                         </span>
                         Select Hour:
                       </label>

@@ -54,9 +54,10 @@ function init(){
   percentageOfVehiclesout = new Array();
   chartYSum = 0;
 
-  document.getElementById("dateinput").disabled=true; // Blocks date input
-  document.getElementById("dashinput").disabled=true; // Blocks dashboard input
-  hideInfo();                                         // Hides text below map
+  document.getElementById("dateinput").disabled=true;     // Blocks date input
+  document.getElementById("dateHomolinput").disabled=true; // Blocks date input
+  document.getElementById("dashinput").disabled=true;     // Blocks dashboard input
+  hideInfo();                                             // Hides text below map
 }
 
 // ----------------------------------- Chart.js -------------------------------------------
@@ -96,10 +97,9 @@ function populateCharts(arg1){
     console.log(datesS);
 
     var dateHomol = new Array();
-    date = (new Date(document.getElementById('dateinput').value));
+    date = (new Date(document.getElementById('dateHomolinput').value));
     var daysAfter = (6-date.getDay());
     date.setDate(date.getDate() + daysAfter);
-    date.setDate(date.getDate() - 7);
     for(i = 6; i >= 0; i--){
       var dd = date.getDate();
       var mm = date.getMonth()+1; 
@@ -165,7 +165,7 @@ function populateCharts(arg1){
       mm='0'+mm;
     var dateS = dd+'-'+mm+'-'+yyyy;
 
-    date.setDate(date.getDate() - 7);
+    date = (new Date(document.getElementById('dateHomolinput').value));
     var dd = date.getDate();
     var mm = date.getMonth()+1; 
     var yyyy = date.getFullYear();
@@ -177,7 +177,7 @@ function populateCharts(arg1){
 
     var locationString = locations[0];
     for (i = 1; i < locations.length; i++) {
-    locationString = locationString.concat("+", locations[i]);
+      locationString = locationString.concat("+", locations[i]);
     }
 
     urlIn = url.concat(dateS ,"&inOut=in&radar=", locationString);
@@ -243,7 +243,7 @@ function updateHourChart(arg1){
     mm='0'+mm;
   var dateS = dd+'-'+mm+'-'+yyyy;
 
-  date.setDate(date.getDate() - 7);
+  date = (new Date(document.getElementById('dateHomolinput').value));
   var dd = date.getDate();
   var mm = date.getMonth()+1; 
   var yyyy = date.getFullYear();

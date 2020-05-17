@@ -89,18 +89,6 @@ function putImage(){
   x.innerHTML = "<img class='chartImage onscreen' src='../../Images/chartsubs3.png' alt='Dan'>"
 }
 
-// Hide homolday
-function hideHday() {
-  var x = document.getElementById("homolday");
-  x.style.visibility = "hidden";
-}
-
-// Show homolday
-function showHday() {
-  var x = document.getElementById("homolday");
-  x.style.visibility = "visible";
-}
-
 // Hide textCard
 function hideTextCard() {
   var x = document.getElementById("textcard");
@@ -139,22 +127,6 @@ function removeDuplicates(array){
     if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
   });
   return uniqueNames;
-}
-
-// Changes Navbar to Log in
-function putLoggin(){
-  document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
-    <div class="w3-right w3-hide-small">
-      <a href="/Login" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN </a>
-    </div>`;
-}
-
-// Changes Navbar to Profile
-function putLoggedIn(){
-  document.getElementById("myNavbar").innerHTML=`<a href="index.html" class="w3-bar-item w3-button w3-wide"> <i class="fa fa-home"></i> HOME</a>
-    <div class="w3-right w3-hide-small">
-      <a href="/Profile" class="w3-bar-item w3-button"><i class="fa fa-user"></i> PROFILE </a>
-    </div>`;
 }
 
 // Changes Log in boolean
