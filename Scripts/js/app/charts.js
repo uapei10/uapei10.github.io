@@ -192,7 +192,16 @@ function populateCharts(arg1){
     chartYHomolSum = sum(trafficHourHomolin);
     chartYOutSum = sum(trafficHourout);
     chartYOutHomolSum = sum(trafficHourHomolout);
-    updateTextInfo(true);
+
+    var missingData = false;
+    for(i=0; i < 24; i++){
+      if (trafficHourin[i] == 0 || trafficHourin[i] == 0 || trafficHourHomolin[i] == 0 || trafficHourHomolout[i] == 0)
+        missingData = true;
+    }
+    if (missingData)
+      updateTextInfo(true);
+    else
+      updateTextInfo(false);
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
