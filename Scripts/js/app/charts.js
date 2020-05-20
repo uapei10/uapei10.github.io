@@ -192,7 +192,7 @@ function populateCharts(arg1){
     chartYHomolSum = sum(trafficHourHomolin);
     chartYOutSum = sum(trafficHourout);
     chartYOutHomolSum = sum(trafficHourHomolout);
-    updateTextInfo();
+    updateTextInfo(true);
 
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
@@ -205,6 +205,8 @@ function populateCharts(arg1){
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+
+    console.log(chart1in.data);
 
   }
 
@@ -426,9 +428,12 @@ function ResetData(){
 }
 
 // Updates Textbox Info
-function updateTextInfo(){
+function updateTextInfo(missing){
   var x = document.getElementById("textinfo");
-  x.innerHTML = "<div class='onscreen'><br><br>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br>Total nº of Vehicles Out (Selected Date): "+ chartYOutSum+"<br>Total nº of Vehicles Out (Homologous Date): "+ chartYOutHomolSum +"<div>";
+  if(missing)
+    x.innerHTML = "<div class='onscreen'><br><p style='color:red;'><i class='fas fa-exclamation-triangle'></i><b> Missing Data!</b></p>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br>Total nº of Vehicles Out (Selected Date): "+ chartYOutSum+"<br>Total nº of Vehicles Out (Homologous Date): "+ chartYOutHomolSum +"<div>";
+  else
+    x.innerHTML = "<div class='onscreen'><br><br>Total nº of Vehicles In (Selected Date): "+ chartYSum+"<br>Total nº of Vehicles In (Homologous Date): "+ chartYHomolSum +"<br><br>Total nº of Vehicles Out (Selected Date): "+ chartYOutSum+"<br>Total nº of Vehicles Out (Homologous Date): "+ chartYOutHomolSum +"<div>";
 }
 
 // Get XML Radars Hour file from Server
@@ -497,4 +502,8 @@ function sum(input){
     total += Number(input[i]);
   }
   return total;
+}
+
+function verifyIntegrity(chart){
+  console.log(chart.data);
 }
