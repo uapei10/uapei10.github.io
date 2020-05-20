@@ -94,8 +94,6 @@ function populateCharts(arg1){
       date.setDate(date.getDate()-1);
     }
 
-    console.log(datesS);
-
     var dateHomol = new Array();
     date = (new Date(document.getElementById('dateHomolinput').value));
     var daysAfter = (6-date.getDay());
@@ -207,6 +205,7 @@ function populateCharts(arg1){
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+
   }
 
   else if(id1.value == "d2"){
@@ -267,7 +266,7 @@ function updateHourChart(arg1){
   traffic5Minutesin = getDataDayXLM(urlIn);
   traffic5Minutesout = getDataDayXLM(urlOut);
   traffic5MinutesHomolin = getDataDayXLM(urlHomolIn);
-  chartYOutHomolSum= getDataDayXLM(urlHomolOut);
+  traffic5MinutesHomolout= getDataDayXLM(urlHomolOut);
 
   chartYSum = sum(traffic5Minutesin);
   chartYHomolSum = sum(traffic5MinutesHomolin);
