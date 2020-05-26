@@ -299,14 +299,24 @@ function getInfoData(){
 
     var url = urle.concat(strDate1, "&finalDate=", strDate2, "&order=asc");
 
+    var speed = 0;
+    var i = 0;
+
     $.ajax({
      async: false,
      type: 'GET',
      url: url,
      success: function(data) {
-      statesData.features[key].properties.speed = data[0].speed;
+      for(t = 0; t < data.length; t++){
+        if(data[t].speed != 0){
+          speed += data[t].speed;
+          i++;
+        }
+      }
      }
     });
+
+    statesData.features[key].properties.speed = Math.round((speed/i)*100)/100;
   }
 
   // Density Data
