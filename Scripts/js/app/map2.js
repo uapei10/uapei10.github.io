@@ -201,7 +201,10 @@ var statesData = {
 init();
 
 // ----------------------------------- Leaflet ------------------------------------------- https://leafletjs.com/examples/quick-start/
-function init(){
+async function init(){
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+
   getInfoData();
 
   mymap = L.map('mapdiv2').setView([40.61771, -8.75], 13);
@@ -257,6 +260,10 @@ function init(){
   };
 
   legend.addTo(mymap);
+
+  await sleep(2000);
+  //modal.style.display = "none";
+  $(modal).fadeOut();
 }
 
 // Gets current info data
@@ -405,4 +412,8 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         click: zoomToFeature
     });
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
