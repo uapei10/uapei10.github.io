@@ -142,7 +142,6 @@ function destroyMap(){
 function equipmentCheck(){
   if(locations.length==0){
     putImage();
-    hideHday();
     hideTextCard();
     hideInfo();
     hideHour();
