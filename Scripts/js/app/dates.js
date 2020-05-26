@@ -20,6 +20,18 @@ function updateDate(arg1){
     document.getElementById("dashinput").value="dnull";
     document.getElementById("dashhour").value="hnull";
   }
+
+  var month = date.getMonth() + 1;
+  var day = date.getDate()-1;
+  var year = date.getFullYear();
+
+  if(month < 10)
+    month = '0' + month.toString();
+  if(day < 10)
+    day = '0' + day.toString();
+
+  var maxDate = year + '-' + month + '-' + day;   
+  document.getElementById("dateHomolinput").max = maxDate;
 }
 
 function updateHomolDate(arg1){
