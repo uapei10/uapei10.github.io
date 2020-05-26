@@ -261,7 +261,7 @@ async function init(){
 
   legend.addTo(mymap);
 
-  await sleep(2000);
+  await sleep(1500);
   //modal.style.display = "none";
   $(modal).fadeOut();
 }
