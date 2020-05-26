@@ -13,7 +13,9 @@ var statesData = {
       "properties": {
         "name": "Barra",
         "cityID": 2742611,
-        "density": 250,
+        "radar": "ponte",
+        "density": 550,
+        "speed": 70,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -91,7 +93,9 @@ var statesData = {
       "properties": {
         "name": "Costa Nova",
         "cityID": 2738707,
-        "density": 100,
+        "radar": "riaAtiva",
+        "density": 300,
+        "speed": 60,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -228,6 +232,7 @@ function init(){
   info.update = function (props) {
     this._div.innerHTML = '<div class="onscreen">' +  (props ?
         '<h4><b>' + props.name + '</b><br><br></h4><i class="fa fa-car-side icon"></i>' + props.density + ' cars <br>'+
+        '<i class="fa fa-tachometer-alt icon"></i>' + props.speed + ' km/h <br><br>'+
         '<i class="fa fa-thermometer-three-quarters icon"></i>' + props.temperature + ' ºC <br>'+
         '<i class="fa fa-wind icon"></i>' + props.wind + ' km/h <br>'+
         '<i class="fa fa-tint icon"></i>' + props.humidity + ' % <br></div>'
@@ -239,7 +244,7 @@ function init(){
   legend = L.control({position: 'bottomleft'});
   legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        grades = [0, 100, 200, 500, 750, 1000, 2000, 5000],
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
@@ -256,11 +261,11 @@ function init(){
 
 // Gets current info data
 function getInfoData(){
+  // Weather Data
   var urle = "http://api.openweathermap.org/data/2.5/weather?id=";
   var apikey = "e88ed05524c759c4f431a030fb656814";
   for(var key in statesData.features){
     var url = urle.concat(statesData.features[key].properties.cityID, "&appid=", apikey);
-    console.log(url);
 
     $.ajax({
      async: false,
@@ -273,17 +278,47 @@ function getInfoData(){
      }
     });
   }
+
+  // Speed Data
+  var date = new Date();
+  var strDate1 = 'Y-m-dTh%3A00%3A00Z'
+    .replace('Y', date.getFullYear())
+    .replace('m', date.getMonth()+1)
+    .replace('d', date.getDate())
+    .replace('h', date.getHours()-1);
+
+  var strDate2 = 'Y-m-dTh%3A00%3A00Z'
+    .replace('Y', date.getFullYear())
+    .replace('m', date.getMonth()+1)
+    .replace('d', date.getDate())
+    .replace('h', date.getHours());
+
+
+  for(var key in statesData.features){
+    var urle = "https://pasmo.es.av.it.pt/api/radars/" +statesData.features[key].properties.radar +"/speed?initialDate=";
+
+    var url = urle.concat(strDate1, "&finalDate=", strDate2, "&order=asc");
+
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: url,
+     success: function(data) {
+      statesData.features[key].properties.speed = data[0].speed;
+     }
+    });
+  }
 }
 
 // Changes color intensity
 function getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
+    return d > 5000 ? '#800026' :
+           d > 2000  ? '#BD0026' :
+           d > 1000  ? '#E31A1C' :
+           d > 750  ? '#FC4E2A' :
+           d > 500   ? '#FD8D3C' :
+           d > 200   ? '#FEB24C' :
+           d > 100   ? '#FED976' :
                       '#FFEDA0';
 }
 
