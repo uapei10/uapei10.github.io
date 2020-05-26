@@ -308,6 +308,30 @@ function getInfoData(){
      }
     });
   }
+
+  // Density Data
+  var urle = "https://pasmo.es.av.it.pt/api/parking/occupation?day=";
+
+  var date = new Date();
+  var strDate1 = 'Y-m-d'
+    .replace('Y', date.getFullYear())
+    .replace('m', date.getMonth()+1)
+    .replace('d', date.getDate())
+
+  var i = 0;
+  for(var key in statesData.features){
+    var url = urle.concat(strDate1);
+
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: url,
+     success: function(data) {
+      statesData.features[key].properties.density = data[i].taken;
+     }
+    });
+    i++;
+  }
 }
 
 // Changes color intensity
