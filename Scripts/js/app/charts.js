@@ -214,9 +214,6 @@ function populateCharts(arg1){
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
-
-    console.log(chart1in.data);
-
   }
 
   else if(id1.value == "d2"){
@@ -511,8 +508,4 @@ function sum(input){
     total += Number(input[i]);
   }
   return total;
-}
-
-function verifyIntegrity(chart){
-  console.log(chart.data);
 }
