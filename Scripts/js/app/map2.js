@@ -14,8 +14,8 @@ var statesData = {
         "name": "Barra",
         "cityID": 2742611,
         "radar": "ponte",
-        "density": 550,
-        "speed": 70,
+        "density": 0,
+        "speed": 0,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -94,8 +94,8 @@ var statesData = {
         "name": "Costa Nova",
         "cityID": 2738707,
         "radar": "riaAtiva",
-        "density": 300,
-        "speed": 60,
+        "density": 0,
+        "speed": 0,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -335,10 +335,10 @@ function getInfoData(){
     .replace('m', date.getMonth()+1)
     .replace('d', date.getDate())
 
-  var i = 0;
+  var i =  date.getHours()-1;
   for(var key in statesData.features){
     var url = urle.concat(strDate1);
-
+    console.log(i);
     $.ajax({
      async: false,
      type: 'GET',
@@ -347,7 +347,7 @@ function getInfoData(){
       statesData.features[key].properties.density = data[i].taken;
      }
     });
-    i++;
+    i--;
   }
 }
 
