@@ -313,7 +313,7 @@ function updateHourChart(arg1){
   chartYSum = sum(traffic5Minutesin);
   chartYHomolSum = sum(traffic5MinutesHomolin);
   chartYOutSum = sum(traffic5Minutesout);
-  chartYOuHomolSum = sum(traffic5MinutesHomolout);
+  chartYOutHomolSum = sum(traffic5MinutesHomolout);
   updateTextInfo();
 
   var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_HORA&dia=";
