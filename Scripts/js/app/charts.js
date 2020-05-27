@@ -319,11 +319,11 @@ function updateHourChart(arg1){
   var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_HORA&dia=";
 
   var urlCars = url.concat(dateS ,"&radar=", locationString, "&type=cars", "&hora=" ,hour);
-  var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
-  var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
-  var urlHCars = url.concat(dateHomol ,"&radar=", locationString, "&type=cars");
-  var urlHBikes = url.concat(dateHomol ,"&radar=", locationString, "&type=bikes");
-  var urlHTruck = url.concat(dateHomol ,"&radar=", locationString, "&type=truck");
+  var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes", "&hora=" ,hour);
+  var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck", "&hora=" ,hour);
+  var urlHCars = url.concat(dateHomol ,"&radar=", locationString, "&type=cars", "&hora=" ,hour);
+  var urlHBikes = url.concat(dateHomol ,"&radar=", locationString, "&type=bikes", "&hora=" ,hour);
+  var urlHTruck = url.concat(dateHomol ,"&radar=", locationString, "&type=truck", "&hora=" ,hour);
 
   percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
   percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
