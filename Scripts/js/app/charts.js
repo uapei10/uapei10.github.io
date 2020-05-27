@@ -49,7 +49,7 @@ function init(){
   traffic5MinutesHomolin = new Array();
   traffic5Minutesout = new Array();
   traffic5MinutesHomolout = new Array();
-  typesOfVehicles = ["Light", "Heavy", "Bike", "Person"];
+  typesOfVehicles = ["Light", "Heavy", "Bike"];
   percentageOfVehiclesin = new Array();
   percentageOfVehiclesout = new Array();
   chartYSum = 0;
@@ -133,17 +133,33 @@ function populateCharts(arg1){
     chartYOutHomolSum = sum(trafficWeekHomolout);
     updateTextInfo();
 
+    var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_SEMANA&dia=";
+
+    var urlCars = url.concat(datesS[0] ,"&radar=", locationString, "&type=cars");
+    var urlBikes = url.concat(datesS[0] ,"&radar=", locationString, "&type=bikes");
+    var urlTruck = url.concat(datesS[0] ,"&radar=", locationString, "&type=truck");
+    var urlHCars = url.concat(datesS[0] ,"&radar=", locationString, "&type=cars");
+    var urlHBikes = url.concat(datesS[0] ,"&radar=", locationString, "&type=bikes");
+    var urlHTruck = url.concat(datesS[0] ,"&radar=", locationString, "&type=truck");
+
+    percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
+    percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
+    percentageOfVehiclesin[2] = getDataTypeXLM(urlBikes);
+    percentageOfVehiclesout[0] =getDataTypeXLM(urlHCars);
+    percentageOfVehiclesout[1] = getDataTypeXLM(urlHTruck);
+    percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
+
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
 
     // Criar PieChart IN - Parte de Cima
-    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
+    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
     // Criar Chart Out - Parte de Baixo
     chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Day)', trafficWeekHomolout, trafficWeekout, week);
 
     // PieChart Out - Parte de Baixo
-    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
   }
 
   else if(id1.value == "d1"){
@@ -203,17 +219,33 @@ function populateCharts(arg1){
     else
       updateTextInfo(false);
 
+    var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_DIA&dia=";
+
+    var urlCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
+    var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
+    var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+    var urlHCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
+    var urlHBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
+    var urlHTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+
+    percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
+    percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
+    percentageOfVehiclesin[2] = getDataTypeXLM(urlBikes);
+    percentageOfVehiclesout[0] =getDataTypeXLM(urlHCars);
+    percentageOfVehiclesout[1] = getDataTypeXLM(urlHTruck);
+    percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
+
     // Criar Chart In - Parte de Cima
     chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
 
     // Criar PieChart IN - Parte de Cima
-    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
+    chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
     // Criar Chart Out - Parte de Baixo
     chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Hour)', trafficHourHomolout, trafficHourout, hours);
 
     // PieChart Out - Parte de Baixo
-    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+    chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
   }
 
   else if(id1.value == "d2"){
@@ -282,17 +314,33 @@ function updateHourChart(arg1){
   chartYOuHomolSum = sum(traffic5MinutesHomolout);
   updateTextInfo();
 
+  var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_HORA&dia=";
+
+  var urlCars = url.concat(dateS ,"&radar=", locationString, "&type=cars", "&hora=" ,hour);
+  var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
+  var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+  var urlHCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
+  var urlHBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
+  var urlHTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+
+  percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
+  percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
+  percentageOfVehiclesin[2] = getDataTypeXLM(urlBikes);
+  percentageOfVehiclesout[0] =getDataTypeXLM(urlHCars);
+  percentageOfVehiclesout[1] = getDataTypeXLM(urlHTruck);
+  percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
+
   // Criar Chart In - Parte de Cima
   chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
 
   // Criar PieChart IN - Parte de Cima
-  chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - IN', percentageOfVehiclesin);
+  chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
   // Criar Chart Out - Parte de Baixo
   chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
 
   // PieChart Out - Parte de Baixo
-  chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - OUT', percentageOfVehiclesout);
+  chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
 }
 
 // Creates Bar Chart
@@ -339,7 +387,7 @@ function makePieChart(chartInput, titleText, dataPie){
       labels:typesOfVehicles,
       datasets:[
         {
-          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF", "#0089AB"],
+          backgroundColor: ["#3e95cd", "#007AFF","#00CBFF"],
           data: dataPie
         }
       ]
@@ -428,8 +476,8 @@ function ResetData(){
 
   // Pie Chart
   for (i = 0; i < 4; i++) {
-    percentageOfVehiclesin[i] = 2; 
-    percentageOfVehiclesout[i] = 2; 
+    percentageOfVehiclesin[i] = 0; 
+    percentageOfVehiclesout[i] = 0; 
   }
 }
 
@@ -490,6 +538,23 @@ function getDataWeekXLM(urle){
       try{
         var x = data.getElementsByTagName("REGISTO");
         value = parseInt(x[0].childNodes[2].childNodes[0].nodeValue);
+      }catch(err){}
+     }
+  });
+  return value;
+}
+
+// Get XML Class Week file from Server
+function getDataTypeXLM(urle){
+  var value = 0;
+    $.ajax({
+     async: false,
+     type: 'GET',
+     url: urle,
+     success: function(data) {
+      try{
+        var x = data.getElementsByTagName("REGISTO");
+        value = parseInt(x[0].childNodes[0].childNodes[0].nodeValue);
       }catch(err){}
      }
   });
