@@ -54,15 +54,18 @@ function init(){
   percentageOfVehiclesout = new Array();
   chartYSum = 0;
 
-  document.getElementById("dateinput").disabled=true;     // Blocks date input
-  document.getElementById("dateHomolinput").disabled=true; // Blocks date input
-  document.getElementById("dashinput").disabled=true;     // Blocks dashboard input
-  hideInfo();                                             // Hides text below map
+  document.getElementById("dateinput").disabled=true;       // Blocks date input
+  document.getElementById("dateHomolinput").disabled=true;  // Blocks date input
+  document.getElementById("dashinput").disabled=true;       // Blocks dashboard input
+  hideInfo();                                               // Hides text below map
+
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
 }
 
 // ----------------------------------- Chart.js -------------------------------------------
 // Create charts
-function populateCharts(arg1){
+async function populateCharts(arg1){
   var id1 = document.getElementById(arg1);
   dashHourReset();
   resetGraphs();
@@ -138,9 +141,9 @@ function populateCharts(arg1){
     var urlCars = url.concat(datesS[0] ,"&radar=", locationString, "&type=cars");
     var urlBikes = url.concat(datesS[0] ,"&radar=", locationString, "&type=bikes");
     var urlTruck = url.concat(datesS[0] ,"&radar=", locationString, "&type=truck");
-    var urlHCars = url.concat(datesS[0] ,"&radar=", locationString, "&type=cars");
-    var urlHBikes = url.concat(datesS[0] ,"&radar=", locationString, "&type=bikes");
-    var urlHTruck = url.concat(datesS[0] ,"&radar=", locationString, "&type=truck");
+    var urlHCars = url.concat(dateHomol[0] ,"&radar=", locationString, "&type=cars");
+    var urlHBikes = url.concat(dateHomol[0] ,"&radar=", locationString, "&type=bikes");
+    var urlHTruck = url.concat(dateHomol[0] ,"&radar=", locationString, "&type=truck");
 
     percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
     percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
@@ -224,9 +227,9 @@ function populateCharts(arg1){
     var urlCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
     var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
     var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
-    var urlHCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
-    var urlHBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
-    var urlHTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+    var urlHCars = url.concat(dateHomol ,"&radar=", locationString, "&type=cars");
+    var urlHBikes = url.concat(dateHomol ,"&radar=", locationString, "&type=bikes");
+    var urlHTruck = url.concat(dateHomol ,"&radar=", locationString, "&type=truck");
 
     percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
     percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
@@ -255,7 +258,6 @@ function populateCharts(arg1){
     hideInfo();
     hideTextCard();
   }
-
 }
 
 // Create charts that need hour argument
@@ -319,9 +321,9 @@ function updateHourChart(arg1){
   var urlCars = url.concat(dateS ,"&radar=", locationString, "&type=cars", "&hora=" ,hour);
   var urlBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
   var urlTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
-  var urlHCars = url.concat(dateS ,"&radar=", locationString, "&type=cars");
-  var urlHBikes = url.concat(dateS ,"&radar=", locationString, "&type=bikes");
-  var urlHTruck = url.concat(dateS ,"&radar=", locationString, "&type=truck");
+  var urlHCars = url.concat(dateHomol ,"&radar=", locationString, "&type=cars");
+  var urlHBikes = url.concat(dateHomol ,"&radar=", locationString, "&type=bikes");
+  var urlHTruck = url.concat(dateHomol ,"&radar=", locationString, "&type=truck");
 
   percentageOfVehiclesin[0] = getDataTypeXLM(urlCars);
   percentageOfVehiclesin[1] = getDataTypeXLM(urlTruck);
