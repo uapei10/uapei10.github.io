@@ -13,7 +13,7 @@ var statesData = {
       "properties": {
         "name": "Barra",
         "cityID": 2742611,
-        "radar": "ponte",
+        "radar": "dunaMeio",
         "density": 0,
         "speed": 0,
         "temperature": 0,
@@ -308,7 +308,6 @@ function getInfoData(){
 
     var speed = 0;
     var i = 0;
-
     $.ajax({
      async: false,
      type: 'GET',
@@ -316,7 +315,7 @@ function getInfoData(){
      success: function(data) {
       for(t = 0; t < data.length; t++){
         if(data[t].speed != 0){
-          speed += data[t].speed;
+          speed += data[t].speed_in;
           i++;
         }
       }
@@ -333,7 +332,6 @@ function getInfoData(){
     type: 'GET',
     url: urle,
     success: function(data) {
-      console.log(data);
       statesData.features[0].properties.density = data.barra.current;
       statesData.features[1].properties.density = data.costa_nova.current;
     }
