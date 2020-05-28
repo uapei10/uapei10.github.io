@@ -327,28 +327,17 @@ function getInfoData(){
   }
 
   // Density Data
-  var urle = "https://pasmo.es.av.it.pt/api/parking/occupation?day=";
-
-  var date = new Date();
-  var strDate1 = 'Y-m-d'
-    .replace('Y', date.getFullYear())
-    .replace('m', date.getMonth()+1)
-    .replace('d', date.getDate())
-
-  var i =  date.getHours()-1;
-  for(var key in statesData.features){
-    var url = urle.concat(strDate1);
-    console.log(i);
-    $.ajax({
-     async: false,
-     type: 'GET',
-     url: url,
-     success: function(data) {
-      statesData.features[key].properties.density = data[i].taken;
-     }
-    });
-    i--;
-  }
+  var urle = "https://pasmo.es.av.it.pt/api/radars/vehicleEstimation";
+  $.ajax({
+    async: false,
+    type: 'GET',
+    url: urle,
+    success: function(data) {
+      console.log(data);
+      statesData.features[0].properties.density = data.barra.current;
+      statesData.features[1].properties.density = data.costa_nova.current;
+    }
+  });
 }
 
 // Changes color intensity
