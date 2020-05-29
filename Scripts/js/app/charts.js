@@ -153,13 +153,13 @@ async function populateCharts(arg1){
     percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
 
     // Criar Chart In - Parte de Cima
-    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
+    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Volume - IN (Nº Vehicles / Day)', trafficWeekHomolin, trafficWeekin, week);
 
     // Criar PieChart IN - Parte de Cima
     chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
     // Criar Chart Out - Parte de Baixo
-    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Day)', trafficWeekHomolout, trafficWeekout, week);
+    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Volume - OUT (Nº Vehicles / Day)', trafficWeekHomolout, trafficWeekout, week);
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
@@ -239,13 +239,13 @@ async function populateCharts(arg1){
     percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
 
     // Criar Chart In - Parte de Cima
-    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
+    chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Volume - IN (Nº Vehicles / Hour)', trafficHourHomolin, trafficHourin, hours);
 
     // Criar PieChart IN - Parte de Cima
     chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
     // Criar Chart Out - Parte de Baixo
-    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / Hour)', trafficHourHomolout, trafficHourout, hours);
+    chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Volume - OUT (Nº Vehicles / Hour)', trafficHourHomolout, trafficHourout, hours);
 
     // PieChart Out - Parte de Baixo
     chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
@@ -333,13 +333,13 @@ function updateHourChart(arg1){
   percentageOfVehiclesout[2] = getDataTypeXLM(urlHBikes);
 
   // Criar Chart In - Parte de Cima
-  chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Density - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
+  chart1in = makeBarChart(document.getElementById("ChartIn"), 'Traffic Volume - IN (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolin, traffic5Minutesin, minutes);
 
   // Criar PieChart IN - Parte de Cima
   chart2in = makePieChart(document.getElementById("PieChartIn"), 'Categorization - Selected Date', percentageOfVehiclesin);
 
   // Criar Chart Out - Parte de Baixo
-  chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Density - OUT (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
+  chart1out = makeBarChart(document.getElementById("ChartOut"), 'Traffic Volume - OUT (Nº Vehicles / 5 Minutes)', traffic5MinutesHomolout, traffic5Minutesout, minutes);
 
   // PieChart Out - Parte de Baixo
   chart2out = makePieChart(document.getElementById("PieChartOut"), 'Categorization - Homologous Date', percentageOfVehiclesout);
