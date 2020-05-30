@@ -1,5 +1,3 @@
-var login = false;
-
 // ----------------------------------- HTML -------------------------------------------
 // Hide hour selection div
 function hideHour() {
@@ -154,18 +152,4 @@ function removeDuplicates(array){
     if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
   });
   return uniqueNames;
-}
-
-// Changes Log in boolean
-function logIn(){
-  login = true;
-  alert(login);
-}
-
-// Changes Bar
-function changeAppBar(){
-  if(login)
-    putLoggedIn();
-  else
-    putLoggin();
 }
