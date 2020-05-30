@@ -1,6 +1,8 @@
 // ----------------------------------- Dates -------------------------------------------
 // Gets Homol Day 
 function updateDate(arg1){
+  document.getElementById("dashinput").disabled=false;
+
   var date = new Date(document.getElementById('dateinput').value);
   var dateH = new Date(document.getElementById('dateHomolinput').value);
 
@@ -11,7 +13,7 @@ function updateDate(arg1){
   else if(hourValue.value != "hnull" && dashValue.value == "d2")
   	updateHourChart("dashhour");
 
-  if(!isValidDate(date) || !isValidDate(dateH)){
+  if(!isValidDate(date) && !isValidDate(dateH)){
     putImage();
     hideTextCard();
     hideInfo();
@@ -47,7 +49,7 @@ function updateHomolDate(arg1){
   else if(hourValue.value != "hnull" && dashValue.value == "d2")
     updateHourChart("dashhour");
 
-  if(!isValidDate(date) || !isValidDate(dateH)){
+  if(!isValidDate(date) && !isValidDate(dateH)){
     putImage();
     hideTextCard();
     hideInfo();
