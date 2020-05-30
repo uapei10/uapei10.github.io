@@ -247,7 +247,7 @@ async function init(){
   legend = L.control({position: 'bottomleft'});
   legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 100, 200, 500, 750, 1000, 2000, 5000],
+        grades = [0, 200, 400, 600, 800, 1000, 1500, 2000],
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
@@ -340,13 +340,13 @@ function getInfoData(){
 
 // Changes color intensity
 function getColor(d) {
-    return d > 5000 ? '#800026' :
-           d > 2000  ? '#BD0026' :
+    return d > 2000 ? '#800026' :
+           d > 1500  ? '#BD0026' :
            d > 1000  ? '#E31A1C' :
-           d > 750  ? '#FC4E2A' :
-           d > 500   ? '#FD8D3C' :
-           d > 200   ? '#FEB24C' :
-           d > 100   ? '#FED976' :
+           d > 800  ? '#FC4E2A' :
+           d > 600   ? '#FD8D3C' :
+           d > 400   ? '#FEB24C' :
+           d > 200   ? '#FED976' :
                       '#FFEDA0';
 }
 
