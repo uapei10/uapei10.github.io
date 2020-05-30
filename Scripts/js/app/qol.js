@@ -63,7 +63,7 @@ function putHourSelection(){
 }
 
 // Swap Charts
-function swapCharts() {
+/*function swapCharts() {
   var x = document.getElementById("chartscontainer");
   x.innerHTML = `<div class="w3-row w3-card onscreen" id="charts">
                   <div class="w3-col" style="width:70%">
@@ -79,6 +79,33 @@ function swapCharts() {
                   </div>
                   <div class="w3-col" style="width:30%">
                     <div id="chart2div2" class="chartcont"> <canvas id="PieChartOut"></canvas></div>
+                  </div>
+                </div>`;
+}*/
+
+// Swap Charts
+function swapCharts() {
+  var x = document.getElementById("chartscontainer");
+  x.innerHTML = `<div class="w3-col-padding">
+                  <div class="w3-col onscreen" id="charts" style="width:70%;">
+                    <div class="w3-card">
+                      <div class="w3-row">
+                        <div id="chart1div1" class="chartcont"> <canvas id="ChartIn"></canvas></div>
+                      </div>
+                      <div class="w3-row">
+                        <div id="chart1div2" class="chartcont"> <canvas id="ChartOut"></canvas></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w3-col onscreen" id="charts2" style="width:30%; ">
+                    <div class="w3-card" style="margin-left:16px">
+                      <div class="w3-row">
+                        <div id="chart2div1" class="chartcont"> <canvas id="PieChartIn"></canvas></div>
+                      </div>
+                      <div class="w3-row">
+                        <div id="chart2div2" class="chartcont"> <canvas id="PieChartOut"></canvas></div>
+                      </div>
+                    </div>
                   </div>
                 </div>`;
 }
