@@ -49,7 +49,7 @@ function init(){
   traffic5MinutesHomolin = new Array();
   traffic5Minutesout = new Array();
   traffic5MinutesHomolout = new Array();
-  typesOfVehicles = ["Light", "Heavy", "Bike"];
+  typesOfVehicles = ["Light", "Heavy", "Motocycle"];
   percentageOfVehiclesin = new Array();
   percentageOfVehiclesout = new Array();
   chartYSum = 0;
