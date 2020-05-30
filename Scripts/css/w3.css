@@ -21,6 +21,9 @@ body, html {
 }
 .chartcont {
   height: 358px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .textinf{
   height: 250px;
