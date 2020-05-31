@@ -55,14 +55,14 @@
                       <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">2</strong></span>
                       Select Date:
                     </label>
-                    <input id="dateinput" type="date" style="float:right; width:35%; margin-right:18px" onchange="updateDate(this.id)">
+                    <input id="dateinput" onkeydown="return false" type="date" style="float:right; width:35%; margin-right:18px" onchange="updateDate(this.id)">
                   </div>
                   <div style="margin-top: 6px;">
                     <label for="date">
                       <span class="fa-stack"><span class="fa fa-circle-o fa-stack-2x"></span><strong class="fa-stack-1x">3</strong></span>
                       Select Homologous Date:
                     </label>
-                    <input style="float:right; margin-right:18px; width:35%; color:'red';" onchange="updateHomolDate(this.id)" id="dateHomolinput" type="date">
+                    <input style="float:right; margin-right:18px; width:35%; color:'red';" onchange="updateHomolDate(this.id)" id="dateHomolinput" onkeydown="return false" type="date">
                   </div>
                 </div>
             </div>
