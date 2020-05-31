@@ -136,6 +136,16 @@ async function populateCharts(arg1){
     chartYOutHomolSum = sum(trafficWeekHomolout);
     updateTextInfo();
 
+    var missingData = false;
+    for(i=0; i < 7; i++){
+      if (trafficWeekin[i] == 0 || trafficWeekout[i] == 0 || trafficWeekHomolin[i] == 0 || trafficWeekHomolout[i] == 0)
+        missingData = true;
+    }
+    if (missingData)
+      updateTextInfo(true);
+    else
+      updateTextInfo(false);
+
     var url = "http://fjunior.f2mobile.eu/teste.php?ACCAO=QUERY_TYPES_SEMANA&dia=";
 
     var urlCars = url.concat(datesS[0] ,"&radar=", locationString, "&type=cars");
