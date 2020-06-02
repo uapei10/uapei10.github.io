@@ -14,8 +14,8 @@ var statesData = {
         "name": "Barra",
         "cityID": 2742611,
         "radar": "dunaMeio",
-        "density": 931,
-        "speed": 20.12,
+        "density": 0,
+        "speed": 0,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -94,8 +94,8 @@ var statesData = {
         "name": "Costa Nova",
         "cityID": 2738707,
         "radar": "riaAtiva",
-        "density": 743,
-        "speed": 18.30,
+        "density": 0,
+        "speed": 0,
         "temperature": 0,
         "wind": 0,
         "humidity": 0
@@ -321,8 +321,7 @@ function getInfoData(){
       }
      }
     });
-    if(speed!=0)
-      statesData.features[key].properties.speed = Math.round((speed/i)*100)/100;
+    statesData.features[key].properties.speed = Math.round((speed/i)*100)/100;
   }
 
   // Density Data
